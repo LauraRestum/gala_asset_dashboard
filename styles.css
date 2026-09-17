@@ -279,34 +279,21 @@ body {
   color: var(--brand-green);
 }
 
-#hover-zoom {
-  position: fixed;
-  z-index: 500;
-  pointer-events: none;
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 0.6rem;
-  box-shadow: 0 14px 36px rgba(2, 40, 85, 0.28);
-  padding: 0.4rem;
-}
-
-#hover-zoom[hidden] {
-  display: none;
-}
-
-#hover-zoom img {
-  display: block;
-  max-width: min(44vw, 640px);
-  max-height: 68vh;
-  width: auto;
-  height: auto;
-  object-fit: contain;
+.modal-preview .zoom-wrap {
+  overflow: hidden;
+  cursor: zoom-in;
   border-radius: 0.4rem;
+  line-height: 0;
 }
 
-@media (hover: none), (pointer: coarse) {
-  #hover-zoom {
-    display: none !important;
+.modal-preview .zoom-wrap img {
+  display: block;
+  transition: transform 0.12s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modal-preview .zoom-wrap img {
+    transition: none;
   }
 }
 
