@@ -45,8 +45,12 @@ const sectionConfig = [
           },
           {
             name: "Day-of Program",
-            placeholder: "Not started",
-            status: "notstarted",
+            file: "program-01.jpg",
+            pages: 20,
+            pagePrefix: "program-",
+            status: "draft",
+            url: "assets/2026-gala-program.pdf",
+            urlLabel: "Full program (PDF)",
             clickup: "https://app.clickup.com/t/86ak6h8r1",
           },
           {
@@ -248,8 +252,24 @@ const modalClose = document.getElementById("modal-close");
 const modalPrev = document.getElementById("modal-prev");
 const modalNext = document.getElementById("modal-next");
 
+// Multi-page assets expand into one viewer entry per page.
+const expandAsset = (asset) => {
+  if (!asset.pages || asset.pages < 2 || !asset.pagePrefix) return [asset];
+  const pages = [];
+  for (let i = 1; i <= asset.pages; i++) {
+    pages.push({
+      ...asset,
+      name: `${asset.name} — Page ${i} of ${asset.pages}`,
+      file: `${asset.pagePrefix}${String(i).padStart(2, "0")}.jpg`,
+    });
+  }
+  asset.modalTarget = pages[0];
+  return pages;
+};
+
 const allAssets = sectionConfig
   .flatMap((group) => group.sections.flatMap((section) => section.assets))
+  .flatMap(expandAsset)
   .filter((asset) => asset.file || asset.video);
 let activeAssetIndex = -1;
 
@@ -532,7 +552,7 @@ const openModalByIndex = (index) => {
 };
 
 const openModal = (asset) => {
-  const nextIndex = allAssets.indexOf(asset);
+  const nextIndex = allAssets.indexOf(asset.modalTarget || asset);
   if (nextIndex === -1) return;
   openModalByIndex(nextIndex);
 };
