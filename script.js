@@ -193,10 +193,12 @@ const sectionConfig = [
             clickup: "https://app.clickup.com/t/86ak6h8hh",
           },
           {
-            name: "Heather's Camp",
-            placeholder: "Not started",
-            status: "notstarted",
-            due: "Due Sep 22",
+            name: "Heather's Camp — 90-Second Video",
+            video: "heathers-camp-90.mp4",
+            poster: "heathers-camp-poster.jpg",
+            status: "draft",
+            dropbox:
+              "https://www.dropbox.com/scl/fi/b4z6ok79lnnijej3v6606/Heathers-Camp-2026-90-Sec.mp4?rlkey=wdktvt18g8cywrys7d0q64n4a&st=hwhnuzw9&dl=0",
             clickup: "https://app.clickup.com/t/86ak6h8g1",
           },
           {
@@ -239,7 +241,7 @@ const modalNext = document.getElementById("modal-next");
 
 const allAssets = sectionConfig
   .flatMap((group) => group.sections.flatMap((section) => section.assets))
-  .filter((asset) => asset.file);
+  .filter((asset) => asset.file || asset.video);
 let activeAssetIndex = -1;
 
 // ---------------------------------------------------------------------------
@@ -252,8 +254,16 @@ const createPlaceholder = (label = "Image not uploaded yet") => {
   return holder;
 };
 
+const createPlayBadge = () => {
+  const badge = document.createElement("span");
+  badge.className = "play-badge";
+  badge.setAttribute("aria-hidden", "true");
+  badge.textContent = "▶";
+  return badge;
+};
+
 const renderTilePreview = (preview, asset) => {
-  if (!asset.file) {
+  if (!asset.file && !asset.video) {
     preview.replaceChildren(createPlaceholder(asset.placeholder));
     return;
   }
@@ -261,16 +271,20 @@ const renderTilePreview = (preview, asset) => {
   preview.replaceChildren(createPlaceholder("Loading..."));
 
   const image = new Image();
-  image.alt = asset.name;
+  image.alt = asset.video ? `${asset.name} (video)` : asset.name;
 
   image.addEventListener("error", () => {
     preview.replaceChildren(createPlaceholder());
   });
   image.addEventListener("load", () => {
-    preview.replaceChildren(image);
+    if (asset.video) {
+      preview.replaceChildren(image, createPlayBadge());
+    } else {
+      preview.replaceChildren(image);
+    }
   });
 
-  image.src = `${assetRoot}${asset.file}`;
+  image.src = `${assetRoot}${asset.video ? asset.poster : asset.file}`;
 };
 
 const buildAssetTile = (asset) => {
@@ -284,7 +298,7 @@ const buildAssetTile = (asset) => {
   preview.setAttribute("aria-label", `Preview ${asset.name}`);
 
   const activate = () => {
-    if (asset.file) {
+    if (asset.file || asset.video) {
       openModal(asset);
       return;
     }
@@ -294,7 +308,7 @@ const buildAssetTile = (asset) => {
     }
   };
 
-  if (!asset.file && (asset.url || asset.canva || asset.clickup)) {
+  if (!asset.file && !asset.video && (asset.url || asset.canva || asset.clickup)) {
     preview.setAttribute("aria-label", `Open ${asset.name}`);
   }
 
@@ -342,6 +356,7 @@ const buildAssetTile = (asset) => {
   };
 
   if (asset.canva) addLink(asset.canva, "Full design in Canva");
+  if (asset.dropbox) addLink(asset.dropbox, "Full quality on Dropbox");
   if (asset.url) addLink(asset.url, "Open file");
   if (asset.clickup) addLink(asset.clickup, "Team notes in ClickUp");
   if (!fileLabel.childNodes.length && asset.file) {
@@ -415,8 +430,25 @@ const buildNav = () => {
 // ---------------------------------------------------------------------------
 // Modal
 // ---------------------------------------------------------------------------
+const pauseModalVideo = () => {
+  const playing = modalPreview.querySelector("video");
+  if (playing) playing.pause();
+};
+
 const renderModalAsset = (asset) => {
   modalTitle.textContent = asset.name;
+  pauseModalVideo();
+
+  if (asset.video) {
+    const video = document.createElement("video");
+    video.controls = true;
+    video.preload = "metadata";
+    video.setAttribute("playsinline", "");
+    if (asset.poster) video.poster = `${assetRoot}${asset.poster}`;
+    video.src = `${assetRoot}${asset.video}`;
+    modalPreview.replaceChildren(video);
+    return;
+  }
 
   modalPreview.replaceChildren(createPlaceholder("Loading..."));
 
@@ -448,7 +480,7 @@ const openModalByIndex = (index) => {
 };
 
 const openModal = (asset) => {
-  const nextIndex = allAssets.findIndex((item) => item.file === asset.file);
+  const nextIndex = allAssets.indexOf(asset);
   if (nextIndex === -1) return;
   openModalByIndex(nextIndex);
 };
@@ -460,6 +492,7 @@ const stepModalAsset = (step) => {
 };
 
 const closeModal = () => {
+  pauseModalVideo();
   modal.hidden = true;
   document.body.style.overflow = "";
   activeAssetIndex = -1;
