@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en" data-env-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--ARTIFACT-HEAD-->
+<script>(function(){try{
+  var r = document.documentElement; r.lang = 'en';
+  var p = JSON.parse(localStorage.getItem('env-a11y') || '{}');
+  var t = p.theme;
+  if (!['dark','light','hc'].includes(t)) {
+    var host = r.getAttribute('data-theme');
+    if (host === 'light') { t = 'light'; }
+    else if (host === 'dark') { t = 'dark'; }
+    else { t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'; }
+  }
+  r.setAttribute('data-env-theme', t);
+  ['zoom','lines','paras','underline','motion','readable','cursor'].forEach(function(k){
+    if (p[k]) r.setAttribute('data-env-' + k, p[k]);
+  });
+}catch(e){}})();</script>
+<title>Gala 2026 Collateral</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root, html[data-env-theme="dark"] {
+    --blue: #003087; --blue-dark: #001852; --blue-mid: #004bb5;
+    --green: #78BE21; --green-text: #78BE21; --green-dim: rgba(120,190,33,0.15);
+    --bg-body: #000d2e; --surface-card: rgba(0,24,82,0.52);
+    --surface-solid: #001030;
+    --text-main: #f0f4ff; --text-muted: rgba(240,244,255,0.62);
+    --border-soft: rgba(255,255,255,0.08);
+    --error: #FF6B3D; --warn: #FFCF00; --info: #41B6E6;
+    --focus: #78BE21;
+    --nav-bg: rgba(0,13,46,0.75);
+    --seg-rest: rgba(240,244,255,0.22);
+  }
+  html[data-env-theme="light"] {
+    --blue: #003087; --blue-dark: #002855; --blue-mid: #004bb5;
+    --green: #78BE21; --green-text: #457010; --green-dim: rgba(120,190,33,0.18);
+    --bg-body: #f4f7fb; --surface-card: #ffffff;
+    --surface-solid: #ffffff;
+    --text-main: #002855; --text-muted: #53565A;
+    --border-soft: rgba(0,40,85,0.14);
+    --error: #9E3000; --warn: #8a6d00; --info: #00588a;
+    --focus: #003087;
+    --nav-bg: rgba(244,247,251,0.85);
+    --seg-rest: rgba(0,40,85,0.18);
+  }
+  html[data-env-theme="hc"] {
+    --blue: #41B6E6; --blue-dark: #000000; --blue-mid: #41B6E6;
+    --green: #78BE21; --green-text: #78BE21; --green-dim: rgba(120,190,33,0.25);
+    --bg-body: #000000; --surface-card: #000000;
+    --surface-solid: #000000;
+    --text-main: #ffffff; --text-muted: #ffffff;
+    --border-soft: #ffffff;
+    --error: #FF6B3D; --warn: #FFCF00; --info: #41B6E6;
+    --focus: #78BE21;
+    --nav-bg: #000000;
+    --seg-rest: rgba(255,255,255,0.35);
+  }
+  html[data-env-theme="hc"] * { backdrop-filter: none !important; text-shadow: none !important; }
+  html[data-env-theme="hc"] a { text-decoration: underline; }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 5.5rem; }
+  :target, [tabindex="-1"]:focus { scroll-margin-top: 5.5rem; }
+  body {
+    font-family: 'Montserrat', 'Segoe UI', sans-serif; font-weight: 400;
+    background: var(--bg-body); color: var(--text-main);
+    -webkit-font-smoothing: antialiased; overflow-x: hidden;
+    font-size: 16px; line-height: 1.7;
+  }
+  img { max-width: 100%; }
+  .visually-hidden {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+  :focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 2px; }
+  a { color: var(--text-main); }
+
+  .skip-link {
+    position: absolute; left: 1rem; top: -100px; z-index: 200;
+    background: var(--green); color: #001852;
+    padding: 0.7rem 1.4rem; font-weight: 700; font-size: 0.75rem;
+    letter-spacing: 0.1em; text-transform: uppercase; border-radius: 2px;
+    text-decoration: none; transition: top 0.15s;
+  }
+  .skip-link:focus { top: 1rem; }
+
+  nav.top {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+    padding: 1.1rem clamp(1rem, 4vw, 4rem);
+    background: var(--nav-bg);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .logo { font-weight: 800; font-size: 0.95rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-main); }
+  .logo span { color: var(--green-text); }
+  nav.top ul { display: flex; gap: 1.6rem; list-style: none; align-items: center; }
+  nav.top ul a {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-muted); text-decoration: none;
+  }
+  nav.top ul a:hover { color: var(--text-main); }
+  @media (max-width: 640px) { nav.top ul li.hide-sm { display: none; } }
+
+  header.hero {
+    position: relative; overflow: hidden; text-align: center;
+    padding: 8.5rem clamp(1rem, 4vw, 2rem) 3.5rem;
+    background: var(--blue-dark);
+    background-image: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 55%, var(--bg-body) 100%);
+  }
+  html[data-env-theme="light"] header.hero { background: #001852; background-image: linear-gradient(135deg, #001852 0%, #003087 55%, #000d2e 100%); }
+  html[data-env-theme="hc"] header.hero { background: #000000; background-image: none; border-bottom: 1px solid #ffffff; }
+  .hero-grain {
+    position: absolute; inset: 0; opacity: 0.03; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 860px; margin: 0 auto; }
+  .hero-label {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--green); margin-bottom: 1.5rem;
+  }
+  html[data-env-theme="light"] .hero-label { color: var(--green); }
+  .hero-label::before, .hero-label::after { content: ''; display: block; width: 24px; height: 1px; background: var(--green); opacity: 0.6; }
+  header.hero h1 {
+    font-size: clamp(2.4rem, 5vw, 4.2rem); font-weight: 800; line-height: 1.08;
+    letter-spacing: -0.02em; margin-bottom: 1.1rem; color: #f0f4ff;
+  }
+  header.hero h1 em { font-style: normal; color: var(--green); }
+  .hero-sub { font-size: 1rem; color: rgba(240,244,255,0.72); line-height: 1.75; max-width: 560px; margin: 0 auto; }
+  html[data-env-theme="hc"] header.hero h1, html[data-env-theme="hc"] .hero-sub { color: #ffffff; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  .hero-label { animation: fadeUp 0.6s 0.15s ease both; }
+  header.hero h1 { animation: fadeUp 0.7s 0.3s ease both; }
+  .hero-sub { animation: fadeUp 0.7s 0.45s ease both; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important; animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+  html[data-env-motion="reduce"] { scroll-behavior: auto; }
+  html[data-env-motion="reduce"] *, html[data-env-motion="reduce"] *::before, html[data-env-motion="reduce"] *::after {
+    animation-duration: 0.01ms !important; animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .status-wrap { border-bottom: 1px solid var(--border-soft); background: var(--surface-solid); }
+  html[data-env-theme="light"] .status-wrap { background: #ffffff; }
+  .status-inner {
+    max-width: 1200px; margin: 0 auto; padding: 1.6rem clamp(1rem, 4vw, 2rem);
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.4rem 2rem;
+  }
+  .metric-cell .m-label {
+    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--text-muted); margin-bottom: 0.25rem;
+  }
+  .metric-cell .m-val {
+    font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 800; letter-spacing: -0.03em;
+    color: var(--text-main); font-variant-numeric: tabular-nums; line-height: 1.15;
+  }
+  .metric-cell .m-val span { color: var(--green-text); }
+  .metric-cell .m-note { font-size: 0.72rem; color: var(--text-muted); }
+
+  main { display: block; }
+  section.band { max-width: 1200px; margin: 0 auto; padding: 3.2rem clamp(1rem, 4vw, 2rem) 0.5rem; }
+  .section-eyebrow {
+    font-size: 0.67rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--green-text); margin-bottom: 0.8rem;
+    display: inline-flex; align-items: center; gap: 0.75rem;
+  }
+  .section-eyebrow::before { content: ''; display: block; width: 20px; height: 1px; background: var(--green); }
+  section.band h2 { font-size: clamp(1.4rem, 2.6vw, 1.9rem); font-weight: 700; letter-spacing: -0.015em; margin-bottom: 0.4rem; }
+  .band-sub { color: var(--text-muted); font-size: 0.9rem; max-width: 640px; }
+
+  .progress-card {
+    margin-top: 1.6rem; background: var(--surface-card); border: 1px solid var(--border-soft);
+    border-left: 2px solid var(--green); border-radius: 2px; padding: 1.6rem clamp(1rem, 3vw, 2rem);
+  }
+  .stackbar { display: flex; gap: 2px; height: 18px; margin: 0.9rem 0 1rem; }
+  .stackbar .seg { border-radius: 2px; min-width: 4px; }
+  .seg-done { background: var(--green); }
+  .seg-active { background: var(--info); }
+  .seg-rest { background: var(--seg-rest); }
+  .legend { display: flex; flex-wrap: wrap; gap: 0.4rem 1.6rem; list-style: none; }
+  .legend li { display: flex; align-items: center; gap: 0.55rem; font-size: 0.82rem; color: var(--text-main); }
+  .legend .sw { width: 12px; height: 12px; border-radius: 2px; flex: none; }
+  .legend .n { font-weight: 700; font-variant-numeric: tabular-nums; }
+
+  .filters { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.8rem 0 0.4rem; }
+  .filters button {
+    background: transparent; border: 1px solid var(--border-soft); color: var(--text-main);
+    font: 600 0.72rem 'Montserrat', sans-serif; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.55rem 1.1rem; border-radius: 2px; cursor: pointer; min-height: 40px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .filters button:hover { border-color: var(--green); }
+  .filters button[aria-pressed="true"] { background: var(--green); color: #001852; border-color: var(--green); font-weight: 700; }
+
+  .group { margin: 2.2rem 0 0; }
+  .group-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.4rem 1rem; margin-bottom: 0.8rem; }
+  .group-head h3 { font-size: 1.02rem; font-weight: 700; letter-spacing: 0.01em; }
+  .group-head .gcount { font-size: 0.78rem; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+  .tbl-wrap { overflow-x: auto; border: 1px solid var(--border-soft); border-radius: 2px; background: var(--surface-card); }
+  table { border-collapse: collapse; width: 100%; min-width: 640px; }
+  caption { text-align: left; }
+  th, td { text-align: left; padding: 0.7rem 1rem; border-bottom: 1px solid var(--border-soft); font-size: 0.86rem; vertical-align: top; }
+  tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
+  thead th {
+    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--text-muted); border-bottom: 1px solid var(--border-soft); white-space: nowrap;
+  }
+  tbody th { font-weight: 600; color: var(--text-main); min-width: 180px; }
+  td.due { white-space: nowrap; font-variant-numeric: tabular-nums; color: var(--text-muted); }
+  td.who { color: var(--text-muted); }
+  .pill {
+    display: inline-flex; align-items: center; gap: 0.45rem; white-space: nowrap;
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 0.3rem 0.7rem; border-radius: 2px; border: 1px solid var(--border-soft);
+  }
+  .pill.done { color: var(--green-text); border-color: var(--green-text); background: var(--green-dim); }
+  .pill.active { color: var(--info); border-color: var(--info); background: transparent; }
+  .pill.rest { color: var(--text-muted); }
+  .duechip {
+    display: inline-block; margin-left: 0.6rem; font-size: 0.66rem; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--warn);
+    border: 1px solid var(--warn); border-radius: 2px; padding: 0.15rem 0.5rem; white-space: nowrap;
+  }
+  td.links a {
+    display: inline-block; margin-right: 0.9rem; font-size: 0.78rem; font-weight: 600;
+    color: var(--green-text); text-decoration: underline; text-underline-offset: 3px;
+  }
+  td.links a:hover { color: var(--text-main); }
+  tr[hidden] { display: none; }
+
+  .assets { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 2px; background: var(--border-soft); border: 1px solid var(--border-soft); border-radius: 2px; margin-top: 1.6rem; }
+  .asset-card { background: var(--surface-solid); padding: 1.5rem; transition: background 0.2s; }
+  html[data-env-theme="light"] .asset-card { background: #ffffff; }
+  .asset-card:hover { background: var(--surface-card); }
+  .asset-card .card-tag {
+    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--green-text); margin-bottom: 0.9rem; display: flex; align-items: center; gap: 0.5rem;
+  }
+  .asset-card .card-tag::before { content: ''; display: block; width: 12px; height: 1px; background: var(--green); }
+  .asset-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; }
+  .asset-card p { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.9rem; }
+  .asset-card a { font-size: 0.78rem; font-weight: 600; color: var(--green-text); text-decoration: underline; text-underline-offset: 3px; }
+  .asset-card a:hover { color: var(--text-main); }
+
+  footer.site {
+    margin-top: 3.5rem; border-top: 1px solid var(--border-soft);
+    padding: 2rem clamp(1rem, 4vw, 2rem) 2.6rem;
+  }
+  .foot-inner { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 1.2rem 2rem; align-items: center; justify-content: space-between; }
+  .foot-inner p { font-size: 0.75rem; color: var(--text-muted); max-width: 640px; }
+
+  .a11y-trigger { background: none; border: 1px solid var(--border-soft); color: var(--text-muted);
+    font: 600 0.68rem 'Montserrat', sans-serif; letter-spacing: 0.18em; text-transform: uppercase;
+    padding: 0.55rem 1.1rem; border-radius: 2px; cursor: pointer; }
+  .a11y-trigger:hover, .a11y-trigger:focus-visible { color: var(--text-main); border-color: var(--green); }
+  .a11y-overlay { position: fixed; inset: 0; z-index: 300; background: rgba(0,5,20,0.6);
+    display: flex; align-items: center; justify-content: center; padding: 1.5rem; }
+  .a11y-overlay[hidden] { display: none; }
+  .a11y-dialog { background: var(--bg-body); border: 1px solid var(--border-soft); border-radius: 2px;
+    padding: 2rem; width: min(460px, 100%); max-height: 90vh; overflow-y: auto; }
+  .a11y-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+  .a11y-close { background: none; border: 0; color: var(--text-main); font-size: 1.6rem;
+    min-width: 44px; min-height: 44px; cursor: pointer; }
+  .a11y-group { margin-bottom: 1.25rem; }
+  .a11y-label { display: block; font: 700 0.62rem 'Montserrat', sans-serif; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--green-text); margin-bottom: 0.6rem; }
+  .a11y-group button { background: transparent; border: 1px solid var(--border-soft); color: var(--text-main);
+    font: 600 0.78rem 'Montserrat', sans-serif; padding: 0.6rem 1rem; margin: 0 0.4rem 0.4rem 0;
+    border-radius: 2px; min-height: 44px; cursor: pointer; }
+  .a11y-group button[aria-pressed="true"] { background: var(--green); color: #001852; border-color: var(--green); }
+  .a11y-foot { display: flex; justify-content: space-between; margin-top: 1.5rem; gap: 1rem; }
+  .a11y-reset { background: none; border: 0; color: var(--text-muted); text-decoration: underline;
+    font: 600 0.78rem 'Montserrat', sans-serif; cursor: pointer; min-height: 44px; }
+  .btn-primary { background: var(--green); color: #001852; padding: 0.7rem 1.6rem; font-weight: 700;
+    font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; border: none; border-radius: 2px; cursor: pointer; }
+
+  html[data-env-zoom="2"] body { zoom: 1.125; }
+  html[data-env-zoom="3"] body { zoom: 1.25; }
+  html[data-env-zoom="4"] body { zoom: 1.4; }
+  html[data-env-lines="wide"] body { line-height: 1.95; }
+  html[data-env-paras="wide"] p { margin-bottom: 2em; }
+  html[data-env-underline="on"] a { text-decoration: underline !important; }
+  html[data-env-readable="on"] body { font-weight: 500; letter-spacing: 0.012em; word-spacing: 0.08em; line-height: 1.85; }
+  html[data-env-cursor="on"], html[data-env-cursor="on"] * {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpath d='M6 2l24 14-11 2 6 12-5 3-6-12-8 8z' fill='%23fff' stroke='%23001852' stroke-width='2'/%3E%3C/svg%3E") 4 2, auto !important; }
+
+  @media (hover: none) and (pointer: coarse) {
+    nav.top ul a, button, .filters button, td.links a, .asset-card a { min-height: 44px; }
+    nav.top ul a, td.links a, .asset-card a { display: inline-flex; align-items: center; }
+  }
+</style>
+<!--/ARTIFACT-HEAD-->
+</head>
+<body>
+<!--ARTIFACT-BODY-->
+<a class="skip-link" href="#main">Skip to content</a>
+<a class="skip-link" href="#nav">Skip to navigation</a>
+<a class="skip-link" href="#site-footer">Skip to footer</a>
+
+<nav class="top" id="nav" aria-label="Main">
+  <div class="logo">Envision<span>Gala</span></div>
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#collateral">Collateral</a></li>
+    <li class="hide-sm"><a href="#files">Design files</a></li>
+    <li><button class="a11y-trigger" id="a11yTrigger" aria-haspopup="dialog">Accessibility</button></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <div class="hero-grain" aria-hidden="true"></div>
+  <div class="hero-content">
+    <div class="hero-label">A Night For Vision &middot; Envision Gala 2026</div>
+    <h1>Gala collateral, <em>at a glance</em></h1>
+    <p class="hero-sub">Every piece being built for the 2026 gala: status, owners, deadlines, and direct links to the working files in ClickUp, Canva, and Google Drive.</p>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+
+  <div class="status-wrap" aria-label="Production summary">
+    <div class="status-inner" id="overview">
+      <div class="metric-cell">
+        <div class="m-label">Pieces tracked</div>
+        <div class="m-val">25</div>
+        <div class="m-note">ClickUp Gala list</div>
+      </div>
+      <div class="metric-cell">
+        <div class="m-label">Complete</div>
+        <div class="m-val"><span>5</span></div>
+        <div class="m-note">20% of all pieces</div>
+      </div>
+      <div class="metric-cell">
+        <div class="m-label">In production</div>
+        <div class="m-val">1</div>
+        <div class="m-note">Presentation assets</div>
+      </div>
+      <div class="metric-cell">
+        <div class="m-label">Not started</div>
+        <div class="m-val">19</div>
+        <div class="m-note">Incl. all signage</div>
+      </div>
+      <div class="metric-cell">
+        <div class="m-label">Next deadline</div>
+        <div class="m-val">Sep 22</div>
+        <div class="m-note">Level Up, Heather's Camp</div>
+      </div>
+      <div class="metric-cell">
+        <div class="m-label">Project deadline</div>
+        <div class="m-val">Oct 23</div>
+        <div class="m-note">36 days out</div>
+      </div>
+    </div>
+  </div>
+
+  <section class="band">
+    <span class="section-eyebrow">Production status</span>
+    <h2>Where the build stands</h2>
+    <p class="band-sub">Five pieces are done, including the two big early deliverables: the sponsorship book and the save the date. The heavy remaining lift is event signage and the show package.</p>
+    <div class="progress-card">
+      <div class="stackbar" role="img" aria-label="Overall progress: 5 of 25 pieces complete, 1 in production, 19 not started.">
+        <div class="seg seg-done" style="width: 20%;"></div>
+        <div class="seg seg-active" style="width: 4%;"></div>
+        <div class="seg seg-rest" style="flex: 1;"></div>
+      </div>
+      <ul class="legend">
+        <li><span class="sw seg-done" aria-hidden="true"></span> Complete <span class="n">&nbsp;5</span></li>
+        <li><span class="sw seg-active" aria-hidden="true"></span> In production <span class="n">&nbsp;1</span></li>
+        <li><span class="sw seg-rest" aria-hidden="true"></span> Not started <span class="n">&nbsp;19</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="band" id="collateral">
+    <span class="section-eyebrow">Collateral tracker</span>
+    <h2>All 25 pieces</h2>
+    <p class="band-sub">Grouped by workstream. Links open the ClickUp task or the design file. Deadline chips flag anything due within the next week.</p>
+
+    <div class="filters" role="group" aria-label="Filter collateral by status">
+      <button data-filter="all" aria-pressed="true">All</button>
+      <button data-filter="done" aria-pressed="false">Complete</button>
+      <button data-filter="active" aria-pressed="false">In production</button>
+      <button data-filter="rest" aria-pressed="false">Not started</button>
+    </div>
+    <div class="visually-hidden" role="status" aria-live="polite" id="filter-status"></div>
+
+    <div class="group">
+      <div class="group-head">
+        <h3>Print and invitations</h3>
+        <span class="gcount">3 of 5 complete</span>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <caption class="visually-hidden">Print and invitation collateral with status, owner, due date, and links</caption>
+          <thead><tr><th scope="col">Piece</th><th scope="col">Status</th><th scope="col">Owner</th><th scope="col">Due</th><th scope="col">Links</th></tr></thead>
+          <tbody>
+            <tr data-status="done"><th scope="row">Save the Date</th><td><span class="pill done">&#10003; Complete</span></td><td class="who">Laura Restum</td><td class="due">Aug 7</td><td class="links"><a href="https://app.clickup.com/t/86ak6h9v6" aria-label="Save the Date task in ClickUp">Task</a><a href="https://www.canva.com/d/VAH6DzicgJtqwGP" aria-label="Save the Date print-ready card in Canva">Canva file</a></td></tr>
+            <tr data-status="done"><th scope="row">Invitation</th><td><span class="pill done">&#10003; Complete</span></td><td class="who">Unassigned</td><td class="due">&ndash;</td><td class="links"><a href="https://app.clickup.com/t/86ak6h82e" aria-label="Invitation task in ClickUp">Task</a></td></tr>
+            <tr data-status="done"><th scope="row">Sponsorship Book</th><td><span class="pill done">&#10003; Complete</span></td><td class="who">Molly Workman</td><td class="due">Aug 11</td><td class="links"><a href="https://app.clickup.com/t/86ak6h9wx" aria-label="Sponsorship Book task in ClickUp">Task</a><a href="https://www.canva.com/d/QtRwKoe4CX3Gc3K" aria-label="Gala Sponsorship Booklet 2026 in Canva">Canva file</a><a href="https://t9010115835.p.clickup-attachments.com/t9010115835/6f949f23-ea7d-4430-a5e0-f50e5bf52597/Envision-Gala-2026-Sponsorship-Book-FINAL_v2.pdf" aria-label="Sponsorship book final PDF, version 2">Final PDF</a></td></tr>
+            <tr data-status="rest"><th scope="row">Day-of Program</th><td><span class="pill rest">&#9675; Not started</span></td><td class="who">Laura Restum</td><td class="due">&ndash;</td><td class="links"><a href="https://app.clickup.com/t/86ak6h8r1" aria-label="Day-of Program task in ClickUp">Task</a></td></tr>
+            <tr data-status="rest"><th scope="row">Bidder Cards</th><td><span class="pill rest">&#9675; Not started</span></td><td class="who">Laura Restum</td><td class="due">&ndash;</td><td class="links"><a href="https://app.clickup.com/t/86ak6h83x" aria-label="Bidder Cards task in ClickUp">Task</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="group">
+      <div class="group-head">
+        <h3>Digital and communications</h3>
+        <span class="gcount">1 of 3 complete</span>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <caption class="visually-hidden">Digital and communications collateral with status, owner, due date, and links</caption>
+          <thead><tr><th scope="col">Piece</th><th scope="col">Status</th><th scope="col">Owner</th><th scope="col">Due</th><th scope="col">Links</th></tr></thead>
+          <tbody>
+            <tr data-status="done"><th scope="row">Gala webpage ticket link</th><td><span class="pill done">&#10003; Complete</span></td><td class="who">Arlo Hoover</td><td class="due">Aug 20</td><td class="links"><a href="https://app.clickup.com/t/86ak6ha1e" aria-label="Gala webpage ticket link task in ClickUp">Task</a></td></tr>
+            <tr data-status="rest"><th scope="row">Pre-Communications</th><td><span class="pill rest">&#9675; Not started</span></td><td class="who">Erin Koehn</td><td class="due">&ndash;</td><td class="links"><a href="https://app.clickup.com/t/86ak6h9z2" aria-label="Pre-Communications task in ClickUp">Task</a></td></tr>
+            <tr data-status="rest"><th scope="row">Sponsor Cloud</th><td><span class="pill rest">&#9675; Not started</span></td><td class="who">Laura Restum</td><td class="due">&ndash;</td><td class="links"><a href="https://app.clickup.com/t/86ak6hbbx" aria-label="Sponsor Cloud task in ClickUp">Task</a><a href="https://www.canva.com/d/SXB7FPAGUNl0nWO" aria-label="Gala Sponsors design in Canva">Canva file</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="group">
+      <div class="group-head">
+        <h3>Event signage and environment</h3>
+        <span class="gcount">0 of 8 complete</span>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <caption class="visually-hidden">Event signage and environment collateral with status, owner, due date, and links</caption>
+          <thead><tr><th scope="col">Piece</th><th scope="col">Status</th><th scope="col">Owner</th><th scope="col">Due</th><th scope="col">Links</th></tr></thead>
+          <tbody>
+            <tr data-status="rest"><th scope="row">Signage (master)</th><td><span class="pill rest">&#9675; Not started</span></td><td class="who">Laura Restum</td><td class="due">&ndash;</td><td class="links"><a href="https://app.clickup.com/t/86ak6hb5e" aria-label="Signage task in ClickUp">Task</a></td></tr>
+            <tr data-status="rest"><th scope="row">Welcome Sign</th><td><span class="pill rest">&#9675; Not started</span></td><td class="who">Laura Restum</td><td class="due">&ndash;</td><td class="links"><a href="https://app.clickup.com/t/86ak6hb8d" aria-label="Welcome Sign task in ClickUp">Task</a></td></tr>
+            <tr data-status="rest"><th scope="row">Directional</th><td><span class="pill rest">&#9675; Not started</span></td><td class="who">Laura Restum</td><td class="due">&ndash;</td><td class="links"><a href="https://app.clickup.com/t/86ak6hbdc" aria-label="Directional signage task in ClickUp">Task</a></td></tr>
+            <tr data-status="rest"><th scope="row">Upstairs</th><td><span class="pill rest">&#9675; Not started</span></td><td class="who">Laura Restum</td><td class="due">&ndash;</td><td class="links"><a href="https://app.clickup.com/t/86ak6hbf7" aria-label="Upstairs signage task in ClickUp">Task</a></td></tr>
+            <tr data-status="rest"><th scope="row">Bar</th><td><span class="pill rest">&#9675; Not started</span></td><td class="who">Laura Restum</td><td class="due">&ndash;</td><td class="links"><a href="https://app.clickup.com/t/86ak6hbh0" aria-label="Bar signage task in ClickUp">Task</a></td></tr>
+            <tr data-status="rest"><th scope="row">Art</th><td><span class="pill rest">&#9675; Not started</span></td><td class="who">Laura Restum</td><td class="due">&ndash;</td><td class="links"><a href="https://app.clickup.com/t/86ak6hba5" aria-label="Art task in ClickUp">Task</a></td></tr>
+            <tr data-status="rest"><th scope="row">Through Their Eyes Roll-Up Banners</th><td><span class="pill rest">&#9675; Not started</span></td><td class="who">Laura Restum</td><td class="due">&ndash;</td><td class="links"><a href="https://app.clickup.com/t/86ak6h877" aria-label="Through Their Eyes roll-up banners task in ClickUp">Task</a></td></tr>
+            <tr data-status="rest"><th scope="row">Meta Glasses Experience</th><td><span class="pill rest">&#9675; Not started</span></td><td class="who">Laura Restum</td><td class="due">&ndash;</td><td class="links"><a href="https://app.clickup.com/t/86ak6hb6v" aria-label="Meta Glasses Experience task in ClickUp">Task</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="group">
+      <div class="group-head">
+        <h3>Show and presentation</h3>
+        <span class="gcount">1 of 4 complete, 1 in production</span>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <caption class="visually-hidden">Show and presentation collateral with status, owner, due date, and links</caption>
+          <thead><tr><th scope="col">Piece</th><th scope="col">Status</th><th scope="col">Owner</th><th scope="col">Due</th><th scope="col">Links</th></tr></thead>
+          <tbody>
+            <tr data-status="done"><th scope="row">Spirit of Philanthropy award</th><td><span class="pill done">&#10003; Complete</span></td><td class="who">Arlo Hoover</td><td class="due">Sep 11</td><td class="links"><a href="https://app.clickup.com/t/86akgg61d" aria-label="Spirit of Philanthropy award task in ClickUp">Task</a></td></tr>
+            <tr data-status="active"><th scope="row">Programming Presentation Assets</th><td><span class="pill active">&#9685; In production</span></td><td class="who">Arlo Hoover, Laura Restum</td><td class="due">&ndash;</td><td class="links"><a href="https://app.clickup.com/t/86ak6h890" aria-label="Programming Presentation Assets task in ClickUp">Task</a></td></tr>
+            <tr data-status="rest"><th scope="row">PowerPoint</th><td><span class="pill rest">&#9675; Not started</span></td><td class="who">Laura Restum, Arlo Hoover</td><td class="due">&ndash;</td><td class="links"><a href="https://app.clickup.com/t/86ak6h8cy" aria-label="PowerPoint task in ClickUp">Task</a><a href="https://docs.google.com/presentation/d/1GFmdqt6LAscAvfE6HiiAhATDG0uLeW8LqBAP1OuWFTI/edit" aria-label="Cocktail hour loop slides in Google Drive">Cocktail loop</a></td></tr>
+            <tr data-status="rest"><th scope="row">Videos</th><td><span class="pill rest">&#9675; Not started</span><span class="duechip">Due Oct 15</span></td><td class="who">Arlo Hoover, Laura Restum</td><td class="due">Oct 15</td><td class="links"><a href="https://app.clickup.com/t/86ak6h8ed" aria-label="Videos task in ClickUp">Task</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="group">
+      <div class="group-head">
+        <h3>Program spotlight segments</h3>
+        <span class="gcount">0 of 5 complete</span>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <caption class="visually-hidden">Program spotlight segment collateral with status, owner, due date, and links</caption>
+          <thead><tr><th scope="col">Piece</th><th scope="col">Status</th><th scope="col">Owner</th><th scope="col">Due</th><th scope="col">Links</th></tr></thead>
+          <tbody>
+            <tr data-status="rest"><th scope="row">Level Up</th><td><span class="pill rest">&#9675; Not started</span><span class="duechip">Due Sep 22</span></td><td class="who">Arlo Hoover</td><td class="due">Sep 22</td><td class="links"><a href="https://app.clickup.com/t/86ak6h8hh" aria-label="Level Up segment task in ClickUp">Task</a></td></tr>
+            <tr data-status="rest"><th scope="row">Heather's Camp</th><td><span class="pill rest">&#9675; Not started</span><span class="duechip">Due Sep 22</span></td><td class="who">Arlo Hoover</td><td class="due">Sep 22</td><td class="links"><a href="https://app.clickup.com/t/86ak6h8g1" aria-label="Heather's Camp segment task in ClickUp">Task</a></td></tr>
+            <tr data-status="rest"><th scope="row">Child Development Center</th><td><span class="pill rest">&#9675; Not started</span></td><td class="who">Arlo Hoover</td><td class="due">Oct 9</td><td class="links"><a href="https://app.clickup.com/t/86aketm6z" aria-label="Child Development Center segment task in ClickUp">Task</a></td></tr>
+            <tr data-status="rest"><th scope="row">Wichita Building</th><td><span class="pill rest">&#9675; Not started</span></td><td class="who">Arlo Hoover</td><td class="due">Oct 9</td><td class="links"><a href="https://app.clickup.com/t/86aketm5t" aria-label="Wichita Building segment task in ClickUp">Task</a></td></tr>
+            <tr data-status="rest"><th scope="row">Programs Legacy</th><td><span class="pill rest">&#9675; Not started</span></td><td class="who">Arlo Hoover</td><td class="due">Oct 9</td><td class="links"><a href="https://app.clickup.com/t/86ak6h8m0" aria-label="Programs Legacy segment task in ClickUp">Task</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="files">
+    <span class="section-eyebrow">Design files</span>
+    <h2>Latest working files</h2>
+    <p class="band-sub">The current 2026 cycle files across Canva, Google Drive, and ClickUp attachments, newest activity first.</p>
+    <div class="assets">
+      <div class="asset-card">
+        <div class="card-tag">Google Slides</div>
+        <h3>Cocktail hour loop</h3>
+        <p>Envision_Gala_2026_Cocktail_Hour_Loop. Updated Sep 15.</p>
+        <a href="https://docs.google.com/presentation/d/1GFmdqt6LAscAvfE6HiiAhATDG0uLeW8LqBAP1OuWFTI/edit" aria-label="Open the cocktail hour loop in Google Slides">Open in Drive</a>
+      </div>
+      <div class="asset-card">
+        <div class="card-tag">Canva &middot; 8 pages</div>
+        <h3>A Night For Vision creative</h3>
+        <p>Core event creative set. Updated Sep 10.</p>
+        <a href="https://www.canva.com/d/KtoEpumg6PJ_tg1" aria-label="Open A Night For Vision creative in Canva">Open in Canva</a>
+      </div>
+      <div class="asset-card">
+        <div class="card-tag">Canva &middot; Print</div>
+        <h3>Stage background, 24 x 30</h3>
+        <p>Gala2026_Background_24x30. Updated Sep 10.</p>
+        <a href="https://www.canva.com/d/p6g0B0nQvpVzbRT" aria-label="Open the 24 by 30 stage background in Canva">Open in Canva</a>
+      </div>
+      <div class="asset-card">
+        <div class="card-tag">Canva &middot; 9 pages</div>
+        <h3>Gala Sponsors cloud</h3>
+        <p>Sponsor logo cloud working file. Updated Sep 10.</p>
+        <a href="https://www.canva.com/d/SXB7FPAGUNl0nWO" aria-label="Open the Gala Sponsors cloud in Canva">Open in Canva</a>
+      </div>
+      <div class="asset-card">
+        <div class="card-tag">Canva &middot; 9 pages</div>
+        <h3>Sponsorship Booklet 2026</h3>
+        <p>Booklet working file. Updated Sep 3.</p>
+        <a href="https://www.canva.com/d/QtRwKoe4CX3Gc3K" aria-label="Open the Sponsorship Booklet 2026 in Canva">Open in Canva</a>
+      </div>
+      <div class="asset-card">
+        <div class="card-tag">Canva &middot; Print ready</div>
+        <h3>Save the Date card</h3>
+        <p>2026 card, 7 x 5, print ready. Updated Aug 10.</p>
+        <a href="https://www.canva.com/d/VAH6DzicgJtqwGP" aria-label="Open the Save the Date card in Canva">Open in Canva</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site" id="site-footer">
+  <div class="foot-inner">
+    <p>Snapshot of Sep 17, 2026, pulled from the ClickUp Gala list, Canva, and Google Drive. Ask Claude to refresh the dashboard to pick up new statuses and files.</p>
+    <button class="a11y-trigger" id="a11yTriggerFoot" aria-haspopup="dialog">Accessibility</button>
+  </div>
+</footer>
+
+<div class="a11y-overlay" id="a11yOverlay" hidden>
+  <div class="a11y-dialog" role="dialog" aria-modal="true" aria-labelledby="a11yTitle">
+    <div class="a11y-head">
+      <span class="section-eyebrow" id="a11yTitle">Accessibility Options</span>
+      <button class="a11y-close" data-a11y-close aria-label="Close accessibility options">&times;</button>
+    </div>
+    <div class="a11y-group" role="group" aria-labelledby="gTheme">
+      <span class="a11y-label" id="gTheme">Theme</span>
+      <button data-set="theme" data-val="dark" aria-pressed="false">Dark</button>
+      <button data-set="theme" data-val="light" aria-pressed="false">Light</button>
+      <button data-set="theme" data-val="hc" aria-pressed="false">High contrast</button>
+    </div>
+    <div class="a11y-group" role="group" aria-labelledby="gZoom">
+      <span class="a11y-label" id="gZoom">Text size</span>
+      <button data-set="zoom" data-val="1" aria-pressed="false">100%</button>
+      <button data-set="zoom" data-val="2" aria-pressed="false">112%</button>
+      <button data-set="zoom" data-val="3" aria-pressed="false">125%</button>
+      <button data-set="zoom" data-val="4" aria-pressed="false">140%</button>
+    </div>
+    <div class="a11y-group" role="group" aria-labelledby="gLines">
+      <span class="a11y-label" id="gLines">Line spacing</span>
+      <button data-set="lines" data-val="normal" aria-pressed="false">Normal</button>
+      <button data-set="lines" data-val="wide" aria-pressed="false">Wide</button>
+    </div>
+    <div class="a11y-group" role="group" aria-labelledby="gParas">
+      <span class="a11y-label" id="gParas">Paragraph spacing</span>
+      <button data-set="paras" data-val="normal" aria-pressed="false">Normal</button>
+      <button data-set="paras" data-val="wide" aria-pressed="false">Wide</button>
+    </div>
+    <div class="a11y-group">
+      <span class="a11y-label">Preferences</span>
+      <button data-toggle="underline" aria-pressed="false">Underline links</button>
+      <button data-toggle="motion" data-on="reduce" aria-pressed="false">Reduce motion</button>
+      <button data-toggle="readable" aria-pressed="false">Readable text</button>
+      <button data-toggle="cursor" aria-pressed="false">Large cursor</button>
+    </div>
+    <div class="a11y-foot">
+      <button class="a11y-reset" id="a11yReset">Reset all</button>
+      <button class="btn-primary" data-a11y-close>Done</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var buttons = document.querySelectorAll('.filters button');
+  var rows = document.querySelectorAll('tr[data-status]');
+  var groups = document.querySelectorAll('.group');
+  var status = document.getElementById('filter-status');
+  var names = { all: 'all pieces', done: 'complete pieces', active: 'pieces in production', rest: 'pieces not started' };
+  buttons.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var f = btn.dataset.filter;
+      buttons.forEach(function(b){ b.setAttribute('aria-pressed', String(b === btn)); });
+      var shown = 0;
+      rows.forEach(function(r){
+        var show = (f === 'all') || (r.dataset.status === f);
+        r.hidden = !show;
+        if (show) shown++;
+      });
+      groups.forEach(function(g){
+        var visible = g.querySelectorAll('tr[data-status]:not([hidden])').length;
+        g.hidden = visible === 0;
+      });
+      if (status) status.textContent = 'Showing ' + shown + ' ' + names[f] + '.';
+    });
+  });
+})();
+
+(function(){
+  var KEY='env-a11y', root=document.documentElement;
+  var triggers=[document.getElementById('a11yTrigger'), document.getElementById('a11yTriggerFoot')].filter(Boolean);
+  var overlay=document.getElementById('a11yOverlay');
+  if(!triggers.length||!overlay) return;
+  var dialog=overlay.querySelector('.a11y-dialog');
+  var prefs={}; try{ prefs=JSON.parse(localStorage.getItem(KEY)||'{}'); }catch(e){}
+  if(!prefs.motion && window.matchMedia('(prefers-reduced-motion: reduce)').matches) prefs.motion='reduce';
+
+  function save(){ try{ localStorage.setItem(KEY, JSON.stringify(prefs)); }catch(e){} }
+  function apply(){
+    ['theme','zoom','lines','paras','underline','motion','readable','cursor'].forEach(function(k){
+      if(prefs[k]) root.setAttribute('data-env-'+k, prefs[k]);
+      else root.removeAttribute('data-env-'+k);
+    });
+    if(!root.getAttribute('data-env-theme')) root.setAttribute('data-env-theme','dark');
+    overlay.querySelectorAll('[data-set]').forEach(function(b){
+      b.setAttribute('aria-pressed', String(prefs[b.dataset.set]===b.dataset.val));
+    });
+    overlay.querySelectorAll('[data-toggle]').forEach(function(b){
+      var on=b.dataset.on||'on';
+      b.setAttribute('aria-pressed', String(prefs[b.dataset.toggle]===on));
+    });
+  }
+  overlay.addEventListener('click', function(e){
+    var set=e.target.closest('[data-set]'), tog=e.target.closest('[data-toggle]');
+    if(set){ prefs[set.dataset.set]=set.dataset.val; save(); apply(); }
+    if(tog){ var on=tog.dataset.on||'on', k=tog.dataset.toggle;
+      prefs[k]=(prefs[k]===on)?null:on; if(!prefs[k]) delete prefs[k]; save(); apply(); }
+    if(e.target.closest('[data-a11y-close]') || e.target===overlay) close();
+  });
+  document.getElementById('a11yReset').addEventListener('click', function(){ prefs={}; save(); apply(); });
+
+  var lastFocus=null;
+  function open(){ lastFocus=document.activeElement; overlay.hidden=false;
+    dialog.querySelector('button').focus(); document.addEventListener('keydown', keys); }
+  function close(){ overlay.hidden=true; document.removeEventListener('keydown', keys);
+    if(lastFocus) lastFocus.focus(); }
+  function keys(e){
+    if(e.key==='Escape'){ close(); return; }
+    if(e.key!=='Tab') return;
+    var f=Array.prototype.slice.call(dialog.querySelectorAll('button:not([disabled])'));
+    var first=f[0], last=f[f.length-1];
+    if(e.shiftKey && document.activeElement===first){ e.preventDefault(); last.focus(); }
+    else if(!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); }
+  }
+  triggers.forEach(function(t){ t.addEventListener('click', open); });
+  apply();
+})();
+</script>
+<!--/ARTIFACT-BODY-->
+</body>
+</html>
