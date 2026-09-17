@@ -6,14 +6,20 @@ Envision Gala 2026 ("A Night For Vision").
 Open `index.html` in a browser. No build step, no dependencies beyond the
 Montserrat webfont loaded from Google Fonts.
 
+Built as an executive review board: the CEO can see what is finished,
+preview work in progress, and jump to the ClickUp task to leave notes.
+
 ## What it shows
 
-- 25 collateral pieces from the ClickUp **Gala** list, grouped by workstream
-  (print and invitations, digital, event signage, show and presentation,
-  program spotlight segments)
-- Status, owner, and due date for each piece, with links to the ClickUp task
-  and the working design file in Canva or Google Drive
+- A **Finished work** gallery with embedded previews of delivered pieces
+  (sponsorship book, save the date) and links to final files
+- An **In the works** gallery with draft previews (welcome sign, sponsor
+  cloud, stage backdrop) and a "Give notes in ClickUp" action on every card
+- The full tracker: 25 collateral pieces from the ClickUp **Gala** list,
+  grouped by workstream with status, owner, due date, and links
 - A production summary band and status filters
+
+Preview images live in `assets/` (exported from the Canva working files).
 - Three themes (dark, light, high contrast) and an accessibility panel
   (text size, line spacing, reduced motion, readable text), per Envision's
   accessibility standards
