@@ -94,13 +94,6 @@ const sectionConfig = [
             clickup: "https://app.clickup.com/t/86ak6hb8d",
           },
           {
-            name: "Stage Backdrop — 24x30",
-            file: "stage-backdrop.jpg",
-            status: "draft",
-            canva: "https://www.canva.com/d/p6g0B0nQvpVzbRT",
-            clickup: "https://app.clickup.com/t/86ak6hb5e",
-          },
-          {
             name: "Upstairs Directional — Event Continues Upstairs",
             file: "nfv-p5.jpg",
             status: "draft",
@@ -307,13 +300,13 @@ const buildAssetTile = (asset) => {
       openModal(asset);
       return;
     }
-    const target = asset.url || asset.canva || asset.clickup;
+    const target = asset.url || asset.clickup;
     if (target) {
       window.open(target, "_blank", "noopener,noreferrer");
     }
   };
 
-  if (!asset.file && !asset.video && (asset.url || asset.canva || asset.clickup)) {
+  if (!asset.file && !asset.video && (asset.url || asset.clickup)) {
     preview.setAttribute("aria-label", `Open ${asset.name}`);
   }
 
@@ -360,7 +353,6 @@ const buildAssetTile = (asset) => {
     fileLabel.append(link);
   };
 
-  if (asset.canva) addLink(asset.canva, "Full design in Canva");
   if (asset.dropbox) addLink(asset.dropbox, "Full quality on Dropbox");
   if (asset.url) addLink(asset.url, "Open file");
   if (asset.clickup) addLink(asset.clickup, "Team notes in ClickUp");
