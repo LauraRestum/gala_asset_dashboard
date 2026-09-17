@@ -6,8 +6,8 @@ Envision Gala 2026 ("A Night For Vision").
 Open `index.html` in a browser. No build step, no dependencies beyond the
 Montserrat webfont loaded from Google Fonts.
 
-Built as an executive review board: the CEO can see what is finished,
-preview work in progress; the gala team follows the ClickUp links on each card to leave notes.
+Built in the same style as the Wichita Fore Vision golf collateral matrix:
+sidebar navigation, image tiles with click-to-zoom previews, status chips,
 
 ## What it shows
 
