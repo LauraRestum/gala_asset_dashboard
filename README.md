@@ -7,14 +7,14 @@ Open `index.html` in a browser. No build step, no dependencies beyond the
 Montserrat webfont loaded from Google Fonts.
 
 Built as an executive review board: the CEO can see what is finished,
-preview work in progress, and jump to the ClickUp task to leave notes.
+preview work in progress; the gala team follows the ClickUp links on each card to leave notes.
 
 ## What it shows
 
 - A **Finished work** gallery with embedded previews of delivered pieces
   (sponsorship book, save the date) and links to final files
 - An **In the works** gallery with draft previews (welcome sign, sponsor
-  cloud, stage backdrop) and a "Give notes in ClickUp" action on every card
+  cloud, stage backdrop) with a "Team notes in ClickUp" link on every card
 - The full tracker: 25 collateral pieces from the ClickUp **Gala** list,
   grouped by workstream with status, owner, due date, and links
 - A production summary band and status filters
