@@ -184,10 +184,12 @@ const sectionConfig = [
         title: "Program Spotlight Segments",
         assets: [
           {
-            name: "Level Up",
-            placeholder: "Not started",
-            status: "notstarted",
-            due: "Due Sep 22",
+            name: "Level Up — 90-Second Video",
+            video: "levelup-90.mp4",
+            poster: "levelup-poster.jpg",
+            status: "draft",
+            dropbox:
+              "https://www.dropbox.com/scl/fi/newlqokd1rcjl0dyw3uo6/Level-Up-90-Sec.mp4?rlkey=bkorvfmnbi5zyp55cl7y2p1qv&st=he3pw9wv&dl=0",
             clickup: "https://app.clickup.com/t/86ak6h8hh",
           },
           {
@@ -442,6 +444,31 @@ const renderModalAsset = (asset) => {
     video.preload = "metadata";
     video.setAttribute("playsinline", "");
     if (asset.poster) video.poster = `${assetRoot}${asset.poster}`;
+
+    // If the bundled file cannot play, fall back to streaming from Dropbox.
+    const dropboxStream = asset.dropbox
+      ? asset.dropbox.replace("dl=0", "raw=1")
+      : null;
+    let triedFallback = false;
+    video.addEventListener("error", () => {
+      if (dropboxStream && !triedFallback) {
+        triedFallback = true;
+        video.src = dropboxStream;
+        video.load();
+        return;
+      }
+      const holder = createPlaceholder("Video could not load here.");
+      if (asset.dropbox) {
+        const link = document.createElement("a");
+        link.href = asset.dropbox;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = "Watch on Dropbox";
+        holder.append(document.createElement("br"), link);
+      }
+      modalPreview.replaceChildren(holder);
+    });
+
     video.src = `${assetRoot}${asset.video}`;
     modalPreview.replaceChildren(video);
     return;
