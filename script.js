@@ -28,7 +28,15 @@ const sectionConfig = [
             clickup: "https://app.clickup.com/t/86ak6h9wx",
           },
           {
-            name: "Invitation — 7x5 Trifold",
+            name: "Invitation — Front & Back",
+            file: "invite-outside.jpg",
+            status: "complete",
+            url: "assets/2026-gala-invite-trifold.pdf",
+            urlLabel: "Full trifold (PDF)",
+            clickup: "https://app.clickup.com/t/86ak6h82e",
+          },
+          {
+            name: "Invitation — Inside",
             file: "invite-inside.jpg",
             status: "complete",
             url: "assets/2026-gala-invite-trifold.pdf",
@@ -288,51 +296,6 @@ const renderTilePreview = (preview, asset) => {
   image.src = `${assetRoot}${asset.video ? asset.poster : asset.file}`;
 };
 
-// ---------------------------------------------------------------------------
-// Hover zoom preview
-// ---------------------------------------------------------------------------
-const hoverZoom = document.getElementById("hover-zoom");
-const hoverZoomImg = hoverZoom ? hoverZoom.querySelector("img") : null;
-const hoverCapable = window.matchMedia("(hover: hover) and (pointer: fine)");
-
-const hideHoverZoom = () => {
-  if (hoverZoom) hoverZoom.hidden = true;
-};
-
-const positionHoverZoom = (event) => {
-  if (!hoverZoom || hoverZoom.hidden) return;
-  const pad = 18;
-  const rect = hoverZoom.getBoundingClientRect();
-  let x = event.clientX + pad;
-  let y = event.clientY - rect.height / 2;
-  if (x + rect.width > window.innerWidth - pad) {
-    x = event.clientX - rect.width - pad;
-  }
-  x = Math.max(pad, x);
-  y = Math.min(Math.max(pad, y), window.innerHeight - rect.height - pad);
-  hoverZoom.style.left = `${x}px`;
-  hoverZoom.style.top = `${y}px`;
-};
-
-const attachHoverZoom = (preview, asset) => {
-  const source = asset.file || asset.poster;
-  if (!source || !hoverZoom || !hoverZoomImg) return;
-
-  preview.addEventListener("mouseenter", (event) => {
-    if (!hoverCapable.matches || !modal.hidden) return;
-    hoverZoomImg.src = `${assetRoot}${source}`;
-    hoverZoomImg.alt = asset.name;
-    hoverZoom.hidden = false;
-    positionHoverZoom(event);
-  });
-  preview.addEventListener("mousemove", positionHoverZoom);
-  preview.addEventListener("mouseleave", hideHoverZoom);
-};
-
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") hideHoverZoom();
-});
-
 const buildAssetTile = (asset) => {
   const card = document.createElement("div");
   card.className = "tile";
@@ -344,7 +307,6 @@ const buildAssetTile = (asset) => {
   preview.setAttribute("aria-label", `Preview ${asset.name}`);
 
   const activate = () => {
-    hideHoverZoom();
     if (asset.file || asset.video) {
       openModal(asset);
       return;
@@ -413,7 +375,6 @@ const buildAssetTile = (asset) => {
   card.append(preview, body);
 
   renderTilePreview(preview, asset);
-  attachHoverZoom(preview, asset);
   return card;
 };
 
@@ -477,6 +438,21 @@ const buildNav = () => {
 // ---------------------------------------------------------------------------
 // Modal
 // ---------------------------------------------------------------------------
+const attachMagnifier = (wrap, img) => {
+  if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+  const zoom = 2.4;
+  wrap.addEventListener("mousemove", (event) => {
+    const rect = wrap.getBoundingClientRect();
+    const x = ((event.clientX - rect.left) / rect.width) * 100;
+    const y = ((event.clientY - rect.top) / rect.height) * 100;
+    img.style.transformOrigin = `${x}% ${y}%`;
+    img.style.transform = `scale(${zoom})`;
+  });
+  wrap.addEventListener("mouseleave", () => {
+    img.style.transform = "";
+  });
+};
+
 const pauseModalVideo = () => {
   const playing = modalPreview.querySelector("video");
   if (playing) playing.pause();
@@ -531,7 +507,11 @@ const renderModalAsset = (asset) => {
     modalPreview.replaceChildren(createPlaceholder(`Missing image: ${asset.file}`));
   });
   fullImage.addEventListener("load", () => {
-    modalPreview.replaceChildren(fullImage);
+    const wrap = document.createElement("div");
+    wrap.className = "zoom-wrap";
+    wrap.append(fullImage);
+    modalPreview.replaceChildren(wrap);
+    attachMagnifier(wrap, fullImage);
   });
 
   fullImage.src = `${assetRoot}${asset.file}`;
