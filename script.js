@@ -28,9 +28,11 @@ const sectionConfig = [
             clickup: "https://app.clickup.com/t/86ak6h9wx",
           },
           {
-            name: "Invitation",
-            placeholder: "Final art on the ClickUp task",
+            name: "Invitation — 7x5 Trifold",
+            file: "invite-inside.jpg",
             status: "complete",
+            url: "assets/2026-gala-invite-trifold.pdf",
+            urlLabel: "Full trifold (PDF)",
             clickup: "https://app.clickup.com/t/86ak6h82e",
           },
           {
@@ -61,13 +63,6 @@ const sectionConfig = [
             placeholder: "Live on the gala webpage",
             status: "complete",
             clickup: "https://app.clickup.com/t/86ak6ha1e",
-          },
-          {
-            name: "Sponsor Thank-You Cloud",
-            file: "sponsor-banner.jpg",
-            status: "draft",
-            canva: "https://www.canva.com/d/SXB7FPAGUNl0nWO",
-            clickup: "https://app.clickup.com/t/86ak6hbbx",
           },
           {
             name: "Pre-Communications",
@@ -113,6 +108,12 @@ const sectionConfig = [
             status: "draft",
             canva: "https://www.canva.com/d/KtoEpumg6PJ_tg1",
             clickup: "https://app.clickup.com/t/86ak6hbh0",
+          },
+          {
+            name: "Check-In Sign",
+            file: "nfv-p4.jpg",
+            status: "draft",
+            clickup: "https://app.clickup.com/t/86ak6hb5e",
           },
           {
             name: "Tactile Art Experience Sign",
@@ -356,7 +357,7 @@ const buildAssetTile = (asset) => {
   };
 
   if (asset.dropbox) addLink(asset.dropbox, "Full quality on Dropbox");
-  if (asset.url) addLink(asset.url, "Open file");
+  if (asset.url) addLink(asset.url, asset.urlLabel || "Open file");
   if (asset.clickup) addLink(asset.clickup, "Team notes in ClickUp");
   if (!fileLabel.childNodes.length && asset.file) {
     fileLabel.textContent = asset.file;
