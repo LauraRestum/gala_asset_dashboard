@@ -1,35 +1,32 @@
 # Gala asset dashboard
 
-A single-page dashboard tracking every piece of collateral being built for the
-Envision Gala 2026 ("A Night For Vision").
+A collateral matrix for the Envision Gala 2026 ("A Night For Vision"),
+Saturday, October 24, 2026 at the Wichita Art Museum. Built in the same
+style as the Wichita Fore Vision golf tournament collateral matrix.
 
-Open `index.html` in a browser. No build step, no dependencies beyond the
-Montserrat webfont loaded from Google Fonts.
-
-Built as an executive review board: the CEO can see what is finished,
-preview work in progress; the gala team follows the ClickUp links on each card to leave notes.
+Open `index.html` in a browser. Static site, no build step; the only
+external dependency is the Montserrat webfont from Google Fonts.
 
 ## What it shows
 
-- A **Finished work** gallery with embedded previews of delivered pieces
-  (sponsorship book, save the date) and links to final files
-- An **In the works** gallery with draft previews (welcome sign, sponsor
-  cloud, stage backdrop) with a "Team notes in ClickUp" link on every card
-- The full tracker: 25 collateral pieces from the ClickUp **Gala** list,
-  grouped by workstream with status, owner, due date, and links
-- A production summary band and status filters
+- A sticky sidebar with the event details, overall progress, and section
+  navigation (Invitations & Print, Digital, Event Signage, Show &
+  Presentation, Program Spotlight Segments)
+- One tile per collateral piece: art preview with click-to-zoom modal
+  (prev/next arrows), or a dashed placeholder for pieces without art yet
+- A status chip on every tile (Complete / Draft / In production /
+  Not started) plus due-date chips where deadlines exist
+- Links on each tile to the full design in Canva and to the piece's
+  ClickUp task, where the gala team leaves notes
 
-Preview images live in `assets/` (exported from the Canva working files).
-- Three themes (dark, light, high contrast) and an accessibility panel
-  (text size, line spacing, reduced motion, readable text), per Envision's
-  accessibility standards
+## Structure
+
+- `index.html`, `styles.css`, `script.js` — the site; the collateral list
+  lives in `sectionConfig` at the top of `script.js`
+- `assets/` — preview images exported from the Canva working files
 
 ## Data
 
-The page is a static snapshot, last pulled **September 17, 2026** from:
-
-- ClickUp: the Gala list (25 tasks) and the Gala 2026 project
-- Canva: 2026-cycle design files
-- Google Drive: the cocktail hour loop deck
-
-To refresh, ask Claude to re-pull statuses and regenerate `index.html`.
+Snapshot of September 17, 2026, pulled from the ClickUp Gala list (25
+tasks), Canva, and Google Drive. To refresh, ask Claude to re-pull
+statuses, re-export previews, and republish.

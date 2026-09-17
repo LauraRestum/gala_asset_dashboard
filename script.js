@@ -1,0 +1,540 @@
+const STATUS = {
+  complete: { cls: "status-complete", label: "Complete" },
+  draft: { cls: "status-draft", label: "Draft" },
+  production: { cls: "status-production", label: "In production" },
+  notstarted: { cls: "status-notstarted", label: "Not started" },
+};
+
+const sectionConfig = [
+  {
+    group: "Invitations & Print",
+    sections: [
+      {
+        id: "print",
+        title: "Invitations & Print",
+        assets: [
+          {
+            name: "Save the Date — 7x5 Card",
+            file: "save-the-date.jpg",
+            status: "complete",
+            canva: "https://www.canva.com/d/VAH6DzicgJtqwGP",
+            clickup: "https://app.clickup.com/t/86ak6h9v6",
+          },
+          {
+            name: "Sponsorship Book",
+            file: "booklet-cover.jpg",
+            status: "complete",
+            canva: "https://www.canva.com/d/QtRwKoe4CX3Gc3K",
+            clickup: "https://app.clickup.com/t/86ak6h9wx",
+          },
+          {
+            name: "Invitation",
+            placeholder: "Final art on the ClickUp task",
+            status: "complete",
+            clickup: "https://app.clickup.com/t/86ak6h82e",
+          },
+          {
+            name: "Day-of Program",
+            placeholder: "Not started",
+            status: "notstarted",
+            clickup: "https://app.clickup.com/t/86ak6h8r1",
+          },
+          {
+            name: "Bidder Cards",
+            placeholder: "Not started",
+            status: "notstarted",
+            clickup: "https://app.clickup.com/t/86ak6h83x",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    group: "Digital",
+    sections: [
+      {
+        id: "digital",
+        title: "Digital & Communications",
+        assets: [
+          {
+            name: "Gala Webpage Ticket Link",
+            placeholder: "Live on the gala webpage",
+            status: "complete",
+            clickup: "https://app.clickup.com/t/86ak6ha1e",
+          },
+          {
+            name: "Sponsor Thank-You Cloud",
+            file: "sponsor-banner.jpg",
+            status: "draft",
+            canva: "https://www.canva.com/d/SXB7FPAGUNl0nWO",
+            clickup: "https://app.clickup.com/t/86ak6hbbx",
+          },
+          {
+            name: "Pre-Communications",
+            placeholder: "Not started",
+            status: "notstarted",
+            clickup: "https://app.clickup.com/t/86ak6h9z2",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    group: "Event Signage",
+    sections: [
+      {
+        id: "signage-drafts",
+        title: "Event Signage — Drafts",
+        assets: [
+          {
+            name: "Welcome Sign",
+            file: "welcome-sign.jpg",
+            status: "draft",
+            canva: "https://www.canva.com/d/KtoEpumg6PJ_tg1",
+            clickup: "https://app.clickup.com/t/86ak6hb8d",
+          },
+          {
+            name: "Stage Backdrop — 24x30",
+            file: "stage-backdrop.jpg",
+            status: "draft",
+            canva: "https://www.canva.com/d/p6g0B0nQvpVzbRT",
+            clickup: "https://app.clickup.com/t/86ak6hb5e",
+          },
+        ],
+      },
+      {
+        id: "signage-queue",
+        title: "Event Signage — Queue",
+        assets: [
+          {
+            name: "Directional Signs",
+            placeholder: "Not started",
+            status: "notstarted",
+            clickup: "https://app.clickup.com/t/86ak6hbdc",
+          },
+          {
+            name: "Upstairs Signs",
+            placeholder: "Not started",
+            status: "notstarted",
+            clickup: "https://app.clickup.com/t/86ak6hbf7",
+          },
+          {
+            name: "Bar Signs",
+            placeholder: "Not started",
+            status: "notstarted",
+            clickup: "https://app.clickup.com/t/86ak6hbh0",
+          },
+          {
+            name: "Art",
+            placeholder: "Not started",
+            status: "notstarted",
+            clickup: "https://app.clickup.com/t/86ak6hba5",
+          },
+          {
+            name: "Through Their Eyes Roll-Up Banners",
+            placeholder: "Not started",
+            status: "notstarted",
+            clickup: "https://app.clickup.com/t/86ak6h877",
+          },
+          {
+            name: "Meta Glasses Experience",
+            placeholder: "Not started",
+            status: "notstarted",
+            clickup: "https://app.clickup.com/t/86ak6hb6v",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    group: "Show & Presentation",
+    sections: [
+      {
+        id: "show",
+        title: "Show & Presentation",
+        assets: [
+          {
+            name: "Cocktail Hour Loop (Slides)",
+            placeholder: "Click here to view the deck",
+            status: "draft",
+            url: "https://docs.google.com/presentation/d/1GFmdqt6LAscAvfE6HiiAhATDG0uLeW8LqBAP1OuWFTI/edit",
+            clickup: "https://app.clickup.com/t/86ak6h8cy",
+          },
+          {
+            name: "Programming Presentation Assets",
+            placeholder: "In production",
+            status: "production",
+            clickup: "https://app.clickup.com/t/86ak6h890",
+          },
+          {
+            name: "Videos",
+            placeholder: "Not started",
+            status: "notstarted",
+            due: "Due Oct 15",
+            clickup: "https://app.clickup.com/t/86ak6h8ed",
+          },
+          {
+            name: "Spirit of Philanthropy Award",
+            placeholder: "Physical award piece — delivered Sep 11",
+            status: "complete",
+            clickup: "https://app.clickup.com/t/86akgg61d",
+          },
+        ],
+      },
+      {
+        id: "segments",
+        title: "Program Spotlight Segments",
+        assets: [
+          {
+            name: "Level Up",
+            placeholder: "Not started",
+            status: "notstarted",
+            due: "Due Sep 22",
+            clickup: "https://app.clickup.com/t/86ak6h8hh",
+          },
+          {
+            name: "Heather's Camp — 90-Second Video",
+            video: "heathers-camp-90.mp4",
+            poster: "heathers-camp-poster.jpg",
+            status: "draft",
+            dropbox:
+              "https://www.dropbox.com/scl/fi/b4z6ok79lnnijej3v6606/Heathers-Camp-2026-90-Sec.mp4?rlkey=wdktvt18g8cywrys7d0q64n4a&st=hwhnuzw9&dl=0",
+            clickup: "https://app.clickup.com/t/86ak6h8g1",
+          },
+          {
+            name: "Child Development Center",
+            placeholder: "Not started",
+            status: "notstarted",
+            due: "Due Oct 9",
+            clickup: "https://app.clickup.com/t/86aketm6z",
+          },
+          {
+            name: "Wichita Building",
+            placeholder: "Not started",
+            status: "notstarted",
+            due: "Due Oct 9",
+            clickup: "https://app.clickup.com/t/86aketm5t",
+          },
+          {
+            name: "Programs Legacy",
+            placeholder: "Not started",
+            status: "notstarted",
+            due: "Due Oct 9",
+            clickup: "https://app.clickup.com/t/86ak6h8m0",
+          },
+        ],
+      },
+    ],
+  },
+];
+
+// Images live in the assets/ folder.
+const assetRoot = "assets/";
+const navRoot = document.getElementById("sidebar-nav");
+const contentRoot = document.getElementById("content");
+const modal = document.getElementById("asset-modal");
+const modalTitle = document.getElementById("modal-title");
+const modalPreview = document.getElementById("modal-preview");
+const modalClose = document.getElementById("modal-close");
+const modalPrev = document.getElementById("modal-prev");
+const modalNext = document.getElementById("modal-next");
+
+const allAssets = sectionConfig
+  .flatMap((group) => group.sections.flatMap((section) => section.assets))
+  .filter((asset) => asset.file || asset.video);
+let activeAssetIndex = -1;
+
+// ---------------------------------------------------------------------------
+// Tiles
+// ---------------------------------------------------------------------------
+const createPlaceholder = (label = "Image not uploaded yet") => {
+  const holder = document.createElement("div");
+  holder.className = "placeholder";
+  holder.textContent = label;
+  return holder;
+};
+
+const createPlayBadge = () => {
+  const badge = document.createElement("span");
+  badge.className = "play-badge";
+  badge.setAttribute("aria-hidden", "true");
+  badge.textContent = "▶";
+  return badge;
+};
+
+const renderTilePreview = (preview, asset) => {
+  if (!asset.file && !asset.video) {
+    preview.replaceChildren(createPlaceholder(asset.placeholder));
+    return;
+  }
+
+  preview.replaceChildren(createPlaceholder("Loading..."));
+
+  const image = new Image();
+  image.alt = asset.video ? `${asset.name} (video)` : asset.name;
+
+  image.addEventListener("error", () => {
+    preview.replaceChildren(createPlaceholder());
+  });
+  image.addEventListener("load", () => {
+    if (asset.video) {
+      preview.replaceChildren(image, createPlayBadge());
+    } else {
+      preview.replaceChildren(image);
+    }
+  });
+
+  image.src = `${assetRoot}${asset.video ? asset.poster : asset.file}`;
+};
+
+const buildAssetTile = (asset) => {
+  const card = document.createElement("div");
+  card.className = "tile";
+
+  const preview = document.createElement("div");
+  preview.className = "tile-preview";
+  preview.setAttribute("role", "button");
+  preview.tabIndex = 0;
+  preview.setAttribute("aria-label", `Preview ${asset.name}`);
+
+  const activate = () => {
+    if (asset.file || asset.video) {
+      openModal(asset);
+      return;
+    }
+    const target = asset.url || asset.canva || asset.clickup;
+    if (target) {
+      window.open(target, "_blank", "noopener,noreferrer");
+    }
+  };
+
+  if (!asset.file && !asset.video && (asset.url || asset.canva || asset.clickup)) {
+    preview.setAttribute("aria-label", `Open ${asset.name}`);
+  }
+
+  preview.addEventListener("click", activate);
+  preview.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      activate();
+    }
+  });
+
+  const body = document.createElement("div");
+  body.className = "tile-body";
+
+  const title = document.createElement("p");
+  title.className = "tile-title";
+  title.textContent = asset.name;
+
+  const meta = document.createElement("p");
+  meta.className = "tile-meta";
+
+  const status = STATUS[asset.status] || STATUS.notstarted;
+  const chip = document.createElement("span");
+  chip.className = `status ${status.cls}`;
+  chip.textContent = status.label;
+  meta.append(chip);
+
+  if (asset.due) {
+    const due = document.createElement("span");
+    due.className = "status status-due";
+    due.textContent = asset.due;
+    meta.append(due);
+  }
+
+  const fileLabel = document.createElement("p");
+  fileLabel.className = "tile-file";
+
+  const addLink = (href, text) => {
+    const link = document.createElement("a");
+    link.href = href;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent = text;
+    fileLabel.append(link);
+  };
+
+  if (asset.canva) addLink(asset.canva, "Full design in Canva");
+  if (asset.dropbox) addLink(asset.dropbox, "Full quality on Dropbox");
+  if (asset.url) addLink(asset.url, "Open file");
+  if (asset.clickup) addLink(asset.clickup, "Team notes in ClickUp");
+  if (!fileLabel.childNodes.length && asset.file) {
+    fileLabel.textContent = asset.file;
+  }
+
+  body.append(title, meta, fileLabel);
+  card.append(preview, body);
+
+  renderTilePreview(preview, asset);
+  return card;
+};
+
+const buildSection = (section) => {
+  const el = document.createElement("section");
+  el.className = "section";
+  el.id = section.id;
+
+  const heading = document.createElement("h2");
+  heading.textContent = section.title;
+
+  const grid = document.createElement("div");
+  grid.className = "grid";
+
+  section.assets.forEach((asset) => {
+    grid.append(buildAssetTile(asset));
+  });
+
+  el.append(heading, grid);
+  contentRoot.append(el);
+};
+
+const buildNav = () => {
+  sectionConfig.forEach((group) => {
+    const groupWrap = document.createElement("div");
+    groupWrap.className = "nav-group";
+
+    const label = document.createElement("h2");
+    label.className = "nav-label";
+    label.textContent = group.group;
+
+    const list = document.createElement("ul");
+    list.className = "nav-list";
+
+    group.sections.forEach((section) => {
+      buildSection(section);
+
+      const item = document.createElement("li");
+      item.className = "nav-item";
+
+      const link = document.createElement("a");
+      link.className = "nav-link";
+      link.href = `#${section.id}`;
+      link.dataset.target = section.id;
+      link.textContent = section.title;
+
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        document.getElementById(section.id).scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+
+      item.append(link);
+      list.append(item);
+    });
+
+    groupWrap.append(label, list);
+    navRoot.append(groupWrap);
+  });
+};
+
+// ---------------------------------------------------------------------------
+// Modal
+// ---------------------------------------------------------------------------
+const pauseModalVideo = () => {
+  const playing = modalPreview.querySelector("video");
+  if (playing) playing.pause();
+};
+
+const renderModalAsset = (asset) => {
+  modalTitle.textContent = asset.name;
+  pauseModalVideo();
+
+  if (asset.video) {
+    const video = document.createElement("video");
+    video.controls = true;
+    video.preload = "metadata";
+    video.setAttribute("playsinline", "");
+    if (asset.poster) video.poster = `${assetRoot}${asset.poster}`;
+    video.src = `${assetRoot}${asset.video}`;
+    modalPreview.replaceChildren(video);
+    return;
+  }
+
+  modalPreview.replaceChildren(createPlaceholder("Loading..."));
+
+  const fullImage = new Image();
+  fullImage.alt = asset.name;
+
+  fullImage.addEventListener("error", () => {
+    modalPreview.replaceChildren(createPlaceholder(`Missing image: ${asset.file}`));
+  });
+  fullImage.addEventListener("load", () => {
+    modalPreview.replaceChildren(fullImage);
+  });
+
+  fullImage.src = `${assetRoot}${asset.file}`;
+};
+
+const updateModalNavigation = () => {
+  modalPrev.disabled = activeAssetIndex <= 0;
+  modalNext.disabled = activeAssetIndex >= allAssets.length - 1;
+};
+
+const openModalByIndex = (index) => {
+  activeAssetIndex = index;
+  renderModalAsset(allAssets[activeAssetIndex]);
+  updateModalNavigation();
+
+  modal.hidden = false;
+  document.body.style.overflow = "hidden";
+};
+
+const openModal = (asset) => {
+  const nextIndex = allAssets.indexOf(asset);
+  if (nextIndex === -1) return;
+  openModalByIndex(nextIndex);
+};
+
+const stepModalAsset = (step) => {
+  const nextIndex = activeAssetIndex + step;
+  if (nextIndex < 0 || nextIndex >= allAssets.length) return;
+  openModalByIndex(nextIndex);
+};
+
+const closeModal = () => {
+  pauseModalVideo();
+  modal.hidden = true;
+  document.body.style.overflow = "";
+  activeAssetIndex = -1;
+};
+
+const setupActiveNavigation = () => {
+  const links = [...document.querySelectorAll(".nav-link")];
+  const map = new Map(links.map((link) => [link.dataset.target, link]));
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          links.forEach((link) => link.classList.remove("active"));
+          map.get(entry.target.id)?.classList.add("active");
+        }
+      });
+    },
+    { rootMargin: "-25% 0px -65% 0px", threshold: 0.1 }
+  );
+
+  document.querySelectorAll(".section").forEach((section) => observer.observe(section));
+};
+
+modalClose.addEventListener("click", closeModal);
+modalPrev.addEventListener("click", () => stepModalAsset(-1));
+modalNext.addEventListener("click", () => stepModalAsset(1));
+modal.addEventListener("click", (event) => {
+  if (event.target === modal) {
+    closeModal();
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  if (modal.hidden) return;
+  if (event.key === "Escape") return closeModal();
+  if (event.key === "ArrowLeft") stepModalAsset(-1);
+  if (event.key === "ArrowRight") stepModalAsset(1);
+});
+
+// ---------------------------------------------------------------------------
+// Boot
+// ---------------------------------------------------------------------------
+buildNav();
+setupActiveNavigation();
