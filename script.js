@@ -231,8 +231,10 @@ const sectionConfig = [
         assets: [
           {
             name: "Gala Webpage Ticket Link",
-            placeholder: "Live on the gala webpage",
+            file: "gala-webpage.jpg",
             status: "complete",
+            url: "https://www.envisionus.com/envision-gala",
+            urlLabel: "Open the gala webpage",
             clickup: "https://app.clickup.com/t/86ak6ha1e",
           },
           {
