@@ -10,8 +10,8 @@ external dependency is the Montserrat webfont from Google Fonts.
 ## What it shows
 
 - A sticky sidebar with the event details, overall progress, and section
-  navigation (Invitations & Print, Digital, Event Signage, Show &
-  Presentation, Program Spotlight Segments)
+  navigation (Invitations & Print, Event Signage, Show & Presentation,
+  Program Spotlight Segments, Digital)
 - One tile per collateral piece: art preview with click-to-zoom modal
   (prev/next arrows), or a dashed placeholder for pieces without art yet
 - A status chip on every tile (Complete / Draft / In production /
