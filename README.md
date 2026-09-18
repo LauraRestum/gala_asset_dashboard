@@ -16,8 +16,8 @@ external dependency is the Montserrat webfont from Google Fonts.
   (prev/next arrows), or a dashed placeholder for pieces without art yet
 - A status chip on every tile (Complete / Draft / In production /
   Not started) plus due-date chips where deadlines exist
-- Links on each tile to the full design in Canva and to the piece's
-  ClickUp task, where the gala team leaves notes
+- Links on each tile to the print file or video source and to the
+  piece's ClickUp task, where the gala team leaves notes
 
 ## Structure
 
