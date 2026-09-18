@@ -72,29 +72,6 @@ const sectionConfig = [
     ],
   },
   {
-    group: "Digital",
-    sections: [
-      {
-        id: "digital",
-        title: "Digital & Communications",
-        assets: [
-          {
-            name: "Gala Webpage Ticket Link",
-            placeholder: "Live on the gala webpage",
-            status: "complete",
-            clickup: "https://app.clickup.com/t/86ak6ha1e",
-          },
-          {
-            name: "Pre-Communications",
-            placeholder: "Not started",
-            status: "notstarted",
-            clickup: "https://app.clickup.com/t/86ak6h9z2",
-          },
-        ],
-      },
-    ],
-  },
-  {
     group: "Event Signage",
     sections: [
       {
@@ -182,13 +159,6 @@ const sectionConfig = [
             clickup: "https://app.clickup.com/t/86ak6h890",
           },
           {
-            name: "Videos",
-            placeholder: "Not started",
-            status: "notstarted",
-            due: "Due Oct 15",
-            clickup: "https://app.clickup.com/t/86ak6h8ed",
-          },
-          {
             name: "Spirit of Philanthropy Award",
             placeholder: "Physical award piece — delivered Sep 11",
             status: "complete",
@@ -238,6 +208,29 @@ const sectionConfig = [
             status: "notstarted",
             due: "Due Oct 9",
             clickup: "https://app.clickup.com/t/86ak6h8m0",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    group: "Digital",
+    sections: [
+      {
+        id: "digital",
+        title: "Digital & Communications",
+        assets: [
+          {
+            name: "Gala Webpage Ticket Link",
+            placeholder: "Live on the gala webpage",
+            status: "complete",
+            clickup: "https://app.clickup.com/t/86ak6ha1e",
+          },
+          {
+            name: "Pre-Communications",
+            placeholder: "Not started",
+            status: "notstarted",
+            clickup: "https://app.clickup.com/t/86ak6h9z2",
           },
         ],
       },
