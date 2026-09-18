@@ -107,6 +107,8 @@ const sectionConfig = [
             name: "Welcome Sign",
             file: "welcome-sign.jpg",
             status: "draft",
+            url: "assets/2026-gala-welcome-sign.pdf",
+            urlLabel: "Print file, 24x30 (PDF)",
             canva: "https://www.canva.com/d/KtoEpumg6PJ_tg1",
             clickup: "https://app.clickup.com/t/86ak6hb8d",
           },
