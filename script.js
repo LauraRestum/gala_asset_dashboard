@@ -159,8 +159,14 @@ const sectionConfig = [
             clickup: "https://app.clickup.com/t/86ak6h890",
           },
           {
-            name: "Spirit of Philanthropy Award",
-            placeholder: "Physical award piece — delivered Sep 11",
+            name: "Spirit of Philanthropy Award — Engraving Design",
+            file: "award-design.jpg",
+            status: "complete",
+            clickup: "https://app.clickup.com/t/86akgg61d",
+          },
+          {
+            name: "Spirit of Philanthropy Award — Award Piece",
+            file: "award-piece.jpg",
             status: "complete",
             clickup: "https://app.clickup.com/t/86akgg61d",
           },
