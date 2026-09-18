@@ -17,14 +17,12 @@ const sectionConfig = [
             name: "Save the Date — 7x5 Card",
             file: "save-the-date.jpg",
             status: "complete",
-            canva: "https://www.canva.com/d/VAH6DzicgJtqwGP",
             clickup: "https://app.clickup.com/t/86ak6h9v6",
           },
           {
             name: "Sponsorship Book",
             file: "booklet-cover.jpg",
             status: "complete",
-            canva: "https://www.canva.com/d/QtRwKoe4CX3Gc3K",
             clickup: "https://app.clickup.com/t/86ak6h9wx",
           },
           {
@@ -74,29 +72,6 @@ const sectionConfig = [
     ],
   },
   {
-    group: "Digital",
-    sections: [
-      {
-        id: "digital",
-        title: "Digital & Communications",
-        assets: [
-          {
-            name: "Gala Webpage Ticket Link",
-            placeholder: "Live on the gala webpage",
-            status: "complete",
-            clickup: "https://app.clickup.com/t/86ak6ha1e",
-          },
-          {
-            name: "Pre-Communications",
-            placeholder: "Not started",
-            status: "notstarted",
-            clickup: "https://app.clickup.com/t/86ak6h9z2",
-          },
-        ],
-      },
-    ],
-  },
-  {
     group: "Event Signage",
     sections: [
       {
@@ -107,28 +82,26 @@ const sectionConfig = [
             name: "Welcome Sign",
             file: "welcome-sign.jpg",
             status: "draft",
-            canva: "https://www.canva.com/d/KtoEpumg6PJ_tg1",
+            url: "assets/2026-gala-welcome-sign.pdf",
+            urlLabel: "Print file, 24x30 (PDF)",
             clickup: "https://app.clickup.com/t/86ak6hb8d",
           },
           {
             name: "Upstairs Directional — Event Continues Upstairs",
             file: "nfv-p5.jpg",
             status: "draft",
-            canva: "https://www.canva.com/d/KtoEpumg6PJ_tg1",
             clickup: "https://app.clickup.com/t/86ak6hbf7",
           },
           {
             name: "Directional — Tactile Art & Open Bar (Beren Room)",
             file: "nfv-p6.jpg",
             status: "draft",
-            canva: "https://www.canva.com/d/KtoEpumg6PJ_tg1",
             clickup: "https://app.clickup.com/t/86ak6hbdc",
           },
           {
             name: "Bar Sign — Hand Crafted Cocktails",
             file: "nfv-p7.jpg",
             status: "draft",
-            canva: "https://www.canva.com/d/KtoEpumg6PJ_tg1",
             clickup: "https://app.clickup.com/t/86ak6hbh0",
           },
           {
@@ -141,14 +114,12 @@ const sectionConfig = [
             name: "Tactile Art Experience Sign",
             file: "nfv-p8.jpg",
             status: "draft",
-            canva: "https://www.canva.com/d/KtoEpumg6PJ_tg1",
             clickup: "https://app.clickup.com/t/86ak6hba5",
           },
           {
             name: "Assistive Technology Experience Sign",
             file: "nfv-p9.jpg",
             status: "draft",
-            canva: "https://www.canva.com/d/KtoEpumg6PJ_tg1",
             clickup: "https://app.clickup.com/t/86ak6hb6v",
           },
         ],
@@ -186,13 +157,6 @@ const sectionConfig = [
             placeholder: "In production",
             status: "production",
             clickup: "https://app.clickup.com/t/86ak6h890",
-          },
-          {
-            name: "Videos",
-            placeholder: "Not started",
-            status: "notstarted",
-            due: "Due Oct 15",
-            clickup: "https://app.clickup.com/t/86ak6h8ed",
           },
           {
             name: "Spirit of Philanthropy Award",
@@ -244,6 +208,29 @@ const sectionConfig = [
             status: "notstarted",
             due: "Due Oct 9",
             clickup: "https://app.clickup.com/t/86ak6h8m0",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    group: "Digital",
+    sections: [
+      {
+        id: "digital",
+        title: "Digital & Communications",
+        assets: [
+          {
+            name: "Gala Webpage Ticket Link",
+            placeholder: "Live on the gala webpage",
+            status: "complete",
+            clickup: "https://app.clickup.com/t/86ak6ha1e",
+          },
+          {
+            name: "Pre-Communications",
+            placeholder: "Not started",
+            status: "notstarted",
+            clickup: "https://app.clickup.com/t/86ak6h9z2",
           },
         ],
       },
