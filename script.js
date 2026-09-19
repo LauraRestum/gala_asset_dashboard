@@ -142,14 +142,14 @@ const sectionConfig = [
         assets: [
           {
             name: "Through Their Eyes Roll-Up Banner — Adah",
-            placeholder: "Not started",
-            status: "notstarted",
+            file: "adah-banner.jpg",
+            status: "draft",
             clickup: "https://app.clickup.com/t/86ak6h877",
           },
           {
             name: "Through Their Eyes Roll-Up Banner — Aubree",
-            placeholder: "Not started",
-            status: "notstarted",
+            file: "aubree-banner.jpg",
+            status: "draft",
             clickup: "https://app.clickup.com/t/86ak6h877",
           },
           {
