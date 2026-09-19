@@ -141,7 +141,25 @@ const sectionConfig = [
         title: "Event Signage — Queue",
         assets: [
           {
-            name: "Through Their Eyes Roll-Up Banners",
+            name: "Through Their Eyes Roll-Up Banner — Adah",
+            placeholder: "Not started",
+            status: "notstarted",
+            clickup: "https://app.clickup.com/t/86ak6h877",
+          },
+          {
+            name: "Through Their Eyes Roll-Up Banner — Aubree",
+            placeholder: "Not started",
+            status: "notstarted",
+            clickup: "https://app.clickup.com/t/86ak6h877",
+          },
+          {
+            name: "Through Their Eyes Roll-Up Banner — Hashim",
+            placeholder: "Not started",
+            status: "notstarted",
+            clickup: "https://app.clickup.com/t/86ak6h877",
+          },
+          {
+            name: "Through Their Eyes Roll-Up Banner — Steven",
             placeholder: "Not started",
             status: "notstarted",
             clickup: "https://app.clickup.com/t/86ak6h877",
