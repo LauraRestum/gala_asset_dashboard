@@ -131,6 +131,38 @@ body {
   gap: 0.95rem;
 }
 
+.tile-pair {
+  grid-column: 1 / -1;
+  border: 1.5px dashed #a9bcd4;
+  border-radius: 0.9rem;
+  padding: 0.7rem 0.75rem 0.75rem;
+  background: rgba(2, 64, 137, 0.035);
+}
+
+.pair-label {
+  margin: 0 0 0.55rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.pair-label::after {
+  content: "";
+  flex: 1;
+  border-top: 1px dashed #a9bcd4;
+}
+
+.pair-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 0.95rem;
+}
+
 .tile {
   width: 100%;
   border: 1px solid var(--border);

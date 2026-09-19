@@ -27,12 +27,14 @@ const sectionConfig = [
             clickup: "https://app.clickup.com/t/86ak6h9wx",
           },
           {
-            name: "Invitation — Front & Back",
+            name: "Invitation — Outside (Front & Back)",
             file: "invite-outside.jpg",
             status: "complete",
             url: "assets/2026-gala-invite-trifold.pdf",
             urlLabel: "Full trifold (PDF)",
             clickup: "https://app.clickup.com/t/86ak6h82e",
+            pairId: "invitation",
+            pairLabel: "Trifold Invitation — one piece, outside & inside",
           },
           {
             name: "Invitation — Inside",
@@ -41,6 +43,7 @@ const sectionConfig = [
             url: "assets/2026-gala-invite-trifold.pdf",
             urlLabel: "Full trifold (PDF)",
             clickup: "https://app.clickup.com/t/86ak6h82e",
+            pairId: "invitation",
           },
           {
             name: "Day-of Program",
@@ -67,6 +70,8 @@ const sectionConfig = [
             url: "assets/2026-gala-bidder-card.pdf",
             urlLabel: "Front & back proof (PDF)",
             clickup: "https://app.clickup.com/t/86ak6h83x",
+            pairId: "bidder-card",
+            pairLabel: "Bidder Card — one card, two sides",
           },
           {
             name: "Bidder Card — Side B (Bidder Number)",
@@ -75,6 +80,7 @@ const sectionConfig = [
             url: "assets/2026-gala-bidder-card-numbers.pdf",
             urlLabel: "All 300 cards, 101–400 (PDF)",
             clickup: "https://app.clickup.com/t/86ak6h83x",
+            pairId: "bidder-card",
           },
         ],
       },
@@ -99,7 +105,7 @@ const sectionConfig = [
             name: "Upstairs Directional — Event Continues Upstairs",
             file: "nfv-p5.jpg",
             status: "draft",
-            clickup: "https://app.clickup.com/t/86ak6hbf7",
+            clickup: "https://app.clickup.com/t/86ak6hbdc",
           },
           {
             name: "Directional — Tactile Art & Open Bar (Beren Room)",
@@ -111,13 +117,13 @@ const sectionConfig = [
             name: "Bar Sign — Hand Crafted Cocktails",
             file: "nfv-p7.jpg",
             status: "draft",
-            clickup: "https://app.clickup.com/t/86ak6hbh0",
+            clickup: "https://app.clickup.com/t/86ak6hb5e",
           },
           {
             name: "Check-In Sign",
             file: "nfv-p4.jpg",
             status: "draft",
-            clickup: "https://app.clickup.com/t/86ak6hb5e",
+            clickup: "https://app.clickup.com/t/86ak6hb8d",
           },
           {
             name: "Tactile Art Experience Sign",
@@ -436,9 +442,32 @@ const buildSection = (section) => {
   const grid = document.createElement("div");
   grid.className = "grid";
 
-  section.assets.forEach((asset) => {
-    grid.append(buildAssetTile(asset));
-  });
+  // Front/back and multi-side pieces render inside one connected wrapper.
+  let i = 0;
+  while (i < section.assets.length) {
+    const asset = section.assets[i];
+    const partner = section.assets[i + 1];
+
+    if (asset.pairId && partner && partner.pairId === asset.pairId) {
+      const pair = document.createElement("div");
+      pair.className = "tile-pair";
+
+      const label = document.createElement("p");
+      label.className = "pair-label";
+      label.textContent = asset.pairLabel || "One piece — two sides";
+
+      const tiles = document.createElement("div");
+      tiles.className = "pair-tiles";
+      tiles.append(buildAssetTile(asset), buildAssetTile(partner));
+
+      pair.append(label, tiles);
+      grid.append(pair);
+      i += 2;
+    } else {
+      grid.append(buildAssetTile(asset));
+      i += 1;
+    }
+  }
 
   el.append(heading, grid);
   contentRoot.append(el);
