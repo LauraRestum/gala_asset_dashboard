@@ -131,7 +131,7 @@ body {
   gap: 0.95rem;
 }
 
-.tile-pair {
+.tile-group {
   grid-column: 1 / -1;
   border: 1.5px dashed #a9bcd4;
   border-radius: 0.9rem;
@@ -139,15 +139,16 @@ body {
   background: rgba(2, 64, 137, 0.035);
 }
 
-/* Once the grid has room for two columns, the pair sits in exactly two of
-   them so its tiles stay the same size as every other tile. */
+/* Once the grid has room, a two-piece group sits in exactly two columns so
+   its tiles stay the same size as every other tile; larger sets keep the
+   full row. */
 @media (min-width: 980px) {
-  .tile-pair {
+  .tile-group[data-size="2"] {
     grid-column: span 2;
   }
 }
 
-.pair-label {
+.group-label {
   margin: 0 0 0.55rem;
   font-size: 0.72rem;
   font-weight: 700;
@@ -159,13 +160,13 @@ body {
   gap: 0.45rem;
 }
 
-.pair-label::after {
+.group-label::after {
   content: "";
   flex: 1;
   border-top: 1px dashed #a9bcd4;
 }
 
-.pair-tiles {
+.group-tiles {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
   gap: 0.95rem;
