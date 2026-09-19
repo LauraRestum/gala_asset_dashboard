@@ -1,6 +1,7 @@
 const STATUS = {
   complete: { cls: "status-complete", label: "Complete" },
   draft: { cls: "status-draft", label: "Draft" },
+  approval: { cls: "status-approval", label: "Awaiting approval" },
   production: { cls: "status-production", label: "In production" },
   notstarted: { cls: "status-notstarted", label: "Not started" },
 };
@@ -142,26 +143,26 @@ const sectionConfig = [
         assets: [
           {
             name: "Through Their Eyes Roll-Up Banner — Adah",
-            placeholder: "Not started",
-            status: "notstarted",
+            file: "adah-banner.jpg",
+            status: "approval",
             clickup: "https://app.clickup.com/t/86ak6h877",
           },
           {
             name: "Through Their Eyes Roll-Up Banner — Aubree",
-            placeholder: "Not started",
-            status: "notstarted",
+            file: "aubree-banner.jpg",
+            status: "approval",
             clickup: "https://app.clickup.com/t/86ak6h877",
           },
           {
             name: "Through Their Eyes Roll-Up Banner — Hashim",
-            placeholder: "Not started",
-            status: "notstarted",
+            placeholder: "In production",
+            status: "production",
             clickup: "https://app.clickup.com/t/86ak6h877",
           },
           {
             name: "Through Their Eyes Roll-Up Banner — Steven",
-            placeholder: "Not started",
-            status: "notstarted",
+            placeholder: "In production",
+            status: "production",
             clickup: "https://app.clickup.com/t/86ak6h877",
           },
         ],

@@ -249,6 +249,12 @@ body {
   border-color: #f0dc9c;
 }
 
+.status-approval {
+  background: #f6ecff;
+  color: #6b3fa0;
+  border-color: #ddc6f2;
+}
+
 .status-notstarted {
   background: #eef1f5;
   color: var(--text-muted);
