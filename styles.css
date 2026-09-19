@@ -139,6 +139,14 @@ body {
   background: rgba(2, 64, 137, 0.035);
 }
 
+/* Once the grid has room for two columns, the pair sits in exactly two of
+   them so its tiles stay the same size as every other tile. */
+@media (min-width: 980px) {
+  .tile-pair {
+    grid-column: span 2;
+  }
+}
+
 .pair-label {
   margin: 0 0 0.55rem;
   font-size: 0.72rem;
@@ -159,7 +167,7 @@ body {
 
 .pair-tiles {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
   gap: 0.95rem;
 }
 
