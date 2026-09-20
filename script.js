@@ -129,6 +129,13 @@ const sectionConfig = [
             groupId: "wayfinding",
           },
           {
+            name: "Bar Sign — Hand Crafted Cocktails",
+            file: "nfv-p7.jpg",
+            status: "draft",
+            clickup: "https://app.clickup.com/t/86ak6hb5e",
+            groupId: "wayfinding",
+          },
+          {
             name: "Tactile Art Experience Sign",
             file: "tactile-art-sign.jpg",
             status: "draft",
@@ -146,12 +153,6 @@ const sectionConfig = [
             urlLabel: "Print file, 24x30 (PDF)",
             clickup: "https://app.clickup.com/t/86ak6hb6v",
             groupId: "experience",
-          },
-          {
-            name: "Bar Sign — Hand Crafted Cocktails",
-            file: "nfv-p7.jpg",
-            status: "draft",
-            clickup: "https://app.clickup.com/t/86ak6hb5e",
           },
         ],
       },
