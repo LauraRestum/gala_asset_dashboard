@@ -205,8 +205,7 @@ const sectionConfig = [
         assets: [
           {
             name: "Cocktail Hour Loop (Slides)",
-            embed:
-              "https://dlhfb.sharepoint.com/sites/EnvisionMarketing/_layouts/15/Doc.aspx?sourcedoc={b932016e-ac0e-487b-9b38-8334412dd2d4}&action=embedview&wdAr=1.7777777777777777",
+            file: "cocktail-loop.jpg",
             status: "complete",
             url: "https://dlhfb.sharepoint.com/sites/EnvisionMarketing/_layouts/15/Doc.aspx?sourcedoc={b932016e-ac0e-487b-9b38-8334412dd2d4}&action=embedview&wdAr=1.7777777777777777",
             urlLabel: "Open the finished deck full screen (PowerPoint viewer)",
@@ -350,16 +349,6 @@ const createPlayBadge = () => {
 };
 
 const renderTilePreview = (preview, asset) => {
-  if (asset.embed) {
-    const frame = document.createElement("iframe");
-    frame.src = asset.embed;
-    frame.title = `${asset.name} — embedded PowerPoint viewer`;
-    frame.loading = "lazy";
-    frame.setAttribute("allowfullscreen", "");
-    preview.replaceChildren(frame);
-    return;
-  }
-
   if (!asset.file && !asset.video) {
     preview.replaceChildren(createPlaceholder(asset.placeholder));
     return;
@@ -390,39 +379,32 @@ const buildAssetTile = (asset) => {
 
   const preview = document.createElement("div");
   preview.className = "tile-preview";
+  preview.setAttribute("role", "button");
+  preview.tabIndex = 0;
+  preview.setAttribute("aria-label", `Preview ${asset.name}`);
 
-  // Embedded viewers are interactive on their own; everything else gets the
-  // click-to-open behavior on the preview area.
-  if (asset.embed) {
-    preview.classList.add("tile-preview-embed");
-  } else {
-    preview.setAttribute("role", "button");
-    preview.tabIndex = 0;
-    preview.setAttribute("aria-label", `Preview ${asset.name}`);
-
-    const activate = () => {
-      if (asset.file || asset.video) {
-        openModal(asset);
-        return;
-      }
-      const target = asset.url || asset.clickup;
-      if (target) {
-        window.open(target, "_blank", "noopener,noreferrer");
-      }
-    };
-
-    if (!asset.file && !asset.video && (asset.url || asset.clickup)) {
-      preview.setAttribute("aria-label", `Open ${asset.name}`);
+  const activate = () => {
+    if (asset.file || asset.video) {
+      openModal(asset);
+      return;
     }
+    const target = asset.url || asset.clickup;
+    if (target) {
+      window.open(target, "_blank", "noopener,noreferrer");
+    }
+  };
 
-    preview.addEventListener("click", activate);
-    preview.addEventListener("keydown", (event) => {
-      if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        activate();
-      }
-    });
+  if (!asset.file && !asset.video && (asset.url || asset.clickup)) {
+    preview.setAttribute("aria-label", `Open ${asset.name}`);
   }
+
+  preview.addEventListener("click", activate);
+  preview.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      activate();
+    }
+  });
 
   const body = document.createElement("div");
   body.className = "tile-body";
