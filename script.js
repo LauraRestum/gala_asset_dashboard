@@ -215,8 +215,12 @@ const sectionConfig = [
           },
           {
             name: "Programming Presentation Assets",
-            placeholder: "Awaiting fund-a-need levels",
+            file: "program-presentation.jpg",
             status: "fundaneed",
+            url: "https://dlhfb.sharepoint.com/sites/EnvisionMarketing/_layouts/15/Doc.aspx?sourcedoc={55dc9644-6d7a-4d21-b76c-c8fa4bcd35b5}&action=embedview&wdAr=1.7777777777777777",
+            urlLabel: "Open the deck full screen (PowerPoint viewer)",
+            download: "assets/2026-gala-program-presentation.pptx",
+            downloadLabel: "Download the deck (PPTX, 9 MB)",
             clickup: "https://app.clickup.com/t/86ak6h890",
           },
           {
