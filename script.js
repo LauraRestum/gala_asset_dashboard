@@ -210,6 +210,8 @@ const sectionConfig = [
             status: "complete",
             url: "https://dlhfb.sharepoint.com/sites/EnvisionMarketing/_layouts/15/Doc.aspx?sourcedoc={b932016e-ac0e-487b-9b38-8334412dd2d4}&action=embedview&wdAr=1.7777777777777777",
             urlLabel: "Open the finished deck full screen (PowerPoint viewer)",
+            download: "assets/2026-gala-cocktail-loop.pptx",
+            downloadLabel: "Download the deck (PPTX, 20 MB)",
             clickup: "https://app.clickup.com/t/86ak6h8cy",
           },
           {
@@ -459,6 +461,13 @@ const buildAssetTile = (asset) => {
 
   if (asset.dropbox) addLink(asset.dropbox, "Full quality on Dropbox");
   if (asset.url) addLink(asset.url, asset.urlLabel || "Open file");
+  if (asset.download) {
+    const link = document.createElement("a");
+    link.href = asset.download;
+    link.download = "";
+    link.textContent = asset.downloadLabel || "Download file";
+    fileLabel.append(link);
+  }
   if (asset.clickup) addLink(asset.clickup, "Team notes in ClickUp");
   if (!fileLabel.childNodes.length && asset.file) {
     fileLabel.textContent = asset.file;
