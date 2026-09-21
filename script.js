@@ -3,7 +3,7 @@ const STATUS = {
   draft: { cls: "status-draft", label: "Draft" },
   approval: { cls: "status-approval", label: "Awaiting approval" },
   approvalprint: { cls: "status-approval", label: "Awaiting approval — ready for print" },
-  ordering: { cls: "status-production", label: "Design sent to Erica for ordering" },
+  ordering: { cls: "status-production", label: "Ordered — arriving September 25th" },
   fundaneed: { cls: "status-draft", label: "Awaiting fund-a-need levels" },
   production: { cls: "status-production", label: "In production" },
   notstarted: { cls: "status-notstarted", label: "Not started" },
