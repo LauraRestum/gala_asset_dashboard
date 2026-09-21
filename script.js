@@ -72,7 +72,7 @@ const sectionConfig = [
           {
             name: "Bidder Card — Side A (Venue Map)",
             file: "bidder-card-map.jpg",
-            status: "draft",
+            status: "approval",
             url: "assets/2026-gala-bidder-card.pdf",
             urlLabel: "Front & back proof (PDF)",
             clickup: "https://app.clickup.com/t/86ak6h83x",
@@ -82,7 +82,7 @@ const sectionConfig = [
           {
             name: "Bidder Card — Side B (Bidder Number)",
             file: "bidder-card-number.jpg",
-            status: "draft",
+            status: "approval",
             url: "assets/2026-gala-bidder-card-numbers.pdf",
             urlLabel: "All 300 cards, 101–400 (PDF)",
             clickup: "https://app.clickup.com/t/86ak6h83x",
