@@ -221,7 +221,7 @@ const sectionConfig = [
             urlLabel: "Open the deck full screen (PowerPoint viewer)",
             download: "assets/2026-gala-program-presentation.pptx",
             downloadLabel: "Download the deck (PPTX, 9 MB)",
-            clickup: "https://app.clickup.com/t/86ak6h890",
+            clickup: "https://app.clickup.com/t/86ak6h8cy",
           },
           {
             name: "Spirit of Philanthropy Award",
