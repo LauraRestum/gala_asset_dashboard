@@ -3,7 +3,7 @@ const STATUS = {
   draft: { cls: "status-draft", label: "Draft" },
   approval: { cls: "status-approval", label: "Awaiting approval" },
   approvalprint: { cls: "status-approval", label: "Awaiting approval — ready for print" },
-  ordering: { cls: "status-production", label: "Design sent to Erica for ordering" },
+  ordering: { cls: "status-production", label: "Ordered — arriving September 25th" },
   fundaneed: { cls: "status-draft", label: "Awaiting fund-a-need levels" },
   production: { cls: "status-production", label: "In production" },
   notstarted: { cls: "status-notstarted", label: "Not started" },
@@ -205,9 +205,13 @@ const sectionConfig = [
         assets: [
           {
             name: "Cocktail Hour Loop (Slides)",
-            placeholder: "Click here to view the deck",
-            status: "draft",
-            url: "https://docs.google.com/presentation/d/1GFmdqt6LAscAvfE6HiiAhATDG0uLeW8LqBAP1OuWFTI/edit",
+            embed:
+              "https://dlhfb.sharepoint.com/sites/EnvisionMarketing/_layouts/15/Doc.aspx?sourcedoc={b932016e-ac0e-487b-9b38-8334412dd2d4}&action=embedview&wdAr=1.7777777777777777",
+            status: "complete",
+            url: "https://dlhfb.sharepoint.com/sites/EnvisionMarketing/_layouts/15/Doc.aspx?sourcedoc={b932016e-ac0e-487b-9b38-8334412dd2d4}&action=embedview&wdAr=1.7777777777777777",
+            urlLabel: "Open the finished deck full screen (PowerPoint viewer)",
+            download: "assets/2026-gala-cocktail-loop.pptx",
+            downloadLabel: "Download the deck (PPTX, 20 MB)",
             clickup: "https://app.clickup.com/t/86ak6h8cy",
           },
           {
@@ -346,6 +350,16 @@ const createPlayBadge = () => {
 };
 
 const renderTilePreview = (preview, asset) => {
+  if (asset.embed) {
+    const frame = document.createElement("iframe");
+    frame.src = asset.embed;
+    frame.title = `${asset.name} — embedded PowerPoint viewer`;
+    frame.loading = "lazy";
+    frame.setAttribute("allowfullscreen", "");
+    preview.replaceChildren(frame);
+    return;
+  }
+
   if (!asset.file && !asset.video) {
     preview.replaceChildren(createPlaceholder(asset.placeholder));
     return;
@@ -376,32 +390,39 @@ const buildAssetTile = (asset) => {
 
   const preview = document.createElement("div");
   preview.className = "tile-preview";
-  preview.setAttribute("role", "button");
-  preview.tabIndex = 0;
-  preview.setAttribute("aria-label", `Preview ${asset.name}`);
 
-  const activate = () => {
-    if (asset.file || asset.video) {
-      openModal(asset);
-      return;
-    }
-    const target = asset.url || asset.clickup;
-    if (target) {
-      window.open(target, "_blank", "noopener,noreferrer");
-    }
-  };
+  // Embedded viewers are interactive on their own; everything else gets the
+  // click-to-open behavior on the preview area.
+  if (asset.embed) {
+    preview.classList.add("tile-preview-embed");
+  } else {
+    preview.setAttribute("role", "button");
+    preview.tabIndex = 0;
+    preview.setAttribute("aria-label", `Preview ${asset.name}`);
 
-  if (!asset.file && !asset.video && (asset.url || asset.clickup)) {
-    preview.setAttribute("aria-label", `Open ${asset.name}`);
+    const activate = () => {
+      if (asset.file || asset.video) {
+        openModal(asset);
+        return;
+      }
+      const target = asset.url || asset.clickup;
+      if (target) {
+        window.open(target, "_blank", "noopener,noreferrer");
+      }
+    };
+
+    if (!asset.file && !asset.video && (asset.url || asset.clickup)) {
+      preview.setAttribute("aria-label", `Open ${asset.name}`);
+    }
+
+    preview.addEventListener("click", activate);
+    preview.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        activate();
+      }
+    });
   }
-
-  preview.addEventListener("click", activate);
-  preview.addEventListener("keydown", (event) => {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      activate();
-    }
-  });
 
   const body = document.createElement("div");
   body.className = "tile-body";
@@ -440,6 +461,13 @@ const buildAssetTile = (asset) => {
 
   if (asset.dropbox) addLink(asset.dropbox, "Full quality on Dropbox");
   if (asset.url) addLink(asset.url, asset.urlLabel || "Open file");
+  if (asset.download) {
+    const link = document.createElement("a");
+    link.href = asset.download;
+    link.download = "";
+    link.textContent = asset.downloadLabel || "Download file";
+    fileLabel.append(link);
+  }
   if (asset.clickup) addLink(asset.clickup, "Team notes in ClickUp");
   if (!fileLabel.childNodes.length && asset.file) {
     fileLabel.textContent = asset.file;
