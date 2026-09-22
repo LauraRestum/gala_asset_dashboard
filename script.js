@@ -231,7 +231,7 @@ const sectionConfig = [
             pagePrefix: "program-presentation-",
             pageWord: "Slide",
             status: "fundaneed",
-            url: "https://dlhfb.sharepoint.com/:p:/s/EnvisionMarketing/IQD36SiVJXiyTJ-hCMlDPQt2AfRdb2Fu618itctBqr8_W0o?e=YyGLA0",
+            url: "https://dlhfb.sharepoint.com/:p:/s/EnvisionMarketing/IQD36SiVJXiyTJ-hCMlDPQt2AfRdb2Fu618itctBqr8_W0o?e=tsOwxu",
             urlLabel: "Open the latest deck in PowerPoint (SharePoint)",
             download: "assets/2026-gala-program-presentation.pptx",
             downloadLabel: "Download the deck (PPTX, 9 MB)",
