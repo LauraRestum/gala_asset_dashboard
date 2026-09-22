@@ -227,7 +227,7 @@ const sectionConfig = [
           {
             name: "Programming Presentation Assets",
             file: "program-presentation.jpg",
-            pages: 29,
+            pages: 33,
             pagePrefix: "program-presentation-",
             pageWord: "Slide",
             status: "fundaneed",
