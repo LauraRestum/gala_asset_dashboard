@@ -470,6 +470,22 @@ button,
   background: #000;
 }
 
+/* Full-screen mode: the preview fills the display on a dark backdrop. */
+.modal-preview:fullscreen,
+.modal-preview:-webkit-full-screen {
+  background: #081123;
+  border: none;
+  border-radius: 0;
+  padding: 1.25rem;
+}
+
+.modal-preview:fullscreen img,
+.modal-preview:fullscreen video,
+.modal-preview:-webkit-full-screen img,
+.modal-preview:-webkit-full-screen video {
+  max-height: 96vh;
+}
+
 .modal-close {
   position: absolute;
   top: 0.8rem;

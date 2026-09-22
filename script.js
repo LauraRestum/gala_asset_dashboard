@@ -306,6 +306,7 @@ const modalPreview = document.getElementById("modal-preview");
 const modalClose = document.getElementById("modal-close");
 const modalPrev = document.getElementById("modal-prev");
 const modalNext = document.getElementById("modal-next");
+const modalFullscreen = document.getElementById("modal-fullscreen");
 
 // Multi-page assets expand into one viewer entry per page.
 const expandAsset = (asset) => {
@@ -680,7 +681,26 @@ const stepModalAsset = (step) => {
   openModalByIndex(nextIndex);
 };
 
+const inFullscreen = () =>
+  document.fullscreenElement || document.webkitFullscreenElement || null;
+
+const exitFullscreen = () => {
+  if (!inFullscreen()) return;
+  (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+};
+
+const toggleFullscreen = () => {
+  if (inFullscreen()) {
+    exitFullscreen();
+    return;
+  }
+  const request =
+    modalPreview.requestFullscreen || modalPreview.webkitRequestFullscreen;
+  if (request) request.call(modalPreview);
+};
+
 const closeModal = () => {
+  exitFullscreen();
   pauseModalVideo();
   modal.hidden = true;
   document.body.style.overflow = "";
@@ -709,6 +729,7 @@ const setupActiveNavigation = () => {
 modalClose.addEventListener("click", closeModal);
 modalPrev.addEventListener("click", () => stepModalAsset(-1));
 modalNext.addEventListener("click", () => stepModalAsset(1));
+modalFullscreen.addEventListener("click", toggleFullscreen);
 modal.addEventListener("click", (event) => {
   if (event.target === modal) {
     closeModal();
@@ -717,9 +738,15 @@ modal.addEventListener("click", (event) => {
 
 document.addEventListener("keydown", (event) => {
   if (modal.hidden) return;
-  if (event.key === "Escape") return closeModal();
+  if (event.key === "Escape") {
+    // While full screen, Escape only leaves full screen (the browser
+    // handles it); the viewer stays open.
+    if (inFullscreen()) return;
+    return closeModal();
+  }
   if (event.key === "ArrowLeft") stepModalAsset(-1);
   if (event.key === "ArrowRight") stepModalAsset(1);
+  if (event.key === "f" || event.key === "F") toggleFullscreen();
 });
 
 // ---------------------------------------------------------------------------
