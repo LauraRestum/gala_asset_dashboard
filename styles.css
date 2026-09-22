@@ -157,10 +157,16 @@ body {
 
 .tile-group {
   grid-column: 1 / -1;
-  border: 1.5px dashed #a9bcd4;
+  border: 1.5px solid var(--border);
   border-radius: 0.9rem;
   padding: 0.7rem 0.75rem 0.75rem;
   background: rgba(2, 64, 137, 0.035);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.tile-group:hover {
+  border-color: var(--brand-green);
+  box-shadow: 0 0 0 4px rgba(120, 190, 33, 0.18), 0 6px 18px rgba(2, 40, 85, 0.1);
 }
 
 /* Once the grid has room, a two-piece group sits in exactly two columns so
@@ -187,7 +193,7 @@ body {
 .group-label::after {
   content: "";
   flex: 1;
-  border-top: 1px dashed #a9bcd4;
+  border-top: 1px solid var(--border);
 }
 
 .group-tiles {
@@ -363,7 +369,8 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .modal-preview .zoom-wrap img {
+  .modal-preview .zoom-wrap img,
+  .tile-group {
     transition: none;
   }
 }

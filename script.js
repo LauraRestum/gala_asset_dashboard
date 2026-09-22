@@ -2,6 +2,9 @@ const STATUS = {
   complete: { cls: "status-complete", label: "Complete" },
   draft: { cls: "status-draft", label: "Draft" },
   approval: { cls: "status-approval", label: "Awaiting approval" },
+  approvalprint: { cls: "status-approval", label: "Awaiting approval — ready for print" },
+  ordering: { cls: "status-production", label: "Ordered — arriving September 25th" },
+  fundaneed: { cls: "status-draft", label: "Awaiting fund-a-need levels" },
   production: { cls: "status-production", label: "In production" },
   notstarted: { cls: "status-notstarted", label: "Not started" },
 };
@@ -69,7 +72,7 @@ const sectionConfig = [
           {
             name: "Bidder Card — Side A (Venue Map)",
             file: "bidder-card-map.jpg",
-            status: "draft",
+            status: "approval",
             url: "assets/2026-gala-bidder-card.pdf",
             urlLabel: "Front & back proof (PDF)",
             clickup: "https://app.clickup.com/t/86ak6h83x",
@@ -79,7 +82,7 @@ const sectionConfig = [
           {
             name: "Bidder Card — Side B (Bidder Number)",
             file: "bidder-card-number.jpg",
-            status: "draft",
+            status: "approval",
             url: "assets/2026-gala-bidder-card-numbers.pdf",
             urlLabel: "All 300 cards, 101–400 (PDF)",
             clickup: "https://app.clickup.com/t/86ak6h83x",
@@ -99,7 +102,7 @@ const sectionConfig = [
           {
             name: "Welcome Sign",
             file: "welcome-sign.jpg",
-            status: "draft",
+            status: "approvalprint",
             url: "assets/2026-gala-welcome-sign.pdf",
             urlLabel: "Print file, 24x30 (PDF)",
             clickup: "https://app.clickup.com/t/86ak6hb8d",
@@ -109,14 +112,14 @@ const sectionConfig = [
           {
             name: "Check-In Sign",
             file: "nfv-p4.jpg",
-            status: "draft",
+            status: "approvalprint",
             clickup: "https://app.clickup.com/t/86ak6hb8d",
             groupId: "entry",
           },
           {
             name: "Upstairs Directional — Event Continues Upstairs",
             file: "nfv-p5.jpg",
-            status: "draft",
+            status: "approvalprint",
             clickup: "https://app.clickup.com/t/86ak6hbdc",
             groupId: "wayfinding",
             groupLabel: "Wayfinding Directionals",
@@ -124,21 +127,21 @@ const sectionConfig = [
           {
             name: "Directional — Tactile Art & Open Bar (Beren Room)",
             file: "nfv-p6.jpg",
-            status: "draft",
+            status: "approvalprint",
             clickup: "https://app.clickup.com/t/86ak6hbdc",
             groupId: "wayfinding",
           },
           {
             name: "Bar Sign — Hand Crafted Cocktails",
             file: "nfv-p7.jpg",
-            status: "draft",
+            status: "approvalprint",
             clickup: "https://app.clickup.com/t/86ak6hb5e",
             groupId: "wayfinding",
           },
           {
             name: "Tactile Art Experience Sign",
             file: "tactile-art-sign.jpg",
-            status: "draft",
+            status: "approvalprint",
             url: "assets/2026-gala-tactile-art-sign.pdf",
             urlLabel: "Print file, 24x30 (PDF)",
             clickup: "https://app.clickup.com/t/86ak6hba5",
@@ -148,7 +151,7 @@ const sectionConfig = [
           {
             name: "Assistive Technology Experience Sign",
             file: "assistive-tech-sign.jpg",
-            status: "draft",
+            status: "approvalprint",
             url: "assets/2026-gala-assistive-tech-sign.pdf",
             urlLabel: "Print file, 24x30 (PDF)",
             clickup: "https://app.clickup.com/t/86ak6hb6v",
@@ -157,7 +160,7 @@ const sectionConfig = [
           {
             name: "Through Their Eyes Roll-Up Banner — Adah",
             file: "adah-banner.jpg",
-            status: "approval",
+            status: "approvalprint",
             clickup: "https://app.clickup.com/t/86ak6h877",
             groupId: "banners",
             groupLabel: "Through Their Eyes Roll-Up Banners — one set of four",
@@ -165,7 +168,7 @@ const sectionConfig = [
           {
             name: "Through Their Eyes Roll-Up Banner — Aubree",
             file: "aubree-banner.jpg",
-            status: "approval",
+            status: "approvalprint",
             clickup: "https://app.clickup.com/t/86ak6h877",
             groupId: "banners",
           },
@@ -196,21 +199,28 @@ const sectionConfig = [
         assets: [
           {
             name: "Cocktail Hour Loop (Slides)",
-            placeholder: "Click here to view the deck",
-            status: "draft",
-            url: "https://docs.google.com/presentation/d/1GFmdqt6LAscAvfE6HiiAhATDG0uLeW8LqBAP1OuWFTI/edit",
+            file: "cocktail-loop.jpg",
+            status: "complete",
+            url: "https://dlhfb.sharepoint.com/sites/EnvisionMarketing/_layouts/15/Doc.aspx?sourcedoc={b932016e-ac0e-487b-9b38-8334412dd2d4}&action=embedview&wdAr=1.7777777777777777",
+            urlLabel: "Open the finished deck full screen (PowerPoint viewer)",
+            download: "assets/2026-gala-cocktail-loop.pptx",
+            downloadLabel: "Download the deck (PPTX, 20 MB)",
             clickup: "https://app.clickup.com/t/86ak6h8cy",
           },
           {
             name: "Programming Presentation Assets",
-            placeholder: "In production",
-            status: "production",
-            clickup: "https://app.clickup.com/t/86ak6h890",
+            file: "program-presentation.jpg",
+            status: "fundaneed",
+            url: "https://dlhfb.sharepoint.com/sites/EnvisionMarketing/_layouts/15/Doc.aspx?sourcedoc={55dc9644-6d7a-4d21-b76c-c8fa4bcd35b5}&action=embedview&wdAr=1.7777777777777777",
+            urlLabel: "Open the deck full screen (PowerPoint viewer)",
+            download: "assets/2026-gala-program-presentation.pptx",
+            downloadLabel: "Download the deck (PPTX, 9 MB)",
+            clickup: "https://app.clickup.com/t/86ak6h8cy",
           },
           {
             name: "Spirit of Philanthropy Award",
             file: "award.jpg",
-            status: "complete",
+            status: "ordering",
             clickup: "https://app.clickup.com/t/86akgg61d",
           },
         ],
@@ -438,6 +448,13 @@ const buildAssetTile = (asset) => {
 
   if (asset.dropbox) addLink(asset.dropbox, "Full quality on Dropbox");
   if (asset.url) addLink(asset.url, asset.urlLabel || "Open file");
+  if (asset.download) {
+    const link = document.createElement("a");
+    link.href = asset.download;
+    link.download = "";
+    link.textContent = asset.downloadLabel || "Download file";
+    fileLabel.append(link);
+  }
   if (asset.clickup) addLink(asset.clickup, "Team notes in ClickUp");
   if (!fileLabel.childNodes.length && asset.file) {
     fileLabel.textContent = asset.file;
