@@ -498,6 +498,12 @@ button,
   background: #000;
 }
 
+/* The display rules above would otherwise defeat the hidden attribute. */
+.modal-arrow[hidden],
+.fs-button[hidden] {
+  display: none;
+}
+
 /* Buttons in the viewer toolbar that carry a text label. */
 .modal-arrow.modal-wide {
   width: auto;
