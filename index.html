@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <!--ARTIFACT-HEAD-->
     <title>Gala 2026 Collateral</title>
-    <link rel="icon" type="image/png" href="assets/favicon.png" />
-    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+    <link rel="icon" href="favicon.ico?v=2" sizes="any" />
+    <link rel="icon" type="image/png" href="assets/favicon.png?v=2" />
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png?v=2" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -36,6 +37,14 @@
       </button>
       <div class="modal-content">
         <div class="modal-nav">
+          <button id="modal-play" class="modal-arrow modal-wide" type="button" aria-label="Play the loop" hidden>
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><polygon points="2,1 11,6 2,11"/></svg>
+            <span>Play the loop</span>
+          </button>
+          <button id="modal-fullscreen" class="modal-arrow modal-wide" type="button" aria-label="View in full screen" title="View in full screen (F)">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,5 1,1 5,1"/><polyline points="9,1 13,1 13,5"/><polyline points="13,9 13,13 9,13"/><polyline points="5,13 1,13 1,9"/></svg>
+            <span>View in full screen</span>
+          </button>
           <button id="modal-prev" class="modal-arrow" type="button" aria-label="Previous file">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9,2 4,7 9,12"/></svg>
           </button>
@@ -44,7 +53,31 @@
           </button>
         </div>
         <h2 id="modal-title"></h2>
-        <div id="modal-preview" class="modal-preview"></div>
+        <div id="modal-stage" class="modal-stage">
+          <div id="modal-preview" class="modal-preview"></div>
+          <aside id="fs-copy" class="fs-copy" aria-label="Banner copy, up close">
+            <p class="fs-copy-label">The copy, up close</p>
+            <div id="fs-copy-view" class="fs-copy-view"></div>
+          </aside>
+          <div class="fs-bar">
+            <p id="fs-title" class="fs-title"></p>
+            <div class="fs-buttons">
+              <button id="fs-prev" class="fs-button" type="button" aria-label="Previous file">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9,2 4,7 9,12"/></svg>
+              </button>
+              <button id="fs-play" class="fs-button fs-wide" type="button" aria-label="Play the loop" hidden>
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><polygon points="2,1 11,6 2,11"/></svg>
+                <span>Play the loop</span>
+              </button>
+              <button id="fs-next" class="fs-button" type="button" aria-label="Next file">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5,2 10,7 5,12"/></svg>
+              </button>
+              <button id="fs-exit" class="fs-button fs-wide" type="button" aria-label="Exit full screen">
+                <span>Exit full screen</span>
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
