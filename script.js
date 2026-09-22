@@ -521,6 +521,16 @@ const buildSection = (section) => {
   contentRoot.append(el);
 };
 
+// Briefly glow a tile after jumping to it from the sidebar. Removing and
+// re-adding the class lets a second click restart the animation.
+const flashTile = (tile) => {
+  tile.classList.remove("tile-glow");
+  void tile.offsetWidth;
+  tile.classList.add("tile-glow");
+  clearTimeout(tile.glowTimer);
+  tile.glowTimer = setTimeout(() => tile.classList.remove("tile-glow"), 1700);
+};
+
 const buildNav = () => {
   sectionConfig.forEach((group) => {
     group.sections.forEach((section) => {
@@ -558,9 +568,10 @@ const buildNav = () => {
 
         link.addEventListener("click", (event) => {
           event.preventDefault();
-          document
-            .getElementById(asset.anchorId)
-            ?.scrollIntoView({ behavior: "smooth", block: "center" });
+          const tile = document.getElementById(asset.anchorId);
+          if (!tile) return;
+          tile.scrollIntoView({ behavior: "smooth", block: "center" });
+          flashTile(tile);
         });
 
         item.append(link);
