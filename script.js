@@ -125,9 +125,20 @@ const sectionConfig = [
             groupLabel: "Wayfinding Directionals",
           },
           {
-            name: "Directional — Tactile Art & Open Bar (Beren Room)",
-            file: "nfv-p6.jpg",
+            name: "Directional — Sensory Experiences & Cocktails (Beren Room)",
+            file: "beren-room-sign.jpg",
             status: "approvalprint",
+            url: "assets/2026-gala-beren-room-sign.pdf",
+            urlLabel: "Print file, 24x30 (PDF)",
+            clickup: "https://app.clickup.com/t/86ak6hbdc",
+            groupId: "wayfinding",
+          },
+          {
+            name: "Directional — Photo Booth & Cocktails (Upper Gallery)",
+            file: "upper-gallery-sign.jpg",
+            status: "approvalprint",
+            url: "assets/2026-gala-upper-gallery-sign.pdf",
+            urlLabel: "Print file, 24x30 (PDF)",
             clickup: "https://app.clickup.com/t/86ak6hbdc",
             groupId: "wayfinding",
           },
@@ -202,26 +213,26 @@ const sectionConfig = [
           {
             name: "Cocktail Hour Loop (Slides)",
             file: "cocktail-loop.jpg",
-            pages: 67,
+            pages: 63,
             pagePrefix: "cocktail-loop-",
             pageWord: "Slide",
             slideshow: true,
             status: "complete",
-            url: "https://dlhfb.sharepoint.com/sites/EnvisionMarketing/_layouts/15/Doc.aspx?sourcedoc={b932016e-ac0e-487b-9b38-8334412dd2d4}&action=embedview&wdAr=1.7777777777777777",
-            urlLabel: "Open the finished deck full screen (PowerPoint viewer)",
+            url: "https://dlhfb.sharepoint.com/:p:/s/EnvisionMarketing/IQAOw9xZ1o6XQp6Yx0FvQ9iUAXwPDjsJxEUFCl-PS4IbT8I?e=WvUkd0",
+            urlLabel: "Open the latest deck in PowerPoint (SharePoint)",
             download: "assets/2026-gala-cocktail-loop.pptx",
-            downloadLabel: "Download the deck (PPTX, 20 MB)",
+            downloadLabel: "Download the deck (PPTX, 16 MB)",
             clickup: "https://app.clickup.com/t/86ak6h8cy",
           },
           {
             name: "Programming Presentation Assets",
             file: "program-presentation.jpg",
-            pages: 29,
+            pages: 33,
             pagePrefix: "program-presentation-",
             pageWord: "Slide",
             status: "fundaneed",
-            url: "https://dlhfb.sharepoint.com/sites/EnvisionMarketing/_layouts/15/Doc.aspx?sourcedoc={55dc9644-6d7a-4d21-b76c-c8fa4bcd35b5}&action=embedview&wdAr=1.7777777777777777",
-            urlLabel: "Open the deck full screen (PowerPoint viewer)",
+            url: "https://dlhfb.sharepoint.com/:p:/s/EnvisionMarketing/IQD36SiVJXiyTJ-hCMlDPQt2AfRdb2Fu618itctBqr8_W0o?e=tsOwxu",
+            urlLabel: "Open the latest deck in PowerPoint (SharePoint)",
             download: "assets/2026-gala-program-presentation.pptx",
             downloadLabel: "Download the deck (PPTX, 9 MB)",
             clickup: "https://app.clickup.com/t/86ak6h8cy",
@@ -625,6 +636,48 @@ const pauseModalVideo = () => {
   if (playing) playing.pause();
 };
 
+// Loop slides render on a persistent stage and arrive with the deck's own
+// push transition: the new slide slides in while the old one is pushed out
+// the opposite side.
+const renderLoopSlide = (asset) => {
+  let stage = modalPreview.querySelector(".loop-stage");
+  const fresh = !stage || stage.dataset.prefix !== asset.pagePrefix;
+  if (fresh) {
+    stage = document.createElement("div");
+    stage.className = "loop-stage";
+    stage.dataset.prefix = asset.pagePrefix;
+    modalPreview.replaceChildren(stage);
+  }
+
+  const img = new Image();
+  img.alt = asset.name;
+  img.addEventListener("error", () => {
+    modalPreview.replaceChildren(createPlaceholder(`Missing image: ${asset.file}`));
+  });
+  img.addEventListener("load", () => {
+    const old = stage.querySelector("img.current");
+    img.classList.add("current");
+    if (old && navDirection !== 0) {
+      img.classList.add(navDirection === 1 ? "push-from-right" : "push-from-left");
+      old.classList.remove("current");
+      old.classList.add(navDirection === 1 ? "push-to-left" : "push-to-right");
+      setTimeout(() => old.remove(), 1100);
+    } else if (old) {
+      old.remove();
+    }
+    stage.append(img);
+  });
+  img.src = `${assetRoot}${asset.file}`;
+
+  // Preload the following slide so autoplay pushes without a loading hitch.
+  const range = slideshowRange(asset);
+  if (range) {
+    const nextIndex =
+      activeAssetIndex >= range.end ? range.start : activeAssetIndex + 1;
+    new Image().src = `${assetRoot}${allAssets[nextIndex].file}`;
+  }
+};
+
 const renderModalAsset = (asset) => {
   modalTitle.textContent = asset.name;
   fsTitle.textContent = asset.name;
@@ -676,8 +729,13 @@ const renderModalAsset = (asset) => {
     return;
   }
 
-  // Keep the current image up while the next one loads so the slideshow
-  // cuts cleanly instead of flashing a loading card.
+  if (asset.slideshow) {
+    renderLoopSlide(asset);
+    return;
+  }
+
+  // Keep the current image up while the next one loads so paging stays
+  // clean instead of flashing a loading card.
   if (!modalPreview.querySelector("img")) {
     modalPreview.replaceChildren(createPlaceholder("Loading..."));
   }
@@ -718,12 +776,14 @@ const openModalByIndex = (index) => {
 const openModal = (asset) => {
   const nextIndex = allAssets.indexOf(asset.modalTarget || asset);
   if (nextIndex === -1) return;
+  navDirection = 0;
   openModalByIndex(nextIndex);
 };
 
 const stepModalAsset = (step) => {
   const nextIndex = activeAssetIndex + step;
   if (nextIndex < 0 || nextIndex >= allAssets.length) return;
+  navDirection = step > 0 ? 1 : -1;
   openModalByIndex(nextIndex);
 };
 
@@ -751,6 +811,8 @@ const toggleFullscreen = () => {
 // first. Any manual navigation stops the demo.
 let slideTimer = null;
 let slideshowAdvancing = false;
+// -1 back, 1 forward, 0 fresh open (no push animation).
+let navDirection = 0;
 
 const slideshowRange = (asset) => {
   if (!asset || !asset.slideshow || !asset.pagePrefix) return null;
@@ -781,6 +843,9 @@ const stopSlideshow = () => {
   updatePlayButtons();
 };
 
+// The deck holds each slide 8s then pushes left over ~1s (its transition
+// is spd="slow" advTm="8000" with <p:push dir="l"/>), so the demo runs on
+// a 9s cycle to match.
 const startSlideshow = () => {
   if (slideTimer) return;
   slideTimer = setInterval(() => {
@@ -788,9 +853,10 @@ const startSlideshow = () => {
     if (!range) return stopSlideshow();
     const next = activeAssetIndex >= range.end ? range.start : activeAssetIndex + 1;
     slideshowAdvancing = true;
+    navDirection = 1;
     openModalByIndex(next);
     slideshowAdvancing = false;
-  }, 2000);
+  }, 9000);
   updatePlayButtons();
 };
 

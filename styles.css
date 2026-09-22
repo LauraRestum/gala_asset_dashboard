@@ -514,7 +514,7 @@ button,
   font-weight: 600;
 }
 
-/* Each newly loaded slide fades in so the loop demo feels animated. */
+/* Each newly loaded page fades in gently. */
 .modal-slide {
   animation: slide-in 0.35s ease;
 }
@@ -525,6 +525,86 @@ button,
   }
   to {
     opacity: 1;
+  }
+}
+
+/* Loop stage: mirrors the deck's own push transition (spd="slow",
+   <p:push dir="l"/>) — the new slide pushes the old one off screen
+   over about a second. */
+.loop-stage {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: calc((95vh - 160px) * 16 / 9);
+  aspect-ratio: 16 / 9;
+  border-radius: 0.4rem;
+  background: #000;
+}
+
+.loop-stage img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.push-from-right {
+  animation: push-from-right 1s ease-in-out;
+}
+
+.push-from-left {
+  animation: push-from-left 1s ease-in-out;
+}
+
+.push-to-left {
+  animation: push-to-left 1s ease-in-out forwards;
+}
+
+.push-to-right {
+  animation: push-to-right 1s ease-in-out forwards;
+}
+
+@keyframes push-from-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes push-from-left {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes push-to-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes push-to-right {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loop-stage img,
+  .modal-slide {
+    animation: none;
   }
 }
 
@@ -560,6 +640,17 @@ button,
 .modal-stage:-webkit-full-screen .modal-preview img,
 .modal-stage:-webkit-full-screen .modal-preview video {
   max-height: calc(100vh - 6.8rem);
+}
+
+.modal-stage:fullscreen .loop-stage,
+.modal-stage:-webkit-full-screen .loop-stage {
+  max-width: calc((100vh - 6.8rem) * 16 / 9);
+  max-height: calc(100vh - 6.8rem);
+}
+
+.modal-stage:fullscreen .loop-stage img,
+.modal-stage:-webkit-full-screen .loop-stage img {
+  max-height: none;
 }
 
 .modal-stage:fullscreen .fs-bar,
