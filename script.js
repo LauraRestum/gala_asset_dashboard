@@ -160,6 +160,7 @@ const sectionConfig = [
           {
             name: "Through Their Eyes Roll-Up Banner — Adah",
             file: "adah-banner.jpg",
+            copyPanel: true,
             status: "approvalprint",
             clickup: "https://app.clickup.com/t/86ak6h877",
             groupId: "banners",
@@ -168,6 +169,7 @@ const sectionConfig = [
           {
             name: "Through Their Eyes Roll-Up Banner — Aubree",
             file: "aubree-banner.jpg",
+            copyPanel: true,
             status: "approvalprint",
             clickup: "https://app.clickup.com/t/86ak6h877",
             groupId: "banners",
@@ -200,6 +202,10 @@ const sectionConfig = [
           {
             name: "Cocktail Hour Loop (Slides)",
             file: "cocktail-loop.jpg",
+            pages: 67,
+            pagePrefix: "cocktail-loop-",
+            pageWord: "Slide",
+            slideshow: true,
             status: "complete",
             url: "https://dlhfb.sharepoint.com/sites/EnvisionMarketing/_layouts/15/Doc.aspx?sourcedoc={b932016e-ac0e-487b-9b38-8334412dd2d4}&action=embedview&wdAr=1.7777777777777777",
             urlLabel: "Open the finished deck full screen (PowerPoint viewer)",
@@ -210,6 +216,9 @@ const sectionConfig = [
           {
             name: "Programming Presentation Assets",
             file: "program-presentation.jpg",
+            pages: 29,
+            pagePrefix: "program-presentation-",
+            pageWord: "Slide",
             status: "fundaneed",
             url: "https://dlhfb.sharepoint.com/sites/EnvisionMarketing/_layouts/15/Doc.aspx?sourcedoc={55dc9644-6d7a-4d21-b76c-c8fa4bcd35b5}&action=embedview&wdAr=1.7777777777777777",
             urlLabel: "Open the deck full screen (PowerPoint viewer)",
@@ -307,15 +316,24 @@ const modalClose = document.getElementById("modal-close");
 const modalPrev = document.getElementById("modal-prev");
 const modalNext = document.getElementById("modal-next");
 const modalFullscreen = document.getElementById("modal-fullscreen");
+const modalPlay = document.getElementById("modal-play");
+const modalStage = document.getElementById("modal-stage");
+const fsCopyView = document.getElementById("fs-copy-view");
+const fsTitle = document.getElementById("fs-title");
+const fsPrev = document.getElementById("fs-prev");
+const fsNext = document.getElementById("fs-next");
+const fsPlay = document.getElementById("fs-play");
+const fsExit = document.getElementById("fs-exit");
 
 // Multi-page assets expand into one viewer entry per page.
 const expandAsset = (asset) => {
   if (!asset.pages || asset.pages < 2 || !asset.pagePrefix) return [asset];
+  const word = asset.pageWord || "Page";
   const pages = [];
   for (let i = 1; i <= asset.pages; i++) {
     pages.push({
       ...asset,
-      name: `${asset.name} — Page ${i} of ${asset.pages}`,
+      name: `${asset.name} — ${word} ${i} of ${asset.pages}`,
       file: `${asset.pagePrefix}${String(i).padStart(2, "0")}.jpg`,
     });
   }
@@ -609,7 +627,18 @@ const pauseModalVideo = () => {
 
 const renderModalAsset = (asset) => {
   modalTitle.textContent = asset.name;
+  fsTitle.textContent = asset.name;
   pauseModalVideo();
+
+  // Banners with a copy panel get a full-screen side view of their top
+  // section so the copy is easy to read.
+  const showCopy = Boolean(asset.copyPanel && asset.file);
+  modalStage.dataset.copy = showCopy ? "true" : "false";
+  fsCopyView.style.backgroundImage = showCopy
+    ? `url("${assetRoot}${asset.file}")`
+    : "";
+
+  updatePlayButtons();
 
   if (asset.video) {
     const video = document.createElement("video");
@@ -647,10 +676,15 @@ const renderModalAsset = (asset) => {
     return;
   }
 
-  modalPreview.replaceChildren(createPlaceholder("Loading..."));
+  // Keep the current image up while the next one loads so the slideshow
+  // cuts cleanly instead of flashing a loading card.
+  if (!modalPreview.querySelector("img")) {
+    modalPreview.replaceChildren(createPlaceholder("Loading..."));
+  }
 
   const fullImage = new Image();
   fullImage.alt = asset.name;
+  fullImage.className = "modal-slide";
 
   fullImage.addEventListener("error", () => {
     modalPreview.replaceChildren(createPlaceholder(`Missing image: ${asset.file}`));
@@ -672,6 +706,7 @@ const updateModalNavigation = () => {
 };
 
 const openModalByIndex = (index) => {
+  if (!slideshowAdvancing) stopSlideshow();
   activeAssetIndex = index;
   renderModalAsset(allAssets[activeAssetIndex]);
   updateModalNavigation();
@@ -706,11 +741,63 @@ const toggleFullscreen = () => {
     return;
   }
   const request =
-    modalPreview.requestFullscreen || modalPreview.webkitRequestFullscreen;
-  if (request) request.call(modalPreview);
+    modalStage.requestFullscreen || modalStage.webkitRequestFullscreen;
+  if (request) request.call(modalStage);
 };
 
+// -- Slideshow (loop demo) --------------------------------------------------
+// Assets flagged `slideshow` auto-advance through their expanded pages to
+// demonstrate the loop's animation, wrapping from the last slide to the
+// first. Any manual navigation stops the demo.
+let slideTimer = null;
+let slideshowAdvancing = false;
+
+const slideshowRange = (asset) => {
+  if (!asset || !asset.slideshow || !asset.pagePrefix) return null;
+  const indexes = allAssets
+    .map((a, i) => (a.pagePrefix === asset.pagePrefix ? i : -1))
+    .filter((i) => i !== -1);
+  if (!indexes.length) return null;
+  return { start: indexes[0], end: indexes[indexes.length - 1] };
+};
+
+const updatePlayButtons = () => {
+  const asset = allAssets[activeAssetIndex];
+  const canPlay = Boolean(asset && asset.slideshow);
+  modalPlay.hidden = !canPlay;
+  fsPlay.hidden = !canPlay;
+  const label = slideTimer ? "Pause the loop" : "Play the loop";
+  [modalPlay, fsPlay].forEach((button) => {
+    button.querySelector("span").textContent = label;
+    button.setAttribute("aria-label", label);
+    button.classList.toggle("playing", Boolean(slideTimer));
+  });
+};
+
+const stopSlideshow = () => {
+  if (!slideTimer) return;
+  clearInterval(slideTimer);
+  slideTimer = null;
+  updatePlayButtons();
+};
+
+const startSlideshow = () => {
+  if (slideTimer) return;
+  slideTimer = setInterval(() => {
+    const range = slideshowRange(allAssets[activeAssetIndex]);
+    if (!range) return stopSlideshow();
+    const next = activeAssetIndex >= range.end ? range.start : activeAssetIndex + 1;
+    slideshowAdvancing = true;
+    openModalByIndex(next);
+    slideshowAdvancing = false;
+  }, 2000);
+  updatePlayButtons();
+};
+
+const toggleSlideshow = () => (slideTimer ? stopSlideshow() : startSlideshow());
+
 const closeModal = () => {
+  stopSlideshow();
   exitFullscreen();
   pauseModalVideo();
   modal.hidden = true;
@@ -741,6 +828,11 @@ modalClose.addEventListener("click", closeModal);
 modalPrev.addEventListener("click", () => stepModalAsset(-1));
 modalNext.addEventListener("click", () => stepModalAsset(1));
 modalFullscreen.addEventListener("click", toggleFullscreen);
+modalPlay.addEventListener("click", toggleSlideshow);
+fsPrev.addEventListener("click", () => stepModalAsset(-1));
+fsNext.addEventListener("click", () => stepModalAsset(1));
+fsPlay.addEventListener("click", toggleSlideshow);
+fsExit.addEventListener("click", exitFullscreen);
 modal.addEventListener("click", (event) => {
   if (event.target === modal) {
     closeModal();
@@ -750,9 +842,10 @@ modal.addEventListener("click", (event) => {
 document.addEventListener("keydown", (event) => {
   if (modal.hidden) return;
   if (event.key === "Escape") {
-    // While full screen, Escape only leaves full screen (the browser
-    // handles it); the viewer stays open.
-    if (inFullscreen()) return;
+    // While full screen, Escape only leaves full screen; the viewer stays
+    // open. Most browsers exit natively, but exit explicitly for the ones
+    // that deliver the key press instead.
+    if (inFullscreen()) return exitFullscreen();
     return closeModal();
   }
   if (event.key === "ArrowLeft") stepModalAsset(-1);

@@ -498,20 +498,146 @@ button,
   background: #000;
 }
 
-/* Full-screen mode: the preview fills the display on a dark backdrop. */
-.modal-preview:fullscreen,
-.modal-preview:-webkit-full-screen {
-  background: #081123;
-  border: none;
-  border-radius: 0;
-  padding: 1.25rem;
+/* Buttons in the viewer toolbar that carry a text label. */
+.modal-arrow.modal-wide {
+  width: auto;
+  gap: 0.45rem;
+  padding: 0 0.7rem;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
 }
 
-.modal-preview:fullscreen img,
-.modal-preview:fullscreen video,
-.modal-preview:-webkit-full-screen img,
-.modal-preview:-webkit-full-screen video {
-  max-height: 96vh;
+/* Each newly loaded slide fades in so the loop demo feels animated. */
+.modal-slide {
+  animation: slide-in 0.35s ease;
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0.2;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Full-screen chrome hides until the stage actually goes full screen. */
+.modal-stage {
+  position: relative;
+}
+
+.fs-bar,
+.fs-copy {
+  display: none;
+}
+
+.modal-stage:fullscreen,
+.modal-stage:-webkit-full-screen {
+  background: #081123;
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 1rem 4.8rem;
+}
+
+.modal-stage:fullscreen .modal-preview,
+.modal-stage:-webkit-full-screen .modal-preview {
+  flex: 1;
+  min-height: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+}
+
+.modal-stage:fullscreen .modal-preview img,
+.modal-stage:fullscreen .modal-preview video,
+.modal-stage:-webkit-full-screen .modal-preview img,
+.modal-stage:-webkit-full-screen .modal-preview video {
+  max-height: calc(100vh - 6.8rem);
+}
+
+.modal-stage:fullscreen .fs-bar,
+.modal-stage:-webkit-full-screen .fs-bar {
+  display: flex;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3.8rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0 1.25rem;
+  background: rgba(8, 17, 35, 0.94);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.fs-title {
+  margin: 0;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fs-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.fs-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-width: 2.5rem;
+  height: 2.5rem;
+  padding: 0 0.75rem;
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 0.5rem;
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: url("assets/cursor-disco-ball.png") 16 16, pointer;
+}
+
+.fs-button:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Side panel: the banner's top section, enlarged so the copy reads easily. */
+/* Sized so only the banner's top section fits the panel, enlarging the
+   copy well past its size in the main view. */
+.modal-stage:fullscreen[data-copy="true"] .fs-copy,
+.modal-stage:-webkit-full-screen[data-copy="true"] .fs-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: min(58vw, calc((100vh - 8.5rem) * 1.25));
+}
+
+.fs-copy-label {
+  margin: 0;
+  color: #a9bcd8;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.fs-copy-view {
+  flex: 1;
+  border-radius: 0.6rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: #0b1730;
+  background-size: 100% auto;
+  background-position: top center;
+  background-repeat: no-repeat;
 }
 
 .modal-close {
