@@ -21,6 +21,18 @@ body {
   background: var(--white);
 }
 
+/* Disco-ball cursor everywhere, including links and buttons. The 16 16
+   hotspot puts the click point at the center of the ball. */
+body,
+a,
+button,
+[role="button"],
+.nav-link,
+.tile-preview,
+.tile-file a {
+  cursor: url("assets/cursor-disco-ball.png") 16 16, auto;
+}
+
 .dashboard {
   display: grid;
   grid-template-columns: minmax(260px, 25%) 1fr;
@@ -94,7 +106,7 @@ body {
   font-size: 0.88rem;
   line-height: 1.3;
   transition: background 0.2s, color 0.2s;
-  cursor: pointer;
+  cursor: url("assets/cursor-disco-ball.png") 16 16, pointer;
 }
 
 .nav-link:hover {
@@ -108,6 +120,25 @@ body {
   font-weight: 600;
 }
 
+.nav-section-link {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.nav-asset-list {
+  margin: 0.15rem 0 0 0.55rem;
+  padding-left: 0.55rem;
+  border-left: 1px solid var(--border);
+}
+
+.nav-asset-link {
+  font-size: 0.8rem;
+  padding: 0.3rem 0.5rem;
+  color: var(--text-muted);
+}
+
 .content {
   padding: 1.25rem 1.5rem 2rem;
 }
@@ -115,6 +146,11 @@ body {
 .section {
   scroll-margin-top: 1rem;
   margin-bottom: 2rem;
+}
+
+.tile,
+.tile-group {
+  scroll-margin-top: 1rem;
 }
 
 .section h2 {
@@ -133,10 +169,16 @@ body {
 
 .tile-group {
   grid-column: 1 / -1;
-  border: 1.5px dashed #a9bcd4;
+  border: 1.5px solid var(--border);
   border-radius: 0.9rem;
   padding: 0.7rem 0.75rem 0.75rem;
   background: rgba(2, 64, 137, 0.035);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.tile-group:hover {
+  border-color: var(--brand-green);
+  box-shadow: 0 0 0 4px rgba(120, 190, 33, 0.18), 0 6px 18px rgba(2, 40, 85, 0.1);
 }
 
 /* Once the grid has room, a two-piece group sits in exactly two columns so
@@ -163,7 +205,7 @@ body {
 .group-label::after {
   content: "";
   flex: 1;
-  border-top: 1px dashed #a9bcd4;
+  border-top: 1px solid var(--border);
 }
 
 .group-tiles {
@@ -196,7 +238,7 @@ body {
   align-items: center;
   justify-content: center;
   position: relative;
-  cursor: pointer;
+  cursor: url("assets/cursor-disco-ball.png") 16 16, pointer;
   transition: background 0.15s, outline-color 0.15s;
   outline: 2px solid transparent;
   outline-offset: -6px;
@@ -319,7 +361,7 @@ body {
   font-weight: 600;
   text-decoration: underline;
   margin-right: 0.7rem;
-  cursor: pointer;
+  cursor: url("assets/cursor-disco-ball.png") 16 16, pointer;
 }
 
 .tile-file a:hover {
@@ -328,7 +370,7 @@ body {
 
 .modal-preview .zoom-wrap {
   overflow: hidden;
-  cursor: zoom-in;
+  cursor: url("assets/cursor-disco-ball.png") 16 16, zoom-in;
   border-radius: 0.4rem;
   line-height: 0;
 }
@@ -339,7 +381,8 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .modal-preview .zoom-wrap img {
+  .modal-preview .zoom-wrap img,
+  .tile-group {
     transition: none;
   }
 }
@@ -391,7 +434,7 @@ body {
   width: 2.2rem;
   height: 2.2rem;
   border-radius: 0.45rem;
-  cursor: pointer;
+  cursor: url("assets/cursor-disco-ball.png") 16 16, pointer;
 }
 
 .modal-arrow:hover:not(:disabled) {
@@ -400,7 +443,7 @@ body {
 
 .modal-arrow:disabled {
   opacity: 0.45;
-  cursor: not-allowed;
+  cursor: url("assets/cursor-disco-ball.png") 16 16, not-allowed;
 }
 
 .modal-preview {
@@ -436,7 +479,7 @@ body {
   border-radius: 999px;
   border: none;
   background: var(--white);
-  cursor: pointer;
+  cursor: url("assets/cursor-disco-ball.png") 16 16, pointer;
   color: var(--brand-blue);
   display: flex;
   align-items: center;

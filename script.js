@@ -96,8 +96,8 @@ const sectionConfig = [
     group: "Event Signage",
     sections: [
       {
-        id: "signage-drafts",
-        title: "Event Signage — Drafts",
+        id: "signage",
+        title: "Event Signage",
         assets: [
           {
             name: "Welcome Sign",
@@ -157,12 +157,6 @@ const sectionConfig = [
             clickup: "https://app.clickup.com/t/86ak6hb6v",
             groupId: "experience",
           },
-        ],
-      },
-      {
-        id: "signage-queue",
-        title: "Event Signage — Queue",
-        assets: [
           {
             name: "Through Their Eyes Roll-Up Banner — Adah",
             file: "adah-banner.jpg",
@@ -377,9 +371,16 @@ const renderTilePreview = (preview, asset) => {
   image.src = `${assetRoot}${asset.video ? asset.poster : asset.file}`;
 };
 
+const slugify = (text) =>
+  text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
 const buildAssetTile = (asset) => {
   const card = document.createElement("div");
   card.className = "tile";
+  if (asset.anchorId) card.id = asset.anchorId;
 
   const preview = document.createElement("div");
   preview.className = "tile-preview";
@@ -521,39 +522,53 @@ const buildSection = (section) => {
 
 const buildNav = () => {
   sectionConfig.forEach((group) => {
-    const groupWrap = document.createElement("div");
-    groupWrap.className = "nav-group";
-
-    const label = document.createElement("h2");
-    label.className = "nav-label";
-    label.textContent = group.group;
-
-    const list = document.createElement("ul");
-    list.className = "nav-list";
-
     group.sections.forEach((section) => {
+      section.assets.forEach((asset) => {
+        asset.anchorId = `asset-${slugify(asset.name)}`;
+      });
+
       buildSection(section);
 
-      const item = document.createElement("li");
-      item.className = "nav-item";
+      const groupWrap = document.createElement("div");
+      groupWrap.className = "nav-group";
 
-      const link = document.createElement("a");
-      link.className = "nav-link";
-      link.href = `#${section.id}`;
-      link.dataset.target = section.id;
-      link.textContent = section.title;
+      const sectionLink = document.createElement("a");
+      sectionLink.className = "nav-link nav-section-link";
+      sectionLink.href = `#${section.id}`;
+      sectionLink.dataset.target = section.id;
+      sectionLink.textContent = section.title;
 
-      link.addEventListener("click", (event) => {
+      sectionLink.addEventListener("click", (event) => {
         event.preventDefault();
         document.getElementById(section.id).scrollIntoView({ behavior: "smooth", block: "start" });
       });
 
-      item.append(link);
-      list.append(item);
-    });
+      const list = document.createElement("ul");
+      list.className = "nav-list nav-asset-list";
 
-    groupWrap.append(label, list);
-    navRoot.append(groupWrap);
+      section.assets.forEach((asset) => {
+        const item = document.createElement("li");
+        item.className = "nav-item";
+
+        const link = document.createElement("a");
+        link.className = "nav-link nav-asset-link";
+        link.href = `#${asset.anchorId}`;
+        link.textContent = asset.name;
+
+        link.addEventListener("click", (event) => {
+          event.preventDefault();
+          document
+            .getElementById(asset.anchorId)
+            ?.scrollIntoView({ behavior: "smooth", block: "center" });
+        });
+
+        item.append(link);
+        list.append(item);
+      });
+
+      groupWrap.append(sectionLink, list);
+      navRoot.append(groupWrap);
+    });
   });
 };
 
