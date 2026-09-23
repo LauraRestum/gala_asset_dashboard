@@ -208,7 +208,7 @@ const sectionConfig = [
             name: "Through Their Eyes Roll-Up Banner — Steven",
             file: "signage/steven-banner.jpg",
             copyPanel: true,
-            status: "production",
+            status: "approval",
             clickup: "https://app.clickup.com/t/86ak6h877",
             groupId: "banners",
           },
