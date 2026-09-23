@@ -25,7 +25,7 @@ external dependency is the Montserrat webfont from Google Fonts.
   lives in `sectionConfig` at the top of `script.js`
 - `assets/` — everything the dashboard shows, one folder per piece:
   - `print/` — save the date, sponsorship book, invitation, bidder card
-  - `program/` — day-of program PDF, `page-01.jpg`…`page-20.jpg`, and
+  - `program/` — day-of program PDF, `page-01.jpg`…`page-21.jpg`, and
     `all-pages.jpg`
   - `signage/` — sign and banner previews with their 24x30 print PDFs
   - `cocktail-loop/` — loop deck (PPTX) and `slide-01.jpg`…`slide-41.jpg`
