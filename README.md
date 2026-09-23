@@ -16,8 +16,29 @@ external dependency is the Montserrat webfont from Google Fonts.
   (prev/next arrows), or a dashed placeholder for pieces without art yet
 - A status chip on every tile (Complete / Draft / In production /
   Not started) plus due-date chips where deadlines exist
+- A countdown in the sidebar ("31 days to go") that ticks down on its own
+  at local midnight each day
+- A **Notify Courtney & Molly** button that builds an email about new
+  assets as a prompt for Claude in Chrome (see below)
 - Links on each tile to the print file or video source and to the
   piece's ClickUp task, where the gala team leaves notes
+
+## Notifying Courtney & Molly
+
+Nothing is emailed automatically. When you want to tell them about new
+pieces:
+
+1. Click **Notify Courtney & Molly** in the sidebar.
+2. Tick the new assets (the most recent upload date is pre-checked) and add
+   an optional note.
+3. Click **Copy prompt** and paste it into Claude in Chrome. It opens Gmail
+   and sends the email. **Or open as a Gmail draft** opens the same email
+   in Gmail for you to send yourself.
+
+Settings are at the top of `script.js`: `NOTIFY_RECIPIENTS` (email
+addresses), `NOTIFY_SENDER`, and `DASHBOARD_URL` (a link to include in the
+email). When you add an asset, give it `added: "YYYY-MM-DD"` so the dialog
+knows it's new.
 
 ## Structure
 

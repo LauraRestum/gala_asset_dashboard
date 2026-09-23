@@ -6,6 +6,22 @@ const STATUS = {
   notstarted: { cls: "status-notstarted", label: "Not started" },
 };
 
+// Event date for the sidebar countdown (local time, so it rolls over at the
+// viewer's midnight).
+const GALA_DATE = new Date(2026, 9, 24);
+
+// Who the "new assets" email goes to. Fill in the addresses; when one is
+// blank, the Claude in Chrome prompt asks Claude to find it in Gmail contacts.
+const NOTIFY_RECIPIENTS = [
+  { name: "Courtney", email: "" },
+  { name: "Molly", email: "" },
+];
+const NOTIFY_SENDER = "Laura";
+// Public link to this dashboard, included in the email when set.
+const DASHBOARD_URL = "";
+
+// Give each new asset an `added: "YYYY-MM-DD"` date. The notify dialog
+// pre-checks the pieces from the most recent upload date.
 const sectionConfig = [
   {
     group: "Invitations & Print",
@@ -691,7 +707,189 @@ document.addEventListener("keydown", (event) => {
 });
 
 // ---------------------------------------------------------------------------
+// Countdown
+// ---------------------------------------------------------------------------
+
+const daysUntilGala = () => {
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  return Math.round((GALA_DATE - today) / 86400000);
+};
+
+const countdownText = (days) => {
+  if (days > 1) return `${days} days until A Night For Vision`;
+  if (days === 1) return "1 day until A Night For Vision";
+  if (days === 0) return "A Night For Vision is tonight";
+  return "A Night For Vision has wrapped";
+};
+
+const renderCountdown = () => {
+  const root = document.getElementById("countdown");
+  const days = daysUntilGala();
+  const number = document.createElement("span");
+  number.className = "countdown-number";
+  const label = document.createElement("span");
+  label.className = "countdown-label";
+  if (days > 0) {
+    number.textContent = days;
+    label.textContent = days === 1 ? "day to go" : "days to go";
+  } else {
+    number.textContent = days === 0 ? "Tonight" : "Done";
+    label.textContent = days === 0 ? "gala night" : "thank you, team";
+  }
+  root.replaceChildren(number, label);
+};
+
+// Re-render just after the next local midnight, then every day after.
+const scheduleCountdown = () => {
+  renderCountdown();
+  const now = new Date();
+  const nextMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 5);
+  setTimeout(scheduleCountdown, nextMidnight - now);
+};
+
+// ---------------------------------------------------------------------------
+// Notify Courtney & Molly (via a Claude in Chrome prompt)
+// ---------------------------------------------------------------------------
+
+const notifyModal = document.getElementById("notify-modal");
+const notifyList = document.getElementById("notify-list");
+const notifyNote = document.getElementById("notify-note");
+const notifyPrompt = document.getElementById("notify-prompt");
+const notifyGmail = document.getElementById("notify-gmail");
+const notifyStatus = document.getElementById("notify-status");
+
+const notifyCandidates = sectionConfig.flatMap((group) =>
+  group.sections.flatMap((section) =>
+    section.assets
+      .filter((asset) => asset.file || asset.video)
+      .map((asset) => ({ asset, section: section.title }))
+  )
+);
+
+const latestAdded = notifyCandidates
+  .map(({ asset }) => asset.added)
+  .filter(Boolean)
+  .sort()
+  .pop();
+
+const selectedAssets = () =>
+  [...notifyList.querySelectorAll("input:checked")].map(
+    (box) => notifyCandidates[Number(box.value)].asset
+  );
+
+const buildEmail = (assets) => {
+  const names = NOTIFY_RECIPIENTS.map((r) => r.name).join(" and ");
+  const subject =
+    assets.length === 1
+      ? `New Gala 2026 asset: ${assets[0].name}`
+      : `${assets.length} new Gala 2026 assets uploaded`;
+  const lines = [`Hi ${names},`, ""];
+  lines.push(
+    assets.length === 1
+      ? "A new piece was just added to the Gala 2026 asset dashboard:"
+      : "New pieces were just added to the Gala 2026 asset dashboard:"
+  );
+  assets.forEach((asset) => {
+    const status = (STATUS[asset.status] || STATUS.notstarted).label;
+    lines.push(`- ${asset.name} (${status})`);
+  });
+  const note = notifyNote.value.trim();
+  if (note) lines.push("", note);
+  if (DASHBOARD_URL) lines.push("", `See them here: ${DASHBOARD_URL}`);
+  lines.push("", `${countdownText(daysUntilGala())}.`, "", "Thanks,", NOTIFY_SENDER);
+  return { subject, body: lines.join("\n") };
+};
+
+const recipientLine = () =>
+  NOTIFY_RECIPIENTS.map((r) =>
+    r.email ? `${r.name} <${r.email}>` : `${r.name} (find this address in my Gmail contacts)`
+  ).join(", ");
+
+const updateNotifyPrompt = () => {
+  const assets = selectedAssets();
+  notifyStatus.textContent = "";
+  if (!assets.length) {
+    notifyPrompt.value = "Tick at least one asset to build the email.";
+    notifyGmail.removeAttribute("href");
+    return;
+  }
+  const { subject, body } = buildEmail(assets);
+  notifyPrompt.value = [
+    "Open Gmail in this browser and send this email for me. Send it exactly as written.",
+    "",
+    `To: ${recipientLine()}`,
+    `Subject: ${subject}`,
+    "",
+    body,
+  ].join("\n");
+  const to = NOTIFY_RECIPIENTS.map((r) => r.email).filter(Boolean).join(",");
+  const params = new URLSearchParams({ view: "cm", fs: "1", to, su: subject, body });
+  notifyGmail.href = `https://mail.google.com/mail/?${params}`;
+};
+
+const buildNotifyList = () => {
+  let currentSection = "";
+  notifyCandidates.forEach(({ asset, section }, index) => {
+    if (section !== currentSection) {
+      currentSection = section;
+      const heading = document.createElement("p");
+      heading.className = "notify-section";
+      heading.textContent = section;
+      notifyList.append(heading);
+    }
+    const row = document.createElement("label");
+    row.className = "notify-row";
+    const box = document.createElement("input");
+    box.type = "checkbox";
+    box.value = index;
+    box.checked = Boolean(latestAdded) && asset.added === latestAdded;
+    box.addEventListener("change", updateNotifyPrompt);
+    row.append(box, document.createTextNode(asset.name));
+    notifyList.append(row);
+  });
+};
+
+const openNotify = () => {
+  updateNotifyPrompt();
+  notifyModal.hidden = false;
+  document.body.style.overflow = "hidden";
+};
+
+const closeNotify = () => {
+  notifyModal.hidden = true;
+  document.body.style.overflow = "";
+};
+
+const copyNotifyPrompt = async () => {
+  if (!selectedAssets().length) return;
+  try {
+    await navigator.clipboard.writeText(notifyPrompt.value);
+  } catch {
+    notifyPrompt.select();
+    if (!document.execCommand("copy")) {
+      notifyStatus.textContent = "Couldn't copy automatically. The prompt is selected, so press Ctrl+C / Cmd+C.";
+      return;
+    }
+  }
+  notifyStatus.textContent = "Copied. Paste it into Claude in Chrome.";
+};
+
+document.getElementById("notify-open").addEventListener("click", openNotify);
+document.getElementById("notify-close").addEventListener("click", closeNotify);
+document.getElementById("notify-copy").addEventListener("click", copyNotifyPrompt);
+notifyNote.addEventListener("input", updateNotifyPrompt);
+notifyModal.addEventListener("click", (event) => {
+  if (event.target === notifyModal) closeNotify();
+});
+document.addEventListener("keydown", (event) => {
+  if (!notifyModal.hidden && event.key === "Escape") closeNotify();
+});
+
+// ---------------------------------------------------------------------------
 // Boot
 // ---------------------------------------------------------------------------
 buildNav();
 setupActiveNavigation();
+scheduleCountdown();
+buildNotifyList();
