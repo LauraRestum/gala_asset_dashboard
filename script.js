@@ -220,6 +220,8 @@ const sectionConfig = [
             status: "complete",
             url: "https://dlhfb.sharepoint.com/:p:/s/EnvisionMarketing/IQAOw9xZ1o6XQp6Yx0FvQ9iUAXwPDjsJxEUFCl-PS4IbT8I?e=WvUkd0",
             urlLabel: "Open the latest deck in PowerPoint (SharePoint)",
+            download: "assets/cocktail-loop/2026-gala-cocktail-loop.pptx",
+            downloadLabel: "Download the deck (PPTX, 13 MB)",
             clickup: "https://app.clickup.com/t/86ak6h8cy",
           },
           {

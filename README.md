@@ -28,7 +28,7 @@ external dependency is the Montserrat webfont from Google Fonts.
   - `program/` — day-of program PDF, `page-01.jpg`…`page-20.jpg`, and
     `all-pages.jpg`
   - `signage/` — sign and banner previews with their 24x30 print PDFs
-  - `cocktail-loop/` — `slide-01.jpg`…`slide-41.jpg`
+  - `cocktail-loop/` — loop deck (PPTX) and `slide-01.jpg`…`slide-41.jpg`
   - `presentation/` — programming deck (PPTX) and `slide-01.jpg`…`slide-32.jpg`
   - `show/`, `videos/`, `digital/` — award, spotlight videos, webpage
   - `site/` — favicons and the disco-ball cursor
