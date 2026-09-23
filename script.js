@@ -125,7 +125,7 @@ const sectionConfig = [
             groupLabel: "Wayfinding Directionals",
           },
           {
-            name: "Directional — Sensory Experiences & Cocktails (Beren Room)",
+            name: "Directional — Sensory Experiences & Premier Cocktails (Beren Room)",
             file: "beren-room-sign.jpg",
             status: "approvalprint",
             url: "assets/2026-gala-beren-room-sign.pdf",
@@ -134,7 +134,7 @@ const sectionConfig = [
             groupId: "wayfinding",
           },
           {
-            name: "Directional — Photo Booth & Cocktails (Upper Gallery)",
+            name: "Directional — Photo Booth & Premier Cocktails (Upper Gallery)",
             file: "upper-gallery-sign.jpg",
             status: "approvalprint",
             url: "assets/2026-gala-upper-gallery-sign.pdf",
