@@ -146,7 +146,7 @@ const sectionConfig = [
           {
             name: "Directional — Premier Cocktails (Arrow Left)",
             file: "signage/premier-cocktails-left-sign.jpg",
-            status: "approvalprint",
+            status: "approved",
             url: "assets/signage/2026-gala-premier-cocktails-signs.pdf",
             urlLabel: "Print file, 24x30, both signs (PDF)",
             clickup: "https://app.clickup.com/t/86ak6hb5e",
@@ -155,7 +155,7 @@ const sectionConfig = [
           {
             name: "Directional — Premier Cocktails (Arrow Right)",
             file: "signage/premier-cocktails-right-sign.jpg",
-            status: "approvalprint",
+            status: "approved",
             url: "assets/signage/2026-gala-premier-cocktails-signs.pdf",
             urlLabel: "Print file, 24x30, both signs (PDF)",
             clickup: "https://app.clickup.com/t/86ak6hb5e",
@@ -200,14 +200,14 @@ const sectionConfig = [
           {
             name: "Through Their Eyes Roll-Up Banner — Hashim",
             placeholder: "In production",
-            status: "production",
+            status: "approved",
             clickup: "https://app.clickup.com/t/86ak6h877",
             groupId: "banners",
           },
           {
             name: "Through Their Eyes Roll-Up Banner — Steven",
             placeholder: "In production",
-            status: "production",
+            status: "approved",
             clickup: "https://app.clickup.com/t/86ak6h877",
             groupId: "banners",
           },
