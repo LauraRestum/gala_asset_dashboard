@@ -200,14 +200,14 @@ const sectionConfig = [
           {
             name: "Through Their Eyes Roll-Up Banner — Hashim",
             placeholder: "In production",
-            status: "approved",
+            status: "production",
             clickup: "https://app.clickup.com/t/86ak6h877",
             groupId: "banners",
           },
           {
             name: "Through Their Eyes Roll-Up Banner — Steven",
             placeholder: "In production",
-            status: "approved",
+            status: "production",
             clickup: "https://app.clickup.com/t/86ak6h877",
             groupId: "banners",
           },
