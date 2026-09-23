@@ -21,6 +21,18 @@ body {
   background: var(--white);
 }
 
+/* Disco-ball cursor everywhere, including links and buttons. The 16 16
+   hotspot puts the click point at the center of the ball. */
+body,
+a,
+button,
+[role="button"],
+.nav-link,
+.tile-preview,
+.tile-file a {
+  cursor: url("assets/site/cursor-disco-ball.png") 16 16, auto;
+}
+
 .dashboard {
   display: grid;
   grid-template-columns: minmax(260px, 25%) 1fr;
@@ -94,7 +106,7 @@ body {
   font-size: 0.88rem;
   line-height: 1.3;
   transition: background 0.2s, color 0.2s;
-  cursor: pointer;
+  cursor: url("assets/site/cursor-disco-ball.png") 16 16, pointer;
 }
 
 .nav-link:hover {
@@ -108,6 +120,25 @@ body {
   font-weight: 600;
 }
 
+.nav-section-link {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.nav-asset-list {
+  margin: 0.15rem 0 0 0.55rem;
+  padding-left: 0.55rem;
+  border-left: 1px solid var(--border);
+}
+
+.nav-asset-link {
+  font-size: 0.8rem;
+  padding: 0.3rem 0.5rem;
+  color: var(--text-muted);
+}
+
 .content {
   padding: 1.25rem 1.5rem 2rem;
 }
@@ -115,6 +146,39 @@ body {
 .section {
   scroll-margin-top: 1rem;
   margin-bottom: 2rem;
+}
+
+.tile,
+.tile-group {
+  scroll-margin-top: 1rem;
+}
+
+/* Glow pulse when a sidebar link jumps to a tile. */
+@keyframes tile-glow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(120, 190, 33, 0);
+  }
+  20% {
+    box-shadow: 0 0 0 5px rgba(120, 190, 33, 0.85), 0 0 30px 8px rgba(120, 190, 33, 0.55);
+  }
+  60% {
+    box-shadow: 0 0 0 5px rgba(120, 190, 33, 0.65), 0 0 24px 6px rgba(120, 190, 33, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(120, 190, 33, 0);
+  }
+}
+
+.tile-glow {
+  animation: tile-glow 1.6s ease-out;
+  border-color: var(--brand-green);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile-glow {
+    animation: none;
+    box-shadow: 0 0 0 4px rgba(120, 190, 33, 0.7);
+  }
 }
 
 .section h2 {
@@ -133,10 +197,16 @@ body {
 
 .tile-group {
   grid-column: 1 / -1;
-  border: 1.5px dashed #a9bcd4;
+  border: 1.5px solid var(--border);
   border-radius: 0.9rem;
   padding: 0.7rem 0.75rem 0.75rem;
   background: rgba(2, 64, 137, 0.035);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.tile-group:hover {
+  border-color: var(--brand-green);
+  box-shadow: 0 0 0 4px rgba(120, 190, 33, 0.18), 0 6px 18px rgba(2, 40, 85, 0.1);
 }
 
 /* Once the grid has room, a two-piece group sits in exactly two columns so
@@ -163,7 +233,7 @@ body {
 .group-label::after {
   content: "";
   flex: 1;
-  border-top: 1px dashed #a9bcd4;
+  border-top: 1px solid var(--border);
 }
 
 .group-tiles {
@@ -196,7 +266,7 @@ body {
   align-items: center;
   justify-content: center;
   position: relative;
-  cursor: pointer;
+  cursor: url("assets/site/cursor-disco-ball.png") 16 16, pointer;
   transition: background 0.15s, outline-color 0.15s;
   outline: 2px solid transparent;
   outline-offset: -6px;
@@ -319,7 +389,7 @@ body {
   font-weight: 600;
   text-decoration: underline;
   margin-right: 0.7rem;
-  cursor: pointer;
+  cursor: url("assets/site/cursor-disco-ball.png") 16 16, pointer;
 }
 
 .tile-file a:hover {
@@ -328,7 +398,7 @@ body {
 
 .modal-preview .zoom-wrap {
   overflow: hidden;
-  cursor: zoom-in;
+  cursor: url("assets/site/cursor-disco-ball.png") 16 16, zoom-in;
   border-radius: 0.4rem;
   line-height: 0;
 }
@@ -339,7 +409,8 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .modal-preview .zoom-wrap img {
+  .modal-preview .zoom-wrap img,
+  .tile-group {
     transition: none;
   }
 }
@@ -391,7 +462,7 @@ body {
   width: 2.2rem;
   height: 2.2rem;
   border-radius: 0.45rem;
-  cursor: pointer;
+  cursor: url("assets/site/cursor-disco-ball.png") 16 16, pointer;
 }
 
 .modal-arrow:hover:not(:disabled) {
@@ -400,7 +471,7 @@ body {
 
 .modal-arrow:disabled {
   opacity: 0.45;
-  cursor: not-allowed;
+  cursor: url("assets/site/cursor-disco-ball.png") 16 16, not-allowed;
 }
 
 .modal-preview {
@@ -427,6 +498,245 @@ body {
   background: #000;
 }
 
+/* The display rules above would otherwise defeat the hidden attribute. */
+.modal-arrow[hidden],
+.fs-button[hidden] {
+  display: none;
+}
+
+/* Buttons in the viewer toolbar that carry a text label. */
+.modal-arrow.modal-wide {
+  width: auto;
+  gap: 0.45rem;
+  padding: 0 0.7rem;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+/* Each newly loaded page fades in gently. */
+.modal-slide {
+  animation: slide-in 0.35s ease;
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0.2;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Loop stage: mirrors the deck's own push transition (spd="slow",
+   <p:push dir="l"/>) — the new slide pushes the old one off screen
+   over about a second. */
+.loop-stage {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: calc((95vh - 160px) * 16 / 9);
+  aspect-ratio: 16 / 9;
+  border-radius: 0.4rem;
+  background: #000;
+}
+
+.loop-stage img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.push-from-right {
+  animation: push-from-right 1s ease-in-out;
+}
+
+.push-from-left {
+  animation: push-from-left 1s ease-in-out;
+}
+
+.push-to-left {
+  animation: push-to-left 1s ease-in-out forwards;
+}
+
+.push-to-right {
+  animation: push-to-right 1s ease-in-out forwards;
+}
+
+@keyframes push-from-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes push-from-left {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes push-to-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes push-to-right {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loop-stage img,
+  .modal-slide {
+    animation: none;
+  }
+}
+
+/* Full-screen chrome hides until the stage actually goes full screen. */
+.modal-stage {
+  position: relative;
+}
+
+.fs-bar,
+.fs-copy {
+  display: none;
+}
+
+.modal-stage:fullscreen,
+.modal-stage:-webkit-full-screen {
+  background: #081123;
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 1rem 4.8rem;
+}
+
+.modal-stage:fullscreen .modal-preview,
+.modal-stage:-webkit-full-screen .modal-preview {
+  flex: 1;
+  min-height: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+}
+
+.modal-stage:fullscreen .modal-preview img,
+.modal-stage:fullscreen .modal-preview video,
+.modal-stage:-webkit-full-screen .modal-preview img,
+.modal-stage:-webkit-full-screen .modal-preview video {
+  max-height: calc(100vh - 6.8rem);
+}
+
+.modal-stage:fullscreen .loop-stage,
+.modal-stage:-webkit-full-screen .loop-stage {
+  max-width: calc((100vh - 6.8rem) * 16 / 9);
+  max-height: calc(100vh - 6.8rem);
+}
+
+.modal-stage:fullscreen .loop-stage img,
+.modal-stage:-webkit-full-screen .loop-stage img {
+  max-height: none;
+}
+
+.modal-stage:fullscreen .fs-bar,
+.modal-stage:-webkit-full-screen .fs-bar {
+  display: flex;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3.8rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0 1.25rem;
+  background: rgba(8, 17, 35, 0.94);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.fs-title {
+  margin: 0;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fs-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.fs-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-width: 2.5rem;
+  height: 2.5rem;
+  padding: 0 0.75rem;
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 0.5rem;
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: url("assets/site/cursor-disco-ball.png") 16 16, pointer;
+}
+
+.fs-button:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Side panel: the banner's top section, enlarged so the copy reads easily. */
+/* Sized so only the banner's top section fits the panel, enlarging the
+   copy well past its size in the main view. */
+.modal-stage:fullscreen[data-copy="true"] .fs-copy,
+.modal-stage:-webkit-full-screen[data-copy="true"] .fs-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: min(58vw, calc((100vh - 8.5rem) * 1.25));
+}
+
+.fs-copy-label {
+  margin: 0;
+  color: #a9bcd8;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.fs-copy-view {
+  flex: 1;
+  border-radius: 0.6rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: #0b1730;
+  background-size: 100% auto;
+  background-position: top center;
+  background-repeat: no-repeat;
+}
+
 .modal-close {
   position: absolute;
   top: 0.8rem;
@@ -436,7 +746,7 @@ body {
   border-radius: 999px;
   border: none;
   background: var(--white);
-  cursor: pointer;
+  cursor: url("assets/site/cursor-disco-ball.png") 16 16, pointer;
   color: var(--brand-blue);
   display: flex;
   align-items: center;
