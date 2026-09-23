@@ -1,0 +1,84 @@
+name: Notify Courtney & Molly
+
+# Runs only when triggered by hand (Actions tab → Run workflow) or when
+# Laura asks Claude to notify them. Never runs on push or on a schedule.
+on:
+  workflow_dispatch:
+    inputs:
+      asset:
+        description: "Which asset (e.g. Day-of Program)"
+        required: true
+        type: string
+      change:
+        description: "What happened"
+        required: true
+        default: updated
+        type: choice
+        options:
+          - updated
+          - uploaded
+      note:
+        description: "Optional note for Courtney & Molly"
+        required: false
+        type: string
+
+jobs:
+  email:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send email
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          NOTIFY_TO: ${{ secrets.NOTIFY_TO }}
+          DASHBOARD_URL: ${{ secrets.DASHBOARD_URL }}
+          ASSET: ${{ inputs.asset }}
+          CHANGE: ${{ inputs.change }}
+          NOTE: ${{ inputs.note }}
+        shell: python
+        run: |
+          import os, smtplib, sys
+          from datetime import date, datetime
+          from email.message import EmailMessage
+          from zoneinfo import ZoneInfo
+
+          for key in ("GMAIL_USER", "GMAIL_APP_PASSWORD", "NOTIFY_TO"):
+              if not os.environ.get(key):
+                  sys.exit(f"Missing repo secret {key}. See the README for setup.")
+
+          asset = os.environ["ASSET"].strip()
+          change = os.environ["CHANGE"]
+          note = os.environ.get("NOTE", "").strip()
+          url = os.environ.get("DASHBOARD_URL", "").strip()
+
+          today = datetime.now(ZoneInfo("America/Chicago")).date()
+          days = (date(2026, 10, 24) - today).days
+          if days > 1:
+              countdown = f"{days} days until A Night For Vision."
+          elif days == 1:
+              countdown = "1 day until A Night For Vision."
+          elif days == 0:
+              countdown = "A Night For Vision is tonight!"
+          else:
+              countdown = ""
+
+          verb = "has been updated" if change == "updated" else "was just uploaded"
+          lines = ["Hi Courtney and Molly,", "", f"{asset} {verb} on the Gala 2026 asset dashboard."]
+          if note:
+              lines += ["", note]
+          if url:
+              lines += ["", f"Take a look: {url}"]
+          if countdown:
+              lines += ["", countdown]
+          lines += ["", "Thanks,", "Laura"]
+
+          msg = EmailMessage()
+          msg["From"] = os.environ["GMAIL_USER"]
+          msg["To"] = os.environ["NOTIFY_TO"]
+          msg["Subject"] = f"Gala 2026: {asset} {change}"
+          msg.set_content("\n".join(lines))
+
+          with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
+              smtp.login(os.environ["GMAIL_USER"], os.environ["GMAIL_APP_PASSWORD"])
+              smtp.send_message(msg)
+          print(f"Sent: {msg['Subject']} -> {msg['To']}")

@@ -18,27 +18,29 @@ external dependency is the Montserrat webfont from Google Fonts.
   Not started) plus due-date chips where deadlines exist
 - A countdown in the sidebar ("31 days to go") that ticks down on its own
   at local midnight each day
-- A **Notify Courtney & Molly** button that builds an email about new
-  assets as a prompt for Claude in Chrome (see below)
 - Links on each tile to the print file or video source and to the
   piece's ClickUp task, where the gala team leaves notes
 
 ## Notifying Courtney & Molly
 
-Nothing is emailed automatically. When you want to tell them about new
-pieces:
+Nothing is emailed automatically. Tell Claude something like "notify
+Courtney and Molly the program has been updated" and Claude runs the
+**Notify Courtney & Molly** GitHub workflow
+(`.github/workflows/notify.yml`). You can also run it yourself from the
+repo's Actions tab: pick the workflow, click **Run workflow**, and fill in
+the asset name.
 
-1. Click **Notify Courtney & Molly** in the sidebar.
-2. Tick the new assets (the most recent upload date is pre-checked) and add
-   an optional note.
-3. Click **Copy prompt** and paste it into Claude in Chrome. It opens Gmail
-   and sends the email. **Or open as a Gmail draft** opens the same email
-   in Gmail for you to send yourself.
+The email comes from your Gmail and includes the asset, what changed, an
+optional note, a link to the dashboard, and the days left until the gala.
 
-Settings are at the top of `script.js`: `NOTIFY_RECIPIENTS` (email
-addresses), `NOTIFY_SENDER`, and `DASHBOARD_URL` (a link to include in the
-email). When you add an asset, give it `added: "YYYY-MM-DD"` so the dialog
-knows it's new.
+One-time setup, under the repo's Settings → Secrets and variables →
+Actions:
+
+- `GMAIL_USER`: the Gmail address that sends the email
+- `GMAIL_APP_PASSWORD`: a Gmail app password for that account
+  (Google Account → Security → 2-Step Verification → App passwords)
+- `NOTIFY_TO`: Courtney's and Molly's addresses, comma separated
+- `DASHBOARD_URL` (optional): link to the dashboard to include in the email
 
 ## Structure
 

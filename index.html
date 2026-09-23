@@ -28,7 +28,6 @@
         </h1>
         <p class="sidebar-sub">Saturday, October 24, 2026 &middot; Wichita Art Museum</p>
         <div id="countdown" class="countdown" aria-live="polite"></div>
-        <button id="notify-open" class="notify-button" type="button">Notify Courtney &amp; Molly</button>
         <nav id="sidebar-nav" aria-label="Collateral sections"></nav>
       </aside>
 
@@ -80,36 +79,6 @@
                 <span>Exit full screen</span>
               </button>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div id="notify-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="notify-title" hidden>
-      <div class="modal-content notify-content">
-        <button id="notify-close" class="modal-close" aria-label="Close">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="2" y1="2" x2="16" y2="16"/><line x1="16" y1="2" x2="2" y2="16"/></svg>
-        </button>
-        <h2 id="notify-title">Tell Courtney &amp; Molly about new assets</h2>
-        <p class="notify-help">
-          Tick the new pieces, copy the prompt, and paste it into Claude in Chrome.
-          Claude sends the email from your Gmail. Nothing goes out until you do this.
-        </p>
-        <div class="notify-layout">
-          <fieldset class="notify-picks">
-            <legend>New assets</legend>
-            <div id="notify-list"></div>
-          </fieldset>
-          <div class="notify-output">
-            <label for="notify-note">Optional note</label>
-            <input id="notify-note" type="text" placeholder="e.g. Program is ready for your review" />
-            <label for="notify-prompt">Prompt for Claude in Chrome</label>
-            <textarea id="notify-prompt" rows="14" readonly></textarea>
-            <div class="notify-actions">
-              <button id="notify-copy" class="notify-button" type="button">Copy prompt</button>
-              <a id="notify-gmail" class="notify-link" target="_blank" rel="noopener noreferrer">Or open as a Gmail draft</a>
-            </div>
-            <p id="notify-status" class="notify-status" role="status"></p>
           </div>
         </div>
       </div>
