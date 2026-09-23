@@ -227,14 +227,14 @@ const sectionConfig = [
           {
             name: "Programming Presentation Assets",
             file: "program-presentation.jpg",
-            pages: 33,
+            pages: 32,
             pagePrefix: "program-presentation-",
             pageWord: "Slide",
-            status: "fundaneed",
+            status: "draft",
             url: "https://dlhfb.sharepoint.com/:p:/s/EnvisionMarketing/IQD36SiVJXiyTJ-hCMlDPQt2AfRdb2Fu618itctBqr8_W0o?e=tsOwxu",
             urlLabel: "Open the latest deck in PowerPoint (SharePoint)",
             download: "assets/2026-gala-program-presentation.pptx",
-            downloadLabel: "Download the deck (PPTX, 9 MB)",
+            downloadLabel: "Download the deck (PPTX, 8 MB)",
             clickup: "https://app.clickup.com/t/86ak6h8cy",
           },
           {
