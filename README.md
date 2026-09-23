@@ -23,7 +23,19 @@ external dependency is the Montserrat webfont from Google Fonts.
 
 - `index.html`, `styles.css`, `script.js` — the site; the collateral list
   lives in `sectionConfig` at the top of `script.js`
-- `assets/` — preview images exported from the Canva working files
+- `assets/` — everything the dashboard shows, one folder per piece:
+  - `print/` — save the date, sponsorship book, invitation, bidder card
+  - `program/` — day-of program PDF, `page-01.jpg`…`page-20.jpg`, and
+    `all-pages.jpg`
+  - `signage/` — sign and banner previews with their 24x30 print PDFs
+  - `cocktail-loop/` — loop deck (PPTX) and `slide-01.jpg`…`slide-41.jpg`
+  - `presentation/` — programming deck (PPTX) and `slide-01.jpg`…`slide-32.jpg`
+  - `show/`, `videos/`, `digital/` — award, spotlight videos, webpage
+  - `site/` — favicons and the disco-ball cursor
+
+Slide and page JPGs are the previews: each numbered file is one slide or
+page, shown in order in the viewer. To update a deck, replace the numbered
+JPGs and set `pages` on its tile in `script.js` to the new count.
 
 ## Data
 

@@ -30,7 +30,7 @@ button,
 .nav-link,
 .tile-preview,
 .tile-file a {
-  cursor: url("assets/cursor-disco-ball.png") 16 16, auto;
+  cursor: url("assets/site/cursor-disco-ball.png") 16 16, auto;
 }
 
 .dashboard {
@@ -106,7 +106,7 @@ button,
   font-size: 0.88rem;
   line-height: 1.3;
   transition: background 0.2s, color 0.2s;
-  cursor: url("assets/cursor-disco-ball.png") 16 16, pointer;
+  cursor: url("assets/site/cursor-disco-ball.png") 16 16, pointer;
 }
 
 .nav-link:hover {
@@ -266,7 +266,7 @@ button,
   align-items: center;
   justify-content: center;
   position: relative;
-  cursor: url("assets/cursor-disco-ball.png") 16 16, pointer;
+  cursor: url("assets/site/cursor-disco-ball.png") 16 16, pointer;
   transition: background 0.15s, outline-color 0.15s;
   outline: 2px solid transparent;
   outline-offset: -6px;
@@ -389,7 +389,7 @@ button,
   font-weight: 600;
   text-decoration: underline;
   margin-right: 0.7rem;
-  cursor: url("assets/cursor-disco-ball.png") 16 16, pointer;
+  cursor: url("assets/site/cursor-disco-ball.png") 16 16, pointer;
 }
 
 .tile-file a:hover {
@@ -398,7 +398,7 @@ button,
 
 .modal-preview .zoom-wrap {
   overflow: hidden;
-  cursor: url("assets/cursor-disco-ball.png") 16 16, zoom-in;
+  cursor: url("assets/site/cursor-disco-ball.png") 16 16, zoom-in;
   border-radius: 0.4rem;
   line-height: 0;
 }
@@ -462,7 +462,7 @@ button,
   width: 2.2rem;
   height: 2.2rem;
   border-radius: 0.45rem;
-  cursor: url("assets/cursor-disco-ball.png") 16 16, pointer;
+  cursor: url("assets/site/cursor-disco-ball.png") 16 16, pointer;
 }
 
 .modal-arrow:hover:not(:disabled) {
@@ -471,7 +471,7 @@ button,
 
 .modal-arrow:disabled {
   opacity: 0.45;
-  cursor: url("assets/cursor-disco-ball.png") 16 16, not-allowed;
+  cursor: url("assets/site/cursor-disco-ball.png") 16 16, not-allowed;
 }
 
 .modal-preview {
@@ -700,7 +700,7 @@ button,
   font-family: inherit;
   font-size: 0.8rem;
   font-weight: 600;
-  cursor: url("assets/cursor-disco-ball.png") 16 16, pointer;
+  cursor: url("assets/site/cursor-disco-ball.png") 16 16, pointer;
 }
 
 .fs-button:hover {
@@ -746,7 +746,7 @@ button,
   border-radius: 999px;
   border: none;
   background: var(--white);
-  cursor: url("assets/cursor-disco-ball.png") 16 16, pointer;
+  cursor: url("assets/site/cursor-disco-ball.png") 16 16, pointer;
   color: var(--brand-blue);
   display: flex;
   align-items: center;
