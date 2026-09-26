@@ -234,7 +234,7 @@ const sectionConfig = [
             pagePrefix: "cocktail-loop/slide-",
             pageWord: "Slide",
             slideshow: true,
-            status: "complete",
+            status: "draft",
             url: "https://dlhfb.sharepoint.com/:p:/s/EnvisionMarketing/IQAOw9xZ1o6XQp6Yx0FvQ9iUAXwPDjsJxEUFCl-PS4IbT8I?e=WvUkd0",
             urlLabel: "Open the latest deck in PowerPoint (SharePoint)",
             download: "assets/cocktail-loop/2026-gala-cocktail-loop.pptx",
