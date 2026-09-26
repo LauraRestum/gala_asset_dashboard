@@ -51,8 +51,8 @@ Actions:
   - `program/` — day-of program PDF, `page-01.jpg`…`page-21.jpg`, and
     `all-pages.jpg`
   - `signage/` — sign and banner previews with their 24x30 print PDFs
-  - `cocktail-loop/` — loop deck (PPTX) and `slide-01.jpg`…`slide-41.jpg`
-  - `presentation/` — programming deck (PPTX) and `slide-01.jpg`…`slide-32.jpg`
+  - `cocktail-loop/` — loop deck (PPTX) and `slide-01.jpg`…`slide-42.jpg`
+  - `presentation/` — programming deck (PPTX) and `slide-01.jpg`…`slide-33.jpg`
   - `show/`, `videos/`, `digital/` — award, spotlight videos, webpage, photo booth logo
   - `site/` — favicons and the disco-ball cursor
 

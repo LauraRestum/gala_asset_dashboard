@@ -230,7 +230,7 @@ const sectionConfig = [
           {
             name: "Cocktail Hour Loop (Slides)",
             file: "cocktail-loop/slide-01.jpg",
-            pages: 41,
+            pages: 42,
             pagePrefix: "cocktail-loop/slide-",
             pageWord: "Slide",
             slideshow: true,
@@ -244,7 +244,7 @@ const sectionConfig = [
           {
             name: "Programming Presentation Assets",
             file: "presentation/slide-01.jpg",
-            pages: 32,
+            pages: 33,
             pagePrefix: "presentation/slide-",
             pageWord: "Slide",
             status: "draft",
@@ -792,9 +792,21 @@ const renderModalAsset = (asset) => {
   fullImage.src = `${assetRoot}${asset.file}`;
 };
 
+// Multi-page pieces (decks, the printed program) keep the arrows inside
+// themselves: the loop wraps like it does at the event, everything else
+// stops at its first and last page instead of running into the next tile.
+const targetIndex = (step) => {
+  const range = pageRange(allAssets[activeAssetIndex]);
+  const next = activeAssetIndex + step;
+  if (!range) return next >= 0 && next < allAssets.length ? next : -1;
+  if (next >= range.start && next <= range.end) return next;
+  if (!allAssets[activeAssetIndex].slideshow) return -1;
+  return step > 0 ? range.start : range.end;
+};
+
 const updateModalNavigation = () => {
-  modalPrev.disabled = activeAssetIndex <= 0;
-  modalNext.disabled = activeAssetIndex >= allAssets.length - 1;
+  modalPrev.disabled = targetIndex(-1) === -1;
+  modalNext.disabled = targetIndex(1) === -1;
 };
 
 const openModalByIndex = (index) => {
@@ -815,8 +827,8 @@ const openModal = (asset) => {
 };
 
 const stepModalAsset = (step) => {
-  const nextIndex = activeAssetIndex + step;
-  if (nextIndex < 0 || nextIndex >= allAssets.length) return;
+  const nextIndex = targetIndex(step);
+  if (nextIndex === -1) return;
   navDirection = step > 0 ? 1 : -1;
   openModalByIndex(nextIndex);
 };
@@ -848,14 +860,16 @@ let slideshowAdvancing = false;
 // -1 back, 1 forward, 0 fresh open (no push animation).
 let navDirection = 0;
 
-const slideshowRange = (asset) => {
-  if (!asset || !asset.slideshow || !asset.pagePrefix) return null;
+const pageRange = (asset) => {
+  if (!asset || !asset.pagePrefix) return null;
   const indexes = allAssets
     .map((a, i) => (a.pagePrefix === asset.pagePrefix ? i : -1))
     .filter((i) => i !== -1);
   if (!indexes.length) return null;
   return { start: indexes[0], end: indexes[indexes.length - 1] };
 };
+
+const slideshowRange = (asset) => (asset && asset.slideshow ? pageRange(asset) : null);
 
 const updatePlayButtons = () => {
   const asset = allAssets[activeAssetIndex];
