@@ -203,8 +203,9 @@ const sectionConfig = [
           },
           {
             name: "Through Their Eyes Roll-Up Banner — Hashim",
-            placeholder: "In production",
-            status: "production",
+            file: "signage/hashim-banner.jpg",
+            copyPanel: true,
+            status: "approval",
             clickup: "https://app.clickup.com/t/86ak6h877",
             groupId: "banners",
           },
@@ -229,7 +230,7 @@ const sectionConfig = [
         assets: [
           {
             name: "Cocktail Hour Loop (Slides)",
-            pages: 43,
+            pages: 46,
             pagePrefix: "cocktail-loop/slide-",
             pageWord: "Slide",
             slideshow: true,
