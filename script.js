@@ -229,29 +229,29 @@ const sectionConfig = [
         assets: [
           {
             name: "Cocktail Hour Loop (Slides)",
-            file: "cocktail-loop/slide-01.jpg",
-            pages: 42,
+            // New slides go in assets/cocktail-loop/ as slide-01.jpg,
+            // slide-02.jpg, ...; set `pages` to the count.
+            pages: 0,
             pagePrefix: "cocktail-loop/slide-",
             pageWord: "Slide",
             slideshow: true,
+            placeholder: "New slides coming",
             status: "draft",
             url: "https://dlhfb.sharepoint.com/:p:/s/EnvisionMarketing/IQAOw9xZ1o6XQp6Yx0FvQ9iUAXwPDjsJxEUFCl-PS4IbT8I?e=WvUkd0",
             urlLabel: "Open the latest deck in PowerPoint (SharePoint)",
-            download: "assets/cocktail-loop/2026-gala-cocktail-loop.pptx",
-            downloadLabel: "Download the deck (PPTX, 13 MB)",
             clickup: "https://app.clickup.com/t/86ak6h8cy",
           },
           {
             name: "Programming Presentation Assets",
-            file: "presentation/slide-01.jpg",
-            pages: 33,
+            // New slides go in assets/presentation/ as slide-01.jpg,
+            // slide-02.jpg, ...; set `pages` to the count.
+            pages: 0,
             pagePrefix: "presentation/slide-",
             pageWord: "Slide",
+            placeholder: "New slides coming",
             status: "draft",
             url: "https://dlhfb.sharepoint.com/:p:/s/EnvisionMarketing/IQD36SiVJXiyTJ-hCMlDPQt2AfRdb2Fu618itctBqr8_W0o?e=tsOwxu",
             urlLabel: "Open the latest deck in PowerPoint (SharePoint)",
-            download: "assets/presentation/2026-gala-program-presentation.pptx",
-            downloadLabel: "Download the deck (PPTX, 8 MB)",
             clickup: "https://app.clickup.com/t/86ak6h8cy",
           },
           {
@@ -369,15 +369,21 @@ const fsPrev = document.getElementById("fs-prev");
 const fsNext = document.getElementById("fs-next");
 const fsPlay = document.getElementById("fs-play");
 const fsExit = document.getElementById("fs-exit");
+const modalOverview = document.getElementById("modal-overview");
 
-// Multi-page assets expand into one viewer entry per page.
+// Multi-page assets expand into one viewer entry per page. The tile shows
+// the first page unless the piece names its own cover `file`.
 const expandAsset = (asset) => {
+  if (asset.pages && asset.pagePrefix && !asset.file) {
+    asset.file = `${asset.pagePrefix}01.jpg`;
+  }
   if (!asset.pages || asset.pages < 2 || !asset.pagePrefix) return [asset];
   const word = asset.pageWord || "Page";
   const pages = [];
   for (let i = 1; i <= asset.pages; i++) {
     pages.push({
       ...asset,
+      baseName: asset.name,
       name: `${asset.name} — ${word} ${i} of ${asset.pages}`,
       file: `${asset.pagePrefix}${String(i).padStart(2, "0")}.jpg`,
     });
@@ -686,9 +692,11 @@ const renderLoopSlide = (asset) => {
   const img = new Image();
   img.alt = asset.name;
   img.addEventListener("error", () => {
+    if (overviewOpen) return;
     modalPreview.replaceChildren(createPlaceholder(`Missing image: ${asset.file}`));
   });
   img.addEventListener("load", () => {
+    if (overviewOpen) return;
     const old = stage.querySelector("img.current");
     img.classList.add("current");
     if (old && navDirection !== 0) {
@@ -779,9 +787,11 @@ const renderModalAsset = (asset) => {
   fullImage.className = "modal-slide";
 
   fullImage.addEventListener("error", () => {
+    if (overviewOpen) return;
     modalPreview.replaceChildren(createPlaceholder(`Missing image: ${asset.file}`));
   });
   fullImage.addEventListener("load", () => {
+    if (overviewOpen) return;
     const wrap = document.createElement("div");
     wrap.className = "zoom-wrap";
     wrap.append(fullImage);
@@ -805,14 +815,28 @@ const targetIndex = (step) => {
 };
 
 const updateModalNavigation = () => {
+  const asset = allAssets[activeAssetIndex];
   modalPrev.disabled = targetIndex(-1) === -1;
   modalNext.disabled = targetIndex(1) === -1;
+  [modalPrev, modalNext, modalFullscreen].forEach((button) => {
+    button.hidden = overviewOpen;
+  });
+  modalOverview.hidden = overviewOpen || !pageRange(asset);
+  const label = allPagesLabel(asset);
+  modalOverview.querySelector("span").textContent = label;
+  modalOverview.setAttribute("aria-label", label);
 };
 
-const openModalByIndex = (index) => {
+const openModalByIndex = (index, overview = false, markCurrent = false) => {
   if (!slideshowAdvancing) stopSlideshow();
   activeAssetIndex = index;
-  renderModalAsset(allAssets[activeAssetIndex]);
+  overviewOpen = overview;
+  if (overview) {
+    renderOverview(markCurrent);
+  } else {
+    delete modalPreview.dataset.view;
+    renderModalAsset(allAssets[activeAssetIndex]);
+  }
   updateModalNavigation();
 
   modal.hidden = false;
@@ -823,7 +847,8 @@ const openModal = (asset) => {
   const nextIndex = allAssets.indexOf(asset.modalTarget || asset);
   if (nextIndex === -1) return;
   navDirection = 0;
-  openModalByIndex(nextIndex);
+  // Multi-page pieces open on the all-pages overview.
+  openModalByIndex(nextIndex, Boolean(pageRange(allAssets[nextIndex])));
 };
 
 const stepModalAsset = (step) => {
@@ -873,7 +898,7 @@ const slideshowRange = (asset) => (asset && asset.slideshow ? pageRange(asset) :
 
 const updatePlayButtons = () => {
   const asset = allAssets[activeAssetIndex];
-  const canPlay = Boolean(asset && asset.slideshow);
+  const canPlay = Boolean(asset && asset.slideshow && !overviewOpen);
   modalPlay.hidden = !canPlay;
   fsPlay.hidden = !canPlay;
   const label = slideTimer ? "Pause the loop" : "Play the loop";
@@ -910,13 +935,107 @@ const startSlideshow = () => {
 
 const toggleSlideshow = () => (slideTimer ? stopSlideshow() : startSlideshow());
 
+// -- All-pages overview -------------------------------------------------------
+// Multi-page pieces open on a grid of every slide or page. Clicking one shows
+// it full screen, where the arrows still page through the piece; leaving full
+// screen comes back to the grid with that slide marked.
+let overviewOpen = false;
+let returnToOverview = false;
+
+const allPagesLabel = (asset) =>
+  `All ${((asset && asset.pageWord) || "Page").toLowerCase()}s`;
+
+const renderOverview = (markCurrent = false) => {
+  const asset = allAssets[activeAssetIndex];
+  const range = pageRange(asset);
+  const word = (asset.pageWord || "Page").toLowerCase();
+  const count = range.end - range.start + 1;
+
+  pauseModalVideo();
+  modalTitle.textContent = `${asset.baseName} — ${allPagesLabel(asset)} (${count})`;
+  modalStage.dataset.copy = "false";
+  modalPreview.dataset.view = "overview";
+  updatePlayButtons();
+
+  const hint = document.createElement("p");
+  hint.className = "overview-hint";
+  hint.textContent = `Click a ${word} to show it full screen. Use the arrow keys to page, and Esc to come back here.`;
+
+  const grid = document.createElement("div");
+  grid.className = "slide-grid";
+  grid.dataset.word = word;
+
+  for (let i = range.start; i <= range.end; i++) {
+    const page = allAssets[i];
+    const thumb = document.createElement("button");
+    thumb.type = "button";
+    thumb.className = "slide-thumb";
+    thumb.setAttribute("aria-label", `Show ${page.name} full screen`);
+    if (markCurrent && i === activeAssetIndex) {
+      thumb.classList.add("current");
+      thumb.setAttribute("aria-current", "true");
+    }
+
+    const img = new Image();
+    img.alt = "";
+    img.loading = "lazy";
+    img.src = `${assetRoot}${page.file}`;
+
+    const number = document.createElement("span");
+    number.className = "slide-number";
+    number.textContent = i - range.start + 1;
+
+    thumb.append(img, number);
+    thumb.addEventListener("click", () => openFromOverview(i));
+    grid.append(thumb);
+  }
+
+  modalPreview.replaceChildren(hint, grid);
+  const current = grid.querySelector(".current");
+  if (current) {
+    current.scrollIntoView({ block: "nearest" });
+    current.focus({ preventScroll: true });
+  }
+};
+
+const setExitLabel = (label) => {
+  fsExit.querySelector("span").textContent = label;
+  fsExit.setAttribute("aria-label", label);
+};
+
+const openFromOverview = (index) => {
+  navDirection = 0;
+  openModalByIndex(index);
+  const request = modalStage.requestFullscreen || modalStage.webkitRequestFullscreen;
+  // Without full screen support (iPhone Safari) the slide simply shows in
+  // the viewer, with the "All slides" button to come back.
+  if (!request) return;
+  returnToOverview = true;
+  setExitLabel(`Back to ${allPagesLabel(allAssets[index]).toLowerCase()}`);
+  Promise.resolve(request.call(modalStage)).catch(() => {
+    returnToOverview = false;
+    setExitLabel("Exit full screen");
+  });
+};
+
+const onFullscreenChange = () => {
+  if (inFullscreen() || !returnToOverview) return;
+  returnToOverview = false;
+  setExitLabel("Exit full screen");
+  if (!modal.hidden && pageRange(allAssets[activeAssetIndex])) {
+    openModalByIndex(activeAssetIndex, true, true);
+  }
+};
+
 const closeModal = () => {
+  returnToOverview = false;
   stopSlideshow();
   exitFullscreen();
   pauseModalVideo();
   modal.hidden = true;
   document.body.style.overflow = "";
   activeAssetIndex = -1;
+  overviewOpen = false;
 };
 
 const setupActiveNavigation = () => {
@@ -947,6 +1066,11 @@ fsPrev.addEventListener("click", () => stepModalAsset(-1));
 fsNext.addEventListener("click", () => stepModalAsset(1));
 fsPlay.addEventListener("click", toggleSlideshow);
 fsExit.addEventListener("click", exitFullscreen);
+modalOverview.addEventListener("click", () =>
+  openModalByIndex(activeAssetIndex, true)
+);
+document.addEventListener("fullscreenchange", onFullscreenChange);
+document.addEventListener("webkitfullscreenchange", onFullscreenChange);
 modal.addEventListener("click", (event) => {
   if (event.target === modal) {
     closeModal();
@@ -962,6 +1086,7 @@ document.addEventListener("keydown", (event) => {
     if (inFullscreen()) return exitFullscreen();
     return closeModal();
   }
+  if (overviewOpen) return;
   if (event.key === "ArrowLeft") stepModalAsset(-1);
   if (event.key === "ArrowRight") stepModalAsset(1);
   if (event.key === "f" || event.key === "F") toggleFullscreen();

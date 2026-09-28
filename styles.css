@@ -608,6 +608,91 @@ button,
   }
 }
 
+/* All-pages overview: every slide or page at once; click one to show it
+   full screen. */
+.modal-preview[data-view="overview"] {
+  display: block;
+  min-height: 0;
+}
+
+.overview-hint {
+  margin: 0 0 0.7rem;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+.slide-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 0.75rem;
+}
+
+.slide-grid[data-word="page"] {
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+}
+
+.slide-thumb {
+  position: relative;
+  display: block;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 0.45rem;
+  overflow: hidden;
+  background: var(--white);
+  line-height: 0;
+  cursor: url("assets/site/cursor-disco-ball.png") 16 16, zoom-in;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.slide-thumb:hover,
+.slide-thumb:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(2, 40, 85, 0.18);
+  outline: 2px solid var(--brand-blue);
+  outline-offset: 1px;
+}
+
+.slide-thumb.current {
+  outline: 3px solid var(--brand-green);
+  outline-offset: 1px;
+}
+
+.modal-preview .slide-thumb img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: none;
+}
+
+/* Reserve each slide's 16:9 box so lazy loading only fetches what's on
+   screen. */
+.slide-grid[data-word="slide"] .slide-thumb img {
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  background: #000;
+}
+
+.slide-number {
+  position: absolute;
+  left: 0.4rem;
+  bottom: 0.4rem;
+  min-width: 1.5rem;
+  padding: 0.25rem 0.4rem;
+  border-radius: 999px;
+  background: rgba(2, 40, 85, 0.88);
+  color: var(--white);
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide-thumb {
+    transition: none;
+  }
+}
+
 /* Full-screen chrome hides until the stage actually goes full screen. */
 .modal-stage {
   position: relative;

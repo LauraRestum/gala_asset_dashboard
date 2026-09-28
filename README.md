@@ -51,14 +51,19 @@ Actions:
   - `program/` — day-of program PDF, `page-01.jpg`…`page-21.jpg`, and
     `all-pages.jpg`
   - `signage/` — sign and banner previews with their 24x30 print PDFs
-  - `cocktail-loop/` — loop deck (PPTX) and `slide-01.jpg`…`slide-42.jpg`
-  - `presentation/` — programming deck (PPTX) and `slide-01.jpg`…`slide-33.jpg`
+  - `cocktail-loop/` — cocktail hour loop slides, `slide-01.jpg`, `slide-02.jpg`, …
+  - `presentation/` — programming deck slides, `slide-01.jpg`, `slide-02.jpg`, …
   - `show/`, `videos/`, `digital/` — award, spotlight videos, webpage, photo booth logo
   - `site/` — favicons and the disco-ball cursor
 
 Slide and page JPGs are the previews: each numbered file is one slide or
 page, shown in order in the viewer. To update a deck, replace the numbered
-JPGs and set `pages` on its tile in `script.js` to the new count.
+JPGs and set `pages` on its tile in `script.js` to the new count (the tile
+shows `slide-01.jpg` automatically).
+
+Multi-page pieces open on an overview of every slide or page. Clicking one
+shows it full screen, where the arrow keys still page through the piece;
+leaving full screen (Esc or "Back to all slides") returns to the overview.
 
 ## Data
 
