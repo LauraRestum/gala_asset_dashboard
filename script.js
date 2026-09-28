@@ -229,13 +229,10 @@ const sectionConfig = [
         assets: [
           {
             name: "Cocktail Hour Loop (Slides)",
-            // New slides go in assets/cocktail-loop/ as slide-01.jpg,
-            // slide-02.jpg, ...; set `pages` to the count.
-            pages: 0,
+            pages: 43,
             pagePrefix: "cocktail-loop/slide-",
             pageWord: "Slide",
             slideshow: true,
-            placeholder: "New slides coming",
             status: "draft",
             url: "https://dlhfb.sharepoint.com/:p:/s/EnvisionMarketing/IQAOw9xZ1o6XQp6Yx0FvQ9iUAXwPDjsJxEUFCl-PS4IbT8I?e=WvUkd0",
             urlLabel: "Open the latest deck in PowerPoint (SharePoint)",
