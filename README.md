@@ -16,8 +16,31 @@ external dependency is the Montserrat webfont from Google Fonts.
   (prev/next arrows), or a dashed placeholder for pieces without art yet
 - A status chip on every tile (Complete / Draft / In production /
   Not started) plus due-date chips where deadlines exist
+- A countdown in the sidebar ("31 days to go") that ticks down on its own
+  at local midnight each day
 - Links on each tile to the print file or video source and to the
   piece's ClickUp task, where the gala team leaves notes
+
+## Notifying Courtney & Molly
+
+Nothing is emailed automatically. Tell Claude something like "notify
+Courtney and Molly the program has been updated" and Claude runs the
+**Notify Courtney & Molly** GitHub workflow
+(`.github/workflows/notify.yml`). You can also run it yourself from the
+repo's Actions tab: pick the workflow, click **Run workflow**, and fill in
+the asset name.
+
+The email comes from your Gmail and includes the asset, what changed, an
+optional note, a link to the dashboard, and the days left until the gala.
+
+One-time setup, under the repo's Settings → Secrets and variables →
+Actions:
+
+- `GMAIL_USER`: the Gmail address that sends the email
+- `GMAIL_APP_PASSWORD`: a Gmail app password for that account
+  (Google Account → Security → 2-Step Verification → App passwords)
+- `NOTIFY_TO`: Courtney's and Molly's addresses, comma separated
+- `DASHBOARD_URL` (optional): link to the dashboard to include in the email
 
 ## Structure
 
@@ -25,17 +48,22 @@ external dependency is the Montserrat webfont from Google Fonts.
   lives in `sectionConfig` at the top of `script.js`
 - `assets/` — everything the dashboard shows, one folder per piece:
   - `print/` — save the date, sponsorship book, invitation, bidder card
-  - `program/` — day-of program PDF, `page-01.jpg`…`page-20.jpg`, and
+  - `program/` — day-of program PDF, `page-01.jpg`…`page-21.jpg`, and
     `all-pages.jpg`
   - `signage/` — sign and banner previews with their 24x30 print PDFs
-  - `cocktail-loop/` — loop deck (PPTX) and `slide-01.jpg`…`slide-41.jpg`
-  - `presentation/` — programming deck (PPTX) and `slide-01.jpg`…`slide-32.jpg`
-  - `show/`, `videos/`, `digital/` — award, spotlight videos, webpage
+  - `cocktail-loop/` — cocktail hour loop slides, `slide-01.jpg`…`slide-43.jpg`
+  - `presentation/` — programming deck slides, `slide-01.jpg`…`slide-32.jpg`
+  - `show/`, `videos/`, `digital/` — award, spotlight videos, webpage, photo booth logo
   - `site/` — favicons and the disco-ball cursor
 
 Slide and page JPGs are the previews: each numbered file is one slide or
 page, shown in order in the viewer. To update a deck, replace the numbered
-JPGs and set `pages` on its tile in `script.js` to the new count.
+JPGs and set `pages` on its tile in `script.js` to the new count (the tile
+shows `slide-01.jpg` automatically).
+
+Multi-page pieces open on an overview of every slide or page. Clicking one
+shows it full screen, where the arrow keys still page through the piece;
+leaving full screen (Esc or "Back to all slides") returns to the overview.
 
 ## Data
 
