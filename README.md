@@ -52,7 +52,7 @@ Actions:
     `all-pages.jpg`
   - `signage/` — sign and banner previews with their 24x30 print PDFs
   - `cocktail-loop/` — cocktail hour loop slides, `slide-01.jpg`, `slide-02.jpg`, …
-  - `presentation/` — programming deck slides, `slide-01.jpg`, `slide-02.jpg`, …
+  - `presentation/` — programming deck slides, `slide-01.jpg`…`slide-32.jpg`
   - `show/`, `videos/`, `digital/` — award, spotlight videos, webpage, photo booth logo
   - `site/` — favicons and the disco-ball cursor
 

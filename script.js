@@ -243,12 +243,9 @@ const sectionConfig = [
           },
           {
             name: "Programming Presentation Assets",
-            // New slides go in assets/presentation/ as slide-01.jpg,
-            // slide-02.jpg, ...; set `pages` to the count.
-            pages: 0,
+            pages: 32,
             pagePrefix: "presentation/slide-",
             pageWord: "Slide",
-            placeholder: "New slides coming",
             status: "draft",
             url: "https://dlhfb.sharepoint.com/:p:/s/EnvisionMarketing/IQD36SiVJXiyTJ-hCMlDPQt2AfRdb2Fu618itctBqr8_W0o?e=tsOwxu",
             urlLabel: "Open the latest deck in PowerPoint (SharePoint)",
