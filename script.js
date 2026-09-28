@@ -229,7 +229,7 @@ const sectionConfig = [
         assets: [
           {
             name: "Cocktail Hour Loop (Slides)",
-            pages: 43,
+            pages: 46,
             pagePrefix: "cocktail-loop/slide-",
             pageWord: "Slide",
             slideshow: true,
