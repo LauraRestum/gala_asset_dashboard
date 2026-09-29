@@ -253,6 +253,8 @@ const sectionConfig = [
             name: "Spirit of Philanthropy Award",
             file: "show/award.jpg",
             status: "ordering",
+            url: "https://www.4imprint.com/product/154448/Prism-Diamond-Crystal-Award",
+            urlLabel: "Award to order: Prism Diamond Crystal Award (4imprint)",
             clickup: "https://app.clickup.com/t/86akgg61d",
           },
         ],
