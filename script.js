@@ -59,6 +59,7 @@ const sectionConfig = [
             pages: 21,
             pagePrefix: "program/page-",
             status: "draft",
+            tags: [{ label: "Aruba page: Michael approved 9.29", status: "approved" }],
             url: "assets/program/2026-gala-program.pdf",
             urlLabel: "Full program (PDF)",
             clickup: "https://app.clickup.com/t/86ak6h8r1",
@@ -493,6 +494,13 @@ const buildAssetTile = (asset) => {
   chip.className = `status ${status.cls}`;
   chip.textContent = status.label;
   meta.append(chip);
+
+  (asset.tags || []).forEach((tag) => {
+    const chip = document.createElement("span");
+    chip.className = `status ${(STATUS[tag.status] || STATUS.notstarted).cls}`;
+    chip.textContent = tag.label;
+    meta.append(chip);
+  });
 
   if (asset.due) {
     const due = document.createElement("span");
