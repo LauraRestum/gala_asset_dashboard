@@ -881,3 +881,19 @@ button,
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
+
+.status-flash {
+  animation: status-flash 1.2s ease-in-out infinite;
+}
+
+@keyframes status-flash {
+  50% {
+    opacity: 0.25;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .status-flash {
+    animation: none;
+  }
+}
