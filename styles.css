@@ -897,3 +897,7 @@ button,
     animation: none;
   }
 }
+
+a.modal-arrow {
+  text-decoration: none;
+}

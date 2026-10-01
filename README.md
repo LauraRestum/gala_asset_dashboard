@@ -54,12 +54,26 @@ Actions:
   - `cocktail-loop/` — cocktail hour loop slides, `slide-01.jpg`…`slide-47.jpg`
   - `presentation/` — programming deck slides, `slide-01.jpg`…`slide-32.jpg`
   - `show/`, `videos/`, `digital/` — award, spotlight videos, webpage, photo booth logo
-  - `site/` — favicons and the disco-ball cursor
+  - `site/` — favicons, the disco-ball cursor, and the ZIP helper (JSZip)
+  - `full/` — full-resolution downloads for pieces whose on-screen preview
+    is scaled down (signs rendered from their print PDFs at 150 dpi, cards
+    and invitation at 300 dpi, banners, program pages, award artwork)
 
 Slide and page JPGs are the previews: each numbered file is one slide or
 page, shown in order in the viewer. To update a deck, replace the numbered
 JPGs and set `pages` on its tile in `script.js` to the new count (the tile
 shows `slide-01.jpg` automatically).
+
+## Downloads
+
+Every tile and the viewer have a "Download full resolution" link for the
+version on screen. A tile's `full` field names its full-resolution file in
+`assets/full/` (and `fullPrefix` does the same per page for the program);
+without one, the shown file is downloaded as is (deck slides are already
+1920x1080). Decks and the program download as a ZIP built in the browser
+from the current pages, and videos download the original from Dropbox.
+When a preview is replaced, replace its `assets/full/` file too so the
+download keeps matching.
 
 Multi-page pieces open on an overview of every slide or page. Clicking one
 shows it full screen, where the arrow keys still page through the piece;
