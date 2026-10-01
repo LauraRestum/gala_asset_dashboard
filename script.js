@@ -38,6 +38,7 @@ const sectionConfig = [
           {
             name: "Invitation — Outside (Front & Back)",
             file: "print/invite-outside.jpg",
+            full: "full/print/invite-outside.jpg",
             status: "complete",
             url: "assets/print/2026-gala-invite-trifold.pdf",
             urlLabel: "Full trifold (PDF)",
@@ -48,6 +49,7 @@ const sectionConfig = [
           {
             name: "Invitation — Inside",
             file: "print/invite-inside.jpg",
+            full: "full/print/invite-inside.jpg",
             status: "complete",
             url: "assets/print/2026-gala-invite-trifold.pdf",
             urlLabel: "Full trifold (PDF)",
@@ -59,6 +61,7 @@ const sectionConfig = [
             file: "program/page-01.jpg",
             pages: 21,
             pagePrefix: "program/page-",
+            fullPrefix: "full/program/page-",
             status: "draft",
             tags: [{ label: "Aruba page: Michael approved 9.29", status: "approved" }],
             url: "assets/program/2026-gala-program.pdf",
@@ -70,6 +73,7 @@ const sectionConfig = [
           {
             name: "Day-of Program — All 21 Pages",
             file: "program/all-pages.jpg",
+            full: "full/program/all-pages.jpg",
             status: "draft",
             url: "assets/program/2026-gala-program.pdf",
             urlLabel: "Full program (PDF)",
@@ -79,6 +83,7 @@ const sectionConfig = [
           {
             name: "Bidder Card — Side A (Venue Map)",
             file: "print/bidder-card-map.jpg",
+            full: "full/print/bidder-card-map.jpg",
             status: "approval",
             url: "assets/print/2026-gala-bidder-card.pdf",
             urlLabel: "Front & back proof (PDF)",
@@ -89,6 +94,7 @@ const sectionConfig = [
           {
             name: "Bidder Card — Side B (Bidder Number)",
             file: "print/bidder-card-number.jpg",
+            full: "full/print/bidder-card-number.jpg",
             status: "approval",
             url: "assets/print/2026-gala-bidder-card-numbers.pdf",
             urlLabel: "All 300 cards, 101–400 (PDF)",
@@ -109,6 +115,7 @@ const sectionConfig = [
           {
             name: "Welcome Sign",
             file: "signage/welcome-sign.jpg",
+            full: "full/signage/welcome-sign.jpg",
             status: "approved",
             url: "assets/signage/2026-gala-welcome-sign.pdf",
             urlLabel: "Print file, 24x30 (PDF)",
@@ -126,7 +133,10 @@ const sectionConfig = [
           {
             name: "Upstairs Directional — Event Continues Upstairs",
             file: "signage/upstairs-sign.jpg",
+            full: "full/signage/upstairs-sign.jpg",
             status: "approved",
+            url: "assets/signage/2026-gala-upstairs-sign.pdf",
+            urlLabel: "Print file, 24x30 (PDF)",
             clickup: "https://app.clickup.com/t/86ak6hbdc",
             groupId: "wayfinding",
             groupLabel: "Wayfinding Directionals",
@@ -134,6 +144,7 @@ const sectionConfig = [
           {
             name: "Directional — Sensory Experiences & Premier Cocktails (Beren Room)",
             file: "signage/beren-room-sign.jpg",
+            full: "full/signage/beren-room-sign.jpg",
             status: "approved",
             url: "assets/signage/2026-gala-beren-room-sign.pdf",
             urlLabel: "Print file, 24x30 (PDF)",
@@ -143,6 +154,7 @@ const sectionConfig = [
           {
             name: "Directional — Photo Booth & Premier Cocktails (Upper Gallery)",
             file: "signage/upper-gallery-sign.jpg",
+            full: "full/signage/upper-gallery-sign.jpg",
             status: "approved",
             url: "assets/signage/2026-gala-upper-gallery-sign.pdf",
             urlLabel: "Print file, 24x30 (PDF)",
@@ -152,6 +164,7 @@ const sectionConfig = [
           {
             name: "Directional — Premier Cocktails (Arrow Left)",
             file: "signage/premier-cocktails-left-sign.jpg",
+            full: "full/signage/premier-cocktails-left-sign.jpg",
             status: "approved",
             url: "assets/signage/2026-gala-premier-cocktails-signs.pdf",
             urlLabel: "Print file, 24x30, both signs (PDF)",
@@ -161,6 +174,7 @@ const sectionConfig = [
           {
             name: "Directional — Premier Cocktails (Arrow Right)",
             file: "signage/premier-cocktails-right-sign.jpg",
+            full: "full/signage/premier-cocktails-right-sign.jpg",
             status: "approved",
             url: "assets/signage/2026-gala-premier-cocktails-signs.pdf",
             urlLabel: "Print file, 24x30, both signs (PDF)",
@@ -170,6 +184,7 @@ const sectionConfig = [
           {
             name: "Tactile Art Experience Sign",
             file: "signage/tactile-art-sign.jpg",
+            full: "full/signage/tactile-art-sign.jpg",
             status: "approved",
             url: "assets/signage/2026-gala-tactile-art-sign.pdf",
             urlLabel: "Print file, 24x30 (PDF)",
@@ -180,6 +195,7 @@ const sectionConfig = [
           {
             name: "Assistive Technology Experience Sign",
             file: "signage/assistive-tech-sign.jpg",
+            full: "full/signage/assistive-tech-sign.jpg",
             status: "approved",
             url: "assets/signage/2026-gala-assistive-tech-sign.pdf",
             urlLabel: "Print file, 24x30 (PDF)",
@@ -189,6 +205,7 @@ const sectionConfig = [
           {
             name: "Through Their Eyes Roll-Up Banner — Adah",
             file: "signage/adah-banner.jpg",
+            full: "full/signage/adah-banner.jpg",
             copyPanel: true,
             status: "approved",
             clickup: "https://app.clickup.com/t/86ak6h877",
@@ -198,6 +215,7 @@ const sectionConfig = [
           {
             name: "Through Their Eyes Roll-Up Banner — Aubree",
             file: "signage/aubree-banner.jpg",
+            full: "full/signage/aubree-banner.jpg",
             copyPanel: true,
             status: "approved",
             clickup: "https://app.clickup.com/t/86ak6h877",
@@ -214,6 +232,7 @@ const sectionConfig = [
           {
             name: "Through Their Eyes Roll-Up Banner — Steven",
             file: "signage/steven-banner.jpg",
+            full: "full/signage/steven-banner.jpg",
             copyPanel: true,
             status: "approval",
             clickup: "https://app.clickup.com/t/86ak6h877",
@@ -254,6 +273,7 @@ const sectionConfig = [
           {
             name: "Spirit of Philanthropy Award",
             file: "show/award.jpg",
+            full: "full/show/spirit-of-philanthropy-award-2026.png",
             status: "delivered",
             tags: [{ label: "New design uploaded", status: "draft", flash: true }],
             url: "https://www.4imprint.com/product/154448/Prism-Diamond-Crystal-Award",
@@ -377,6 +397,7 @@ const fsNext = document.getElementById("fs-next");
 const fsPlay = document.getElementById("fs-play");
 const fsExit = document.getElementById("fs-exit");
 const modalOverview = document.getElementById("modal-overview");
+const modalDownload = document.getElementById("modal-download");
 
 // Multi-page assets expand into one viewer entry per page. The tile shows
 // the first page unless the piece names its own cover `file`.
@@ -392,6 +413,7 @@ const expandAsset = (asset) => {
       ...asset,
       baseName: asset.name,
       name: `${asset.name} — ${word} ${i} of ${asset.pages}`,
+      pageNumber: i,
       file: `${asset.pagePrefix}${String(i).padStart(2, "0")}.jpg`,
     });
   }
@@ -404,6 +426,95 @@ const allAssets = sectionConfig
   .flatMap(expandAsset)
   .filter((asset) => asset.file || asset.video);
 let activeAssetIndex = -1;
+
+// ---------------------------------------------------------------------------
+// Downloads
+// ---------------------------------------------------------------------------
+// Every piece downloads at full resolution, matching what the tile and
+// viewer show: a `full` file when the on-screen preview is scaled down,
+// `fullPrefix` for multi-page pieces whose previews are scaled down, an
+// explicit `download`, the original on Dropbox for videos, or the shown
+// file itself when it is already full size (deck slides, screenshots).
+const fileNameOf = (path) => path.split("/").pop();
+
+const downloadFor = (entry) => {
+  if (entry.video) {
+    if (!entry.dropbox) return null;
+    return {
+      href: entry.dropbox.replace("dl=0", "dl=1"),
+      label: "Download full quality video (Dropbox)",
+      sameSite: false,
+    };
+  }
+  let path = null;
+  if (entry.full) path = entry.full;
+  else if (entry.fullPrefix && entry.pageNumber) {
+    path = `${entry.fullPrefix}${String(entry.pageNumber).padStart(2, "0")}.jpg`;
+  } else if (entry.download) path = entry.download.replace(assetRoot, "");
+  else if (entry.file) path = entry.file;
+  if (!path) return null;
+  const ext = path.split(".").pop().toUpperCase();
+  return {
+    href: `${assetRoot}${path}`,
+    label: `Download full resolution (${ext === "JPEG" ? "JPG" : ext})`,
+    name: `2026-gala-${fileNameOf(path).replace(/^2026-gala-/, "")}`,
+    sameSite: true,
+  };
+};
+
+let jsZipPromise = null;
+const loadJsZip = () => {
+  if (window.JSZip) return Promise.resolve(window.JSZip);
+  if (!jsZipPromise) {
+    jsZipPromise = new Promise((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = `${assetRoot}site/jszip.min.js`;
+      script.onload = () => resolve(window.JSZip);
+      script.onerror = () => {
+        jsZipPromise = null;
+        reject(new Error("Could not load the ZIP helper."));
+      };
+      document.head.append(script);
+    });
+  }
+  return jsZipPromise;
+};
+
+// Multi-page pieces zip up the same files the viewer shows, in the browser,
+// so the download always matches the current slides.
+const downloadAllPages = async (asset, link, label) => {
+  if (link.dataset.busy) return;
+  link.dataset.busy = "true";
+  const prefix = asset.fullPrefix || asset.pagePrefix;
+  try {
+    const JSZip = await loadJsZip();
+    const zip = new JSZip();
+    for (let i = 1; i <= asset.pages; i++) {
+      link.textContent = `Preparing ${i} of ${asset.pages}...`;
+      const path = `${assetRoot}${prefix}${String(i).padStart(2, "0")}.jpg`;
+      const response = await fetch(path);
+      if (!response.ok) throw new Error(`Missing ${path}`);
+      zip.file(fileNameOf(path), await response.blob());
+    }
+    const blob = await zip.generateAsync({ type: "blob" });
+    const href = URL.createObjectURL(blob);
+    const save = document.createElement("a");
+    save.href = href;
+    save.download = `2026-gala-${asset.name
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "")}.zip`;
+    document.body.append(save);
+    save.click();
+    save.remove();
+    setTimeout(() => URL.revokeObjectURL(href), 60000);
+    link.textContent = label;
+  } catch (error) {
+    link.textContent = "Download failed — try again";
+  } finally {
+    delete link.dataset.busy;
+  }
+};
 
 // ---------------------------------------------------------------------------
 // Tiles
@@ -531,14 +642,33 @@ const buildAssetTile = (asset) => {
     fileLabel.append(link);
   };
 
-  if (asset.dropbox) addLink(asset.dropbox, "Full quality on Dropbox");
   if (asset.url) addLink(asset.url, asset.urlLabel || "Open file");
-  if (asset.download) {
+  if (asset.pages > 1 && asset.pagePrefix) {
     const link = document.createElement("a");
-    link.href = asset.download;
-    link.download = "";
-    link.textContent = asset.downloadLabel || "Download file";
+    link.href = "#";
+    link.className = "download-link";
+    const word = (asset.pageWord || "Page").toLowerCase();
+    const label = `Download all ${asset.pages} ${word}s, full resolution (ZIP)`;
+    link.textContent = label;
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      downloadAllPages(asset, link, label);
+    });
     fileLabel.append(link);
+  } else {
+    const download = downloadFor(asset);
+    if (download) {
+      const link = document.createElement("a");
+      link.href = download.href;
+      link.className = "download-link";
+      if (download.sameSite) link.download = download.name;
+      else {
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+      }
+      link.textContent = asset.downloadLabel || download.label;
+      fileLabel.append(link);
+    }
   }
   if (asset.clickup) addLink(asset.clickup, "Team notes in ClickUp");
   if (!fileLabel.childNodes.length && asset.file) {
@@ -735,8 +865,25 @@ const renderLoopSlide = (asset) => {
   }
 };
 
+const updateModalDownload = (asset) => {
+  const download = asset ? downloadFor(asset) : null;
+  modalDownload.hidden = !download;
+  if (!download) return;
+  modalDownload.href = download.href;
+  if (download.sameSite) {
+    modalDownload.download = download.name;
+    modalDownload.removeAttribute("target");
+  } else {
+    modalDownload.removeAttribute("download");
+    modalDownload.target = "_blank";
+    modalDownload.rel = "noopener noreferrer";
+  }
+  modalDownload.title = download.label;
+};
+
 const renderModalAsset = (asset) => {
   modalTitle.textContent = asset.name;
+  updateModalDownload(asset);
   fsTitle.textContent = asset.name;
   pauseModalVideo();
 
@@ -968,6 +1115,7 @@ const renderOverview = (markCurrent = false) => {
 
   pauseModalVideo();
   modalTitle.textContent = `${asset.baseName} — ${allPagesLabel(asset)} (${count})`;
+  updateModalDownload(null);
   modalStage.dataset.copy = "false";
   modalPreview.dataset.view = "overview";
   updatePlayButtons();
