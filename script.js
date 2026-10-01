@@ -2,6 +2,7 @@ const STATUS = {
   complete: { cls: "status-complete", label: "Complete" },
   draft: { cls: "status-draft", label: "Draft" },
   approved: { cls: "status-complete", label: "Approved" },
+  delivered: { cls: "status-complete", label: "Delivered" },
   approval: { cls: "status-approval", label: "Awaiting approval" },
   approvalprint: { cls: "status-approval", label: "Awaiting approval — ready for print" },
   ordering: { cls: "status-production", label: "Ordered — arriving September 25th" },
@@ -253,10 +254,10 @@ const sectionConfig = [
           {
             name: "Spirit of Philanthropy Award",
             file: "show/award.jpg",
-            status: "ordering",
-            tags: [{ label: "New design uploaded", status: "draft" }],
+            status: "delivered",
+            tags: [{ label: "New design uploaded", status: "draft", flash: true }],
             url: "https://www.4imprint.com/product/154448/Prism-Diamond-Crystal-Award",
-            urlLabel: "Award to order: Prism Diamond Crystal Award (4imprint)",
+            urlLabel: "Award: Prism Diamond Crystal Award (4imprint)",
             clickup: "https://app.clickup.com/t/86akgg61d",
           },
         ],
@@ -506,6 +507,7 @@ const buildAssetTile = (asset) => {
   (asset.tags || []).forEach((tag) => {
     const chip = document.createElement("span");
     chip.className = `status ${(STATUS[tag.status] || STATUS.notstarted).cls}`;
+    if (tag.flash) chip.classList.add("status-flash");
     chip.textContent = tag.label;
     meta.append(chip);
   });
