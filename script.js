@@ -338,6 +338,13 @@ const sectionConfig = [
             groupId: "photo-booth",
           },
           {
+            name: "Rolling Screen Background (Erica Fund-A-Need Slide)",
+            file: "digital/2026-gala-rolling-screen-background.png",
+            status: "draft",
+            download: "assets/digital/2026-gala-rolling-screen-background.png",
+            downloadLabel: "Download PNG (1920x1080)",
+          },
+          {
             name: "Pre-Communications",
             placeholder: "Not started",
             status: "notstarted",
