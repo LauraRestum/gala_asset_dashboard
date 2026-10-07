@@ -238,6 +238,13 @@ const sectionConfig = [
             clickup: "https://app.clickup.com/t/86ak6h877",
             groupId: "banners",
           },
+          {
+            name: "Chance Drawing Stick Sign — 7 Days in Aruba",
+            file: "signage/chance-drawing-stick-sign.png",
+            status: "draft",
+            groupId: "chance-drawing",
+            groupLabel: "Chance Drawing",
+          },
         ],
       },
     ],
