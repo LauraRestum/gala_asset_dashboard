@@ -305,9 +305,12 @@ const sectionConfig = [
             clickup: "https://app.clickup.com/t/86ak6h8g1",
           },
           {
-            name: "Child Development Center",
-            placeholder: "In production",
-            status: "production",
+            name: "Child Development Center — Video",
+            video: "videos/ecdc.mp4",
+            poster: "videos/ecdc-poster.jpg",
+            status: "draft",
+            dropbox:
+              "https://www.dropbox.com/scl/fi/i2com9lm5dhjnh7r4imyg/ECDC_RECUT_v37.mp4?rlkey=30vzy41q9dwufd4smna41jys4&st=mm7c5upq&dl=0",
             clickup: "https://app.clickup.com/t/86aketm6z",
           },
           {
