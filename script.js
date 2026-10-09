@@ -261,6 +261,15 @@ const sectionConfig = [
             clickup: "https://app.clickup.com/t/86ak6h8cy",
           },
           {
+            name: "Cocktail Hour Loop (Video)",
+            video: "videos/cocktail-loop.mp4",
+            poster: "videos/cocktail-loop-poster.jpg",
+            status: "draft",
+            dropbox:
+              "https://www.dropbox.com/scl/fi/r023bjjl2kbxtop79b47e/Envision_Gala_2026_Cocktail_Hour_Loop-5.mov?rlkey=m4omm8ujntmtmm4qdkvlkjsmm&st=zuuwu55l&dl=0",
+            clickup: "https://app.clickup.com/t/86ak6h8cy",
+          },
+          {
             name: "Programming Presentation Assets",
             pages: 32,
             pagePrefix: "presentation/slide-",

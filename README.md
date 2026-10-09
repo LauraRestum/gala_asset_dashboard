@@ -53,7 +53,7 @@ Actions:
   - `signage/` — sign and banner previews with their 24x30 print PDFs
   - `cocktail-loop/` — cocktail hour loop slides, `slide-01.jpg`…`slide-47.jpg`
   - `presentation/` — programming deck slides, `slide-01.jpg`…`slide-32.jpg`
-  - `show/`, `videos/`, `digital/` — award, spotlight videos, webpage, photo booth logo
+  - `show/`, `videos/`, `digital/` — award, cocktail loop and spotlight videos, webpage, photo booth logo
   - `site/` — favicons, the disco-ball cursor, and the ZIP helper (JSZip)
   - `full/` — full-resolution downloads for pieces whose on-screen preview
     is scaled down (signs rendered from their print PDFs at 150 dpi, cards
