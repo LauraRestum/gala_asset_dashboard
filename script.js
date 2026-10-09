@@ -361,7 +361,7 @@ const sectionConfig = [
             poster: "videos/ecdc-poster.jpg",
             status: "draft",
             dropbox:
-              "https://www.dropbox.com/scl/fi/i2com9lm5dhjnh7r4imyg/ECDC_RECUT_v37.mp4?rlkey=30vzy41q9dwufd4smna41jys4&st=mm7c5upq&dl=0",
+              "https://www.dropbox.com/scl/fi/qa15pn6megbj0yypjiqxo/ECDC_ADAH_FINAL.mp4?rlkey=63cx8feihn3d0vgr7gu115cjp&st=e7z2lipw&dl=0",
             clickup: "https://app.clickup.com/t/86aketm6z",
           },
           {
