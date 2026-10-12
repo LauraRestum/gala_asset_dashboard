@@ -361,7 +361,14 @@ const sectionConfig = [
             poster: "videos/ecdc-poster.jpg",
             status: "draft",
             dropbox:
-              "https://www.dropbox.com/scl/fi/qa15pn6megbj0yypjiqxo/ECDC_ADAH_FINAL.mp4?rlkey=63cx8feihn3d0vgr7gu115cjp&st=e7z2lipw&dl=0",
+              "https://www.dropbox.com/scl/fo/17f055ychbo9jat57czz4/AMgjzle7rqSJE1nkcdD_eLQ?rlkey=w4zsbnqir62plvn9qis9qc6cb&preview=ECDC_Adah_FullCircle_FINAL.mp4&dl=0",
+            downloadLabel: "Download standard version (Dropbox)",
+            links: [
+              {
+                href: "https://www.dropbox.com/scl/fo/17f055ychbo9jat57czz4/AMgjzle7rqSJE1nkcdD_eLQ?rlkey=w4zsbnqir62plvn9qis9qc6cb&preview=ECDC_Adah_FullCircle_AUDIO_DESCRIBED_FINAL.mp4&dl=1",
+                label: "Download audio-described version (Dropbox)",
+              },
+            ],
             clickup: "https://app.clickup.com/t/86aketm6z",
           },
           {
@@ -729,6 +736,7 @@ const buildAssetTile = (asset) => {
       fileLabel.append(link);
     }
   }
+  (asset.links || []).forEach((extra) => addLink(extra.href, extra.label));
   if (asset.clickup) addLink(asset.clickup, "Team notes in ClickUp");
   if (!fileLabel.childNodes.length && asset.file) {
     fileLabel.textContent = asset.file;
