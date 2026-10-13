@@ -13,7 +13,7 @@ const STATUS = {
 
 // Accessibility portal link for the box at the top of the page. Leave
 // empty until the portal is live; the box shows "Link coming soon".
-const ACCESSIBILITY_PORTAL_URL = "https://a-night-for-vision-gala.vercel.app/";
+const ACCESSIBILITY_PORTAL_URL = "https://a-night-for-vision-gala.vercel.app/#home";
 
 // Event date for the sidebar countdown (local time, so it rolls over at the
 // viewer's midnight).
@@ -63,7 +63,7 @@ const sectionConfig = [
           {
             name: "Day-of Program",
             file: "program/page-01.jpg",
-            pages: 21,
+            pages: 20,
             pagePrefix: "program/page-",
             fullPrefix: "full/program/page-",
             status: "draft",
@@ -72,10 +72,10 @@ const sectionConfig = [
             urlLabel: "Full program (PDF)",
             clickup: "https://app.clickup.com/t/86ak6h8r1",
             groupId: "program",
-            groupLabel: "Day-of Program — one booklet, 21 pages",
+            groupLabel: "Day-of Program — one booklet, 20 pages",
           },
           {
-            name: "Day-of Program — All 21 Pages",
+            name: "Day-of Program — All 20 Pages",
             file: "program/all-pages.jpg",
             full: "full/program/all-pages.jpg",
             status: "draft",
@@ -93,7 +93,7 @@ const sectionConfig = [
             urlLabel: "Front & back proof (PDF)",
             clickup: "https://app.clickup.com/t/86ak6h83x",
             groupId: "bidder-card",
-            groupLabel: "Bidder Card — one card, two sides",
+            groupLabel: "Bidder Card — two sides, plus a large print version",
           },
           {
             name: "Bidder Card — Side B (Bidder Number)",
@@ -102,6 +102,16 @@ const sectionConfig = [
             status: "approval",
             url: "assets/print/2026-gala-bidder-card-numbers.pdf",
             urlLabel: "All 300 cards, 101–400 (PDF)",
+            clickup: "https://app.clickup.com/t/86ak6h83x",
+            groupId: "bidder-card",
+          },
+          {
+            name: "Bidder Card — Large Print (Where to Find Things)",
+            file: "print/bidder-card-large-print.jpg",
+            full: "full/print/bidder-card-large-print.jpg",
+            status: "approval",
+            url: "assets/print/2026-gala-bidder-card-large-print.pdf",
+            urlLabel: "Large print card, 9x6 (PDF)",
             clickup: "https://app.clickup.com/t/86ak6h83x",
             groupId: "bidder-card",
           },
