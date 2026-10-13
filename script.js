@@ -13,7 +13,7 @@ const STATUS = {
 
 // Accessibility portal link for the box at the top of the page. Leave
 // empty until the portal is live; the box shows "Link coming soon".
-const ACCESSIBILITY_PORTAL_URL = "";
+const ACCESSIBILITY_PORTAL_URL = "https://a-night-for-vision-gala.vercel.app/";
 
 // Event date for the sidebar countdown (local time, so it rolls over at the
 // viewer's midnight).
