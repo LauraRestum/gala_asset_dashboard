@@ -11,6 +11,10 @@ const STATUS = {
   notstarted: { cls: "status-notstarted", label: "Not started" },
 };
 
+// Accessibility portal link for the box at the top of the page. Leave
+// empty until the portal is live; the box shows "Link coming soon".
+const ACCESSIBILITY_PORTAL_URL = "";
+
 // Event date for the sidebar countdown (local time, so it rolls over at the
 // viewer's midnight).
 const GALA_DATE = new Date(2026, 9, 24);
@@ -447,6 +451,15 @@ const sectionConfig = [
 const assetRoot = "assets/";
 const navRoot = document.getElementById("sidebar-nav");
 const contentRoot = document.getElementById("content");
+
+const portalLink = document.getElementById("portal-link");
+if (ACCESSIBILITY_PORTAL_URL) {
+  portalLink.href = ACCESSIBILITY_PORTAL_URL;
+  portalLink.target = "_blank";
+  portalLink.rel = "noopener noreferrer";
+  portalLink.removeAttribute("aria-disabled");
+  portalLink.textContent = "Open the accessibility portal";
+}
 const modal = document.getElementById("asset-modal");
 const modalTitle = document.getElementById("modal-title");
 const modalPreview = document.getElementById("modal-preview");

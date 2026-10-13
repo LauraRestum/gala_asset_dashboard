@@ -143,6 +143,55 @@ button,
   padding: 1.25rem 1.5rem 2rem;
 }
 
+.portal-box {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  margin-bottom: 1.75rem;
+  padding: 1rem 1.25rem;
+  border: 1.5px solid var(--border);
+  border-left: 4px solid var(--brand-green);
+  border-radius: 0.7rem;
+  background: var(--surface);
+}
+
+.portal-box h2 {
+  margin: 0 0 0.25rem;
+  color: var(--brand-blue);
+  font-size: 1.1rem;
+}
+
+.portal-box p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.portal-link {
+  padding: 0.6rem 1.1rem;
+  border-radius: 999px;
+  background: var(--brand-blue);
+  color: var(--white);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.portal-link:hover,
+.portal-link:focus-visible {
+  background: var(--brand-green);
+  color: var(--brand-blue);
+}
+
+.portal-link[aria-disabled="true"] {
+  background: var(--border);
+  color: var(--text-muted);
+  cursor: default;
+}
+
 .section {
   scroll-margin-top: 1rem;
   margin-bottom: 2rem;
