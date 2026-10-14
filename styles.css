@@ -169,6 +169,16 @@ button,
   font-size: 0.9rem;
 }
 
+.portal-box .portal-short {
+  margin-top: 0.4rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.portal-short a {
+  color: var(--brand-blue);
+}
+
 .portal-link {
   padding: 0.6rem 1.1rem;
   border-radius: 999px;
