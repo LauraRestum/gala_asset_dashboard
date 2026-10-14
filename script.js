@@ -406,11 +406,6 @@ const sectionConfig = [
             status: "production",
             clickup: "https://app.clickup.com/t/86ak6h8m0",
           },
-          {
-            name: "Erica — In Memoriam Video",
-            placeholder: "Draft",
-            status: "draft",
-          },
         ],
       },
     ],
