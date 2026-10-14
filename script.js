@@ -368,7 +368,8 @@ const sectionConfig = [
             name: "Level Up — 90-Second Video",
             video: "videos/levelup-90.mp4",
             poster: "videos/levelup-poster.jpg",
-            status: "draft",
+            status: "complete",
+            tags: [{ label: "AD in production", status: "production" }],
             dropbox:
               "https://www.dropbox.com/scl/fi/newlqokd1rcjl0dyw3uo6/Level-Up-90-Sec.mp4?rlkey=bkorvfmnbi5zyp55cl7y2p1qv&st=he3pw9wv&dl=0",
             clickup: "https://app.clickup.com/t/86ak6h8hh",
@@ -377,7 +378,8 @@ const sectionConfig = [
             name: "Heather's Camp — 90-Second Video",
             video: "videos/heathers-camp-90.mp4",
             poster: "videos/heathers-camp-poster.jpg",
-            status: "draft",
+            status: "complete",
+            tags: [{ label: "AD in production", status: "production" }],
             dropbox:
               "https://www.dropbox.com/scl/fi/b4z6ok79lnnijej3v6606/Heathers-Camp-2026-90-Sec.mp4?rlkey=wdktvt18g8cywrys7d0q64n4a&st=hwhnuzw9&dl=0",
             clickup: "https://app.clickup.com/t/86ak6h8g1",
@@ -386,7 +388,8 @@ const sectionConfig = [
             name: "Child Development Center — Video",
             video: "videos/ecdc.mp4",
             poster: "videos/ecdc-poster.jpg",
-            status: "draft",
+            status: "complete",
+            tags: [{ label: "AD available", status: "approved" }],
             dropbox:
               "https://www.dropbox.com/scl/fo/17f055ychbo9jat57czz4/AMgjzle7rqSJE1nkcdD_eLQ?rlkey=w4zsbnqir62plvn9qis9qc6cb&preview=ECDC_Adah_FullCircle_FINAL.mp4&dl=0",
             downloadLabel: "Download standard version (Dropbox)",
@@ -399,9 +402,13 @@ const sectionConfig = [
             clickup: "https://app.clickup.com/t/86aketm6z",
           },
           {
-            name: "Wichita Building",
-            placeholder: "In production",
-            status: "production",
+            name: "Water Street — Video",
+            video: "videos/water-street.mp4",
+            poster: "videos/water-street-poster.jpg",
+            status: "complete",
+            tags: [{ label: "AD in production", status: "production" }],
+            dropbox:
+              "https://www.dropbox.com/scl/fi/37hhk6zweacy8m742jnf7/WaterSt_Gala_Final.mp4?rlkey=tvf6vtepbr70gd9peecbph9zn&st=4adj8f9l&dl=0",
             clickup: "https://app.clickup.com/t/86aketm5t",
           },
           {
