@@ -48,12 +48,12 @@ Actions:
   lives in `sectionConfig` at the top of `script.js`
 - `assets/` — everything the dashboard shows, one folder per piece:
   - `print/` — save the date, sponsorship book, invitation, bidder card
-  - `program/` — day-of program PDF, `page-01.jpg`…`page-21.jpg`, and
+  - `program/` — day-of program PDF, `page-01.jpg`…`page-20.jpg`, and
     `all-pages.jpg`
   - `signage/` — sign and banner previews with their 24x30 print PDFs
-  - `cocktail-loop/` — cocktail hour loop slides, `slide-01.jpg`…`slide-47.jpg`
+  - `cocktail-loop/` — earlier cocktail hour loop slides, `slide-01.jpg`…`slide-47.jpg` (no longer shown; the loop tile plays `videos/cocktail-loop.mp4`)
   - `presentation/` — programming deck slides, `slide-01.jpg`…`slide-32.jpg`
-  - `show/`, `videos/`, `digital/` — award, spotlight videos, webpage, photo booth logo
+  - `show/`, `videos/`, `digital/` — award, cocktail loop and spotlight videos, webpage, photo booth logo
   - `site/` — favicons, the disco-ball cursor, and the ZIP helper (JSZip)
   - `full/` — full-resolution downloads for pieces whose on-screen preview
     is scaled down (signs rendered from their print PDFs at 150 dpi, cards

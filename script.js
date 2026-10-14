@@ -11,6 +11,10 @@ const STATUS = {
   notstarted: { cls: "status-notstarted", label: "Not started" },
 };
 
+// Accessibility portal link for the box at the top of the page. Leave
+// empty until the portal is live; the box shows "Link coming soon".
+const ACCESSIBILITY_PORTAL_URL = "https://a-night-for-vision-gala.vercel.app/#home";
+
 // Event date for the sidebar countdown (local time, so it rolls over at the
 // viewer's midnight).
 const GALA_DATE = new Date(2026, 9, 24);
@@ -59,7 +63,7 @@ const sectionConfig = [
           {
             name: "Day-of Program",
             file: "program/page-01.jpg",
-            pages: 21,
+            pages: 20,
             pagePrefix: "program/page-",
             fullPrefix: "full/program/page-",
             status: "draft",
@@ -68,10 +72,10 @@ const sectionConfig = [
             urlLabel: "Full program (PDF)",
             clickup: "https://app.clickup.com/t/86ak6h8r1",
             groupId: "program",
-            groupLabel: "Day-of Program — one booklet, 21 pages",
+            groupLabel: "Day-of Program — 20-page booklet, plus a large print edition",
           },
           {
-            name: "Day-of Program — All 21 Pages",
+            name: "Day-of Program — All 20 Pages",
             file: "program/all-pages.jpg",
             full: "full/program/all-pages.jpg",
             status: "draft",
@@ -81,23 +85,42 @@ const sectionConfig = [
             groupId: "program",
           },
           {
+            name: "Day-of Program — Large Print",
+            file: "program/large-print-cover.jpg",
+            download: "assets/program/2026-gala-program-large-print.docx",
+            downloadLabel: "Download large print program (Word)",
+            status: "draft",
+            clickup: "https://app.clickup.com/t/86ak6h8r1",
+            groupId: "program",
+          },
+          {
             name: "Bidder Card — Side A (Venue Map)",
             file: "print/bidder-card-map.jpg",
             full: "full/print/bidder-card-map.jpg",
-            status: "approval",
+            status: "approved",
             url: "assets/print/2026-gala-bidder-card.pdf",
             urlLabel: "Front & back proof (PDF)",
             clickup: "https://app.clickup.com/t/86ak6h83x",
             groupId: "bidder-card",
-            groupLabel: "Bidder Card — one card, two sides",
+            groupLabel: "Bidder Card — two sides, plus a large print version",
           },
           {
             name: "Bidder Card — Side B (Bidder Number)",
             file: "print/bidder-card-number.jpg",
             full: "full/print/bidder-card-number.jpg",
-            status: "approval",
+            status: "approved",
             url: "assets/print/2026-gala-bidder-card-numbers.pdf",
             urlLabel: "All 300 cards, 101–400 (PDF)",
+            clickup: "https://app.clickup.com/t/86ak6h83x",
+            groupId: "bidder-card",
+          },
+          {
+            name: "Bidder Card — Large Print (Where to Find Things)",
+            file: "print/bidder-card-large-print.jpg",
+            full: "full/print/bidder-card-large-print.jpg",
+            status: "approved",
+            url: "assets/print/2026-gala-bidder-card-large-print.pdf",
+            urlLabel: "Large print card, 9x6 (PDF)",
             clickup: "https://app.clickup.com/t/86ak6h83x",
             groupId: "bidder-card",
           },
@@ -116,7 +139,8 @@ const sectionConfig = [
             name: "Welcome Sign",
             file: "signage/welcome-sign.jpg",
             full: "full/signage/welcome-sign.jpg",
-            status: "approved",
+            status: "delivered",
+            tags: [{ label: "Received from City Blueprint", status: "approved" }],
             url: "assets/signage/2026-gala-welcome-sign.pdf",
             urlLabel: "Print file, 24x30 (PDF)",
             clickup: "https://app.clickup.com/t/86ak6hb8d",
@@ -126,7 +150,8 @@ const sectionConfig = [
           {
             name: "Check-In Sign",
             file: "signage/check-in-sign.jpg",
-            status: "approved",
+            status: "delivered",
+            tags: [{ label: "Received from City Blueprint", status: "approved" }],
             clickup: "https://app.clickup.com/t/86ak6hb8d",
             groupId: "entry",
           },
@@ -134,7 +159,8 @@ const sectionConfig = [
             name: "Upstairs Directional — Event Continues Upstairs",
             file: "signage/upstairs-sign.jpg",
             full: "full/signage/upstairs-sign.jpg",
-            status: "approved",
+            status: "delivered",
+            tags: [{ label: "Received from City Blueprint", status: "approved" }],
             url: "assets/signage/2026-gala-upstairs-sign.pdf",
             urlLabel: "Print file, 24x30 (PDF)",
             clickup: "https://app.clickup.com/t/86ak6hbdc",
@@ -145,7 +171,8 @@ const sectionConfig = [
             name: "Directional — Sensory Experiences & Premier Cocktails (Beren Room)",
             file: "signage/beren-room-sign.jpg",
             full: "full/signage/beren-room-sign.jpg",
-            status: "approved",
+            status: "delivered",
+            tags: [{ label: "Received from City Blueprint", status: "approved" }],
             url: "assets/signage/2026-gala-beren-room-sign.pdf",
             urlLabel: "Print file, 24x30 (PDF)",
             clickup: "https://app.clickup.com/t/86ak6hbdc",
@@ -155,7 +182,8 @@ const sectionConfig = [
             name: "Directional — Photo Booth & Premier Cocktails (Upper Gallery)",
             file: "signage/upper-gallery-sign.jpg",
             full: "full/signage/upper-gallery-sign.jpg",
-            status: "approved",
+            status: "delivered",
+            tags: [{ label: "Received from City Blueprint", status: "approved" }],
             url: "assets/signage/2026-gala-upper-gallery-sign.pdf",
             urlLabel: "Print file, 24x30 (PDF)",
             clickup: "https://app.clickup.com/t/86ak6hbdc",
@@ -165,7 +193,8 @@ const sectionConfig = [
             name: "Directional — Premier Cocktails (Arrow Left)",
             file: "signage/premier-cocktails-left-sign.jpg",
             full: "full/signage/premier-cocktails-left-sign.jpg",
-            status: "approved",
+            status: "delivered",
+            tags: [{ label: "Received from City Blueprint", status: "approved" }],
             url: "assets/signage/2026-gala-premier-cocktails-signs.pdf",
             urlLabel: "Print file, 24x30, both signs (PDF)",
             clickup: "https://app.clickup.com/t/86ak6hb5e",
@@ -175,7 +204,8 @@ const sectionConfig = [
             name: "Directional — Premier Cocktails (Arrow Right)",
             file: "signage/premier-cocktails-right-sign.jpg",
             full: "full/signage/premier-cocktails-right-sign.jpg",
-            status: "approved",
+            status: "delivered",
+            tags: [{ label: "Received from City Blueprint", status: "approved" }],
             url: "assets/signage/2026-gala-premier-cocktails-signs.pdf",
             urlLabel: "Print file, 24x30, both signs (PDF)",
             clickup: "https://app.clickup.com/t/86ak6hb5e",
@@ -185,7 +215,8 @@ const sectionConfig = [
             name: "Tactile Art Experience Sign",
             file: "signage/tactile-art-sign.jpg",
             full: "full/signage/tactile-art-sign.jpg",
-            status: "approved",
+            status: "delivered",
+            tags: [{ label: "Received from City Blueprint", status: "approved" }],
             url: "assets/signage/2026-gala-tactile-art-sign.pdf",
             urlLabel: "Print file, 24x30 (PDF)",
             clickup: "https://app.clickup.com/t/86ak6hba5",
@@ -196,7 +227,8 @@ const sectionConfig = [
             name: "Assistive Technology Experience Sign",
             file: "signage/assistive-tech-sign.jpg",
             full: "full/signage/assistive-tech-sign.jpg",
-            status: "approved",
+            status: "delivered",
+            tags: [{ label: "Received from City Blueprint", status: "approved" }],
             url: "assets/signage/2026-gala-assistive-tech-sign.pdf",
             urlLabel: "Print file, 24x30 (PDF)",
             clickup: "https://app.clickup.com/t/86ak6hb6v",
@@ -208,6 +240,7 @@ const sectionConfig = [
             full: "full/signage/adah-banner.jpg",
             copyPanel: true,
             status: "approved",
+            tags: [{ label: "ARC — ready Friday 10/16", status: "production" }],
             clickup: "https://app.clickup.com/t/86ak6h877",
             groupId: "banners",
             groupLabel: "Through Their Eyes Roll-Up Banners — one set of four",
@@ -218,6 +251,7 @@ const sectionConfig = [
             full: "full/signage/aubree-banner.jpg",
             copyPanel: true,
             status: "approved",
+            tags: [{ label: "ARC — ready Friday 10/16", status: "production" }],
             clickup: "https://app.clickup.com/t/86ak6h877",
             groupId: "banners",
           },
@@ -225,7 +259,8 @@ const sectionConfig = [
             name: "Through Their Eyes Roll-Up Banner — Hashim",
             file: "signage/hashim-banner.jpg",
             copyPanel: true,
-            status: "approval",
+            status: "approved",
+            tags: [{ label: "ARC — ready Friday 10/16", status: "production" }],
             clickup: "https://app.clickup.com/t/86ak6h877",
             groupId: "banners",
           },
@@ -234,16 +269,48 @@ const sectionConfig = [
             file: "signage/steven-banner.jpg",
             full: "full/signage/steven-banner.jpg",
             copyPanel: true,
-            status: "approval",
+            status: "approved",
+            tags: [{ label: "ARC — ready Friday 10/16", status: "production" }],
             clickup: "https://app.clickup.com/t/86ak6h877",
             groupId: "banners",
           },
           {
-            name: "Aruba Chance Drawing Stick Sign — $200 Tickets",
-            file: "signage/chance-drawing-stick-sign.png",
+            name: "Aruba Chance Drawing Staked Sign — Side A",
+            file: "signage/chance-drawing-stick-sign-side-a.jpg",
+            full: "full/signage/chance-drawing-stick-sign-side-a.jpg",
+            status: "delivered",
+            tags: [{ label: "Received from City Blueprint", status: "approved" }],
+            url: "assets/signage/2026-gala-chance-drawing-stick-sign-side-a.pdf",
+            urlLabel: "Print file, 7.75x12.25 (PDF)",
+            groupId: "aruba",
+            groupLabel: "Aruba Chance Drawing — staked sign, table sign & tickets",
+          },
+          {
+            name: "Aruba Chance Drawing Staked Sign — Side B",
+            file: "signage/chance-drawing-stick-sign-side-b.jpg",
+            full: "full/signage/chance-drawing-stick-sign-side-b.jpg",
+            status: "delivered",
+            tags: [{ label: "Received from City Blueprint", status: "approved" }],
+            url: "assets/signage/2026-gala-chance-drawing-stick-sign-side-b.pdf",
+            urlLabel: "Print file, 7.75x12.25 (PDF)",
+            groupId: "aruba",
+          },
+          {
+            name: "Aruba Chance Drawing Table Sign",
+            file: "signage/chance-drawing-table-sign.jpg",
+            full: "full/signage/chance-drawing-table-sign.jpg",
             status: "draft",
-            groupId: "stick-signs",
-            groupLabel: "Stick Signs",
+            url: "assets/signage/2026-gala-chance-drawing-table-sign.pdf",
+            urlLabel: "Print file, 11x8.5 (PDF)",
+            groupId: "aruba",
+          },
+          {
+            name: "Aruba Chance Drawing Tickets — Numbered 001–100",
+            file: "signage/chance-drawing-ticket.jpg",
+            status: "draft",
+            url: "assets/print/2026-gala-chance-drawing-tickets.pdf",
+            urlLabel: "Print file, 5x3, all 100 tickets (PDF)",
+            groupId: "aruba",
           },
         ],
       },
@@ -257,12 +324,12 @@ const sectionConfig = [
         title: "Show & Presentation",
         assets: [
           {
-            name: "Cocktail Hour Loop (Slides)",
-            pages: 47,
-            pagePrefix: "cocktail-loop/slide-",
-            pageWord: "Slide",
-            slideshow: true,
+            name: "Cocktail Hour Loop",
+            video: "videos/cocktail-loop.mp4",
+            poster: "videos/cocktail-loop-poster.jpg",
             status: "draft",
+            dropbox:
+              "https://www.dropbox.com/scl/fi/r023bjjl2kbxtop79b47e/Envision_Gala_2026_Cocktail_Hour_Loop-5.mov?rlkey=m4omm8ujntmtmm4qdkvlkjsmm&st=zuuwu55l&dl=0",
             url: "https://dlhfb.sharepoint.com/:p:/s/EnvisionMarketing/IQAOw9xZ1o6XQp6Yx0FvQ9iUAXwPDjsJxEUFCl-PS4IbT8I?e=WvUkd0",
             urlLabel: "Open the latest deck in PowerPoint (SharePoint)",
             clickup: "https://app.clickup.com/t/86ak6h8cy",
@@ -312,9 +379,19 @@ const sectionConfig = [
             clickup: "https://app.clickup.com/t/86ak6h8g1",
           },
           {
-            name: "Child Development Center",
-            placeholder: "In production",
-            status: "production",
+            name: "Child Development Center — Video",
+            video: "videos/ecdc.mp4",
+            poster: "videos/ecdc-poster.jpg",
+            status: "draft",
+            dropbox:
+              "https://www.dropbox.com/scl/fo/17f055ychbo9jat57czz4/AMgjzle7rqSJE1nkcdD_eLQ?rlkey=w4zsbnqir62plvn9qis9qc6cb&preview=ECDC_Adah_FullCircle_FINAL.mp4&dl=0",
+            downloadLabel: "Download standard version (Dropbox)",
+            links: [
+              {
+                href: "https://www.dropbox.com/scl/fo/17f055ychbo9jat57czz4/AMgjzle7rqSJE1nkcdD_eLQ?rlkey=w4zsbnqir62plvn9qis9qc6cb&preview=ECDC_Adah_FullCircle_AUDIO_DESCRIBED_FINAL.mp4&dl=1",
+                label: "Download audio-described version (Dropbox)",
+              },
+            ],
             clickup: "https://app.clickup.com/t/86aketm6z",
           },
           {
@@ -328,6 +405,11 @@ const sectionConfig = [
             placeholder: "In production",
             status: "production",
             clickup: "https://app.clickup.com/t/86ak6h8m0",
+          },
+          {
+            name: "Erica — In Memoriam Video",
+            placeholder: "Draft",
+            status: "draft",
           },
         ],
       },
@@ -388,6 +470,15 @@ const sectionConfig = [
 const assetRoot = "assets/";
 const navRoot = document.getElementById("sidebar-nav");
 const contentRoot = document.getElementById("content");
+
+const portalLink = document.getElementById("portal-link");
+if (ACCESSIBILITY_PORTAL_URL) {
+  portalLink.href = ACCESSIBILITY_PORTAL_URL;
+  portalLink.target = "_blank";
+  portalLink.rel = "noopener noreferrer";
+  portalLink.removeAttribute("aria-disabled");
+  portalLink.textContent = "Open the accessibility portal";
+}
 const modal = document.getElementById("asset-modal");
 const modalTitle = document.getElementById("modal-title");
 const modalPreview = document.getElementById("modal-preview");
@@ -677,6 +768,7 @@ const buildAssetTile = (asset) => {
       fileLabel.append(link);
     }
   }
+  (asset.links || []).forEach((extra) => addLink(extra.href, extra.label));
   if (asset.clickup) addLink(asset.clickup, "Team notes in ClickUp");
   if (!fileLabel.childNodes.length && asset.file) {
     fileLabel.textContent = asset.file;
