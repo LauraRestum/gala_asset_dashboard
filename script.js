@@ -333,7 +333,7 @@ const sectionConfig = [
             name: "Cocktail Hour Loop",
             video: "videos/cocktail-loop.mp4",
             poster: "videos/cocktail-loop-poster.jpg",
-            status: "draft",
+            status: "complete",
             dropbox:
               "https://www.dropbox.com/scl/fi/r023bjjl2kbxtop79b47e/Envision_Gala_2026_Cocktail_Hour_Loop-5.mov?rlkey=m4omm8ujntmtmm4qdkvlkjsmm&st=zuuwu55l&dl=0",
             url: "https://dlhfb.sharepoint.com/:p:/s/EnvisionMarketing/IQAOw9xZ1o6XQp6Yx0FvQ9iUAXwPDjsJxEUFCl-PS4IbT8I?e=WvUkd0",
