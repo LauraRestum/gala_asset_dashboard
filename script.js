@@ -309,9 +309,10 @@ const sectionConfig = [
           {
             name: "Aruba Chance Drawing Tickets — Numbered 001–100",
             file: "signage/chance-drawing-ticket.jpg",
+            full: "full/signage/chance-drawing-ticket.jpg",
             status: "draft",
             url: "assets/print/2026-gala-chance-drawing-tickets.pdf",
-            urlLabel: "Print file, 5x3, all 100 tickets (PDF)",
+            urlLabel: "Print file, 5.5x1.75, all 100 tickets (PDF)",
             groupId: "aruba",
           },
         ],
