@@ -348,11 +348,12 @@ const sectionConfig = [
           {
             name: "Spirit of Philanthropy Award",
             file: "show/award.jpg",
-            full: "full/show/spirit-of-philanthropy-award-2026.png",
+            full: "full/show/spirit-of-philanthropy-award-2026.jpg",
             status: "delivered",
-            tags: [{ label: "New design uploaded", status: "draft", flash: true }],
-            url: "https://www.4imprint.com/product/154448/Prism-Diamond-Crystal-Award",
-            urlLabel: "Award: Prism Diamond Crystal Award (4imprint)",
+            tags: [
+              { label: "New design uploaded", status: "draft", flash: true },
+              { label: "Contacts: Madison & Molly", status: "approved" },
+            ],
             clickup: "https://app.clickup.com/t/86akgg61d",
           },
         ],
