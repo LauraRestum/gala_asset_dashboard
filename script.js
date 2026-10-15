@@ -420,7 +420,7 @@ const sectionConfig = [
             poster: "videos/programs-legacy-poster.jpg",
             status: "draft",
             dropbox:
-              "https://www.dropbox.com/scl/fi/bppe7bx1eu7969473hw6v/Legacy_Video_FINAL_4K.mp4?rlkey=m90e9ckzexsx0j108gv8341v9&st=9lltcfqt&dl=0",
+              "https://www.dropbox.com/scl/fi/hg40pn5lqcb9o51epaszx/Legacy_Video_FINAL_4K.mp4?rlkey=ot67cvxlwiczh5t3n1zbbh820&st=cgmjuf96&dl=0",
             downloadLabel: "Download full quality video, 4K (Dropbox)",
             clickup: "https://app.clickup.com/t/86ak6h8m0",
           },
