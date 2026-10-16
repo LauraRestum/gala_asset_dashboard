@@ -72,7 +72,7 @@ const sectionConfig = [
             tags: [{ label: "Aruba page: Michael approved 9.29", status: "approved" }],
             url: "assets/program/2026-gala-program.pdf",
             urlLabel: "Full program (PDF)",
-            clickup: "https://app.clickup.com/t/86ak6h8r1",
+            clickup: "https://app.clickup.com/t/17tv3prbpcp",
             groupId: "program",
             groupLabel: "Day-of Program — 20-page booklet, plus a large print edition",
           },
@@ -83,7 +83,7 @@ const sectionConfig = [
             status: "finalprint",
             url: "assets/program/2026-gala-program.pdf",
             urlLabel: "Full program (PDF)",
-            clickup: "https://app.clickup.com/t/86ak6h8r1",
+            clickup: "https://app.clickup.com/t/17tv3prbpcp",
             groupId: "program",
           },
           {
@@ -92,7 +92,7 @@ const sectionConfig = [
             download: "assets/program/2026-gala-program-large-print.docx",
             downloadLabel: "Download large print program (Word)",
             status: "complete",
-            clickup: "https://app.clickup.com/t/86ak6h8r1",
+            clickup: "https://app.clickup.com/t/17tv3prbpcp",
             groupId: "program",
           },
           {
